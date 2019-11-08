@@ -6,12 +6,12 @@ class CreateChef extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chefName: '123',
-            chefBio: '123',
-            chefExperience: '1',
-            chefEmail: '123@asd',
-            chefPassword: 'pass',
-            chefPrice: '1',
+            chefName: 'Aaron Person',
+            chefBio: 'Example Bio',
+            chefExperience: '5',
+            chefEmail: 'TestEmail@Test.Email',
+            chefPassword: 'password123',
+            chefPrice: '40',
             chefPicture: 'testString'
         }
         this.onChange = this.onChange.bind(this);
