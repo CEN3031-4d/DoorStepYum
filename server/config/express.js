@@ -19,6 +19,13 @@ module.exports.init = () => {
     // initialize app
     const app = express();
 
+    //Byspass the cors policy. Only works locally right now.
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+      }); 
+
     // enable request logging for development debugging
     app.use(morgan('dev'));
 

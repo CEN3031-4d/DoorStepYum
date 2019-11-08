@@ -7,3 +7,26 @@
     font-size: calc(9px + 2vmin);
     color: white;
 }
+
+.chefLink:link{
+    color: teal;
+}
+.chefLink:hover{
+    color: white;
+}
+
+.chefLink:visited{
+    color: wheat;
+}
+.chefLink:visited:hover{
+    color:white
+}
+
+.chefRow{
+    background-color: black;
+    border-radius: 20px;
+}
+
+.chefRow td{
+    text-align: center;
+}
