@@ -38,7 +38,7 @@ router.route('/add').post(function (req, res) {
 });
 
 router.route('/update/:id').post(function (req, res) {
-  Todo.findById(req.params.id, function (err, chef) {
+  Chef.findById(req.params.id, function (err, chef) {
     if (!chef)
       res.status(400).send('Chef is not found');
     else {
@@ -51,7 +51,7 @@ router.route('/update/:id').post(function (req, res) {
       chef.chefPicture = req.body.chefPicture;
 
       chef.save()
-        .then(tody => {
+        .then(chef => {
           res.json('Chef Updated');
         })
         .catch(err => {
