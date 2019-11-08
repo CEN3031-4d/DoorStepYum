@@ -8,6 +8,10 @@
     grid-auto-rows: min-content;
     grid-gap: 20px;
     margin: 20px auto 0;
+    
+}
+.topnav-link{
+    padding-left: 20px;
 }
 
 .cardList {
