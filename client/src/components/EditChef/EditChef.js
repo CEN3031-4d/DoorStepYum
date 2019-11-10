@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './EditChef.css'
 import { Link } from 'react-router-dom'
 class EditChef extends Component {
     constructor(props) {
@@ -48,10 +49,10 @@ class EditChef extends Component {
     }
     render() {
         return (
-            <div>
-                <Link className="chefLink" to={'/Chefs'}>Return to Chefs</Link>
+            <div className="entryTable">
+                <Link to={'/Chefs'}>Return to Chefs</Link>
                 <form onSubmit={this.onSubmit}>
-                    <div className="entryTable">
+                    <div>
                         <table>
                             <tbody>
                                 <tr>
@@ -120,7 +121,6 @@ class EditChef extends Component {
                                     <td>
                                         <input type="text"
                                             name="chefPicture"
-                                            placeholder="Picture Filepath"
                                             value={this.state.chefPicture}
                                             onChange={this.onChange}
                                         />

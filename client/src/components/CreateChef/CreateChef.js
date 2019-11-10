@@ -46,11 +46,11 @@ class CreateChef extends Component {
 
     render() {
         return (
-            <div className="createChef">
-                <Link className="chefLink" to={'/Chefs'}>Return to Chefs</Link>
+            <div className="entryTable">
+                <Link to={'/Chefs'}>Return to Chefs</Link>
                 <h3>Create New Chef</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="entryTable">
+                    <div>
                         <table>
                             <tbody>
                                 <tr>

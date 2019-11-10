@@ -1,32 +1,26 @@
 .chefsTab{
-    background-color: #282c34;
+    background-color: wheat;
     min-height: 100vh;
     display: flex;
     padding-left: 20px;
     flex-direction: column;
     font-size: calc(9px + 2vmin);
-    color: white;
+    color: #282c34;
 }
-
-.chefLink:link{
-    color: teal;
-}
-.chefLink:hover{
-    color: white;
-}
-
-.chefLink:visited{
-    color: wheat;
-}
-.chefLink:visited:hover{
-    color:white
-}
-
 .chefRow{
-    background-color: black;
-    border-radius: 20px;
+    background-color: lavender;
 }
 
 .chefRow td{
     text-align: center;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.chefRow th{
+    text-align: center;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
 }
