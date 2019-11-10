@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Chefs.css'
-import EditChef from '../EditChef/EditChef'
 import axios from 'axios';
 
-const Chef = props => (
-    <tr className="chefRow">
-        <td>{props.chef.chefName}</td>
-        <td>{props.chef.chefBio}</td>
-        <td>{props.chef.chefExperience}</td>
-        <td>{props.chef.chefEmail}</td>
-        <td>{props.chef.chefPassword}</td>
-        <td>{props.chef.chefPrice}</td>
-        <td>{props.chef.chefPicture}</td>
-        <td><Link className="chefLink" to={'Chefs/edit/'+props.chef._id}>Edit</Link></td>
-    </tr>
-)
 
 class Projects extends Component {
     constructor(props) {
@@ -28,25 +15,54 @@ class Projects extends Component {
 
     //This function is called when the component is mounted
     componentDidMount = () => {
+        this.getChefs();
+    }
+ 
+    getChefs = () => {
         axios.get('http://localhost:5000/api/chef')
-            .then(res => {
-                this.setState({ chefs: res.data });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        .then(res => {
+            this.setState({ chefs: res.data });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 
     chefs = () => {
         return this.state.chefs.map((curChef, i) => {
-            return <Chef chef={curChef} key={i}/>
+            return (
+                    <tr className="chefRow" key={i}>
+                        <td>{curChef.chefName}</td>
+                        <td>{curChef.chefBio}</td>
+                        <td>{curChef.chefExperience}</td>
+                        <td>{curChef.chefEmail}</td>
+                        <td>{curChef.chefPassword}</td>
+                        <td>{curChef.chefPrice}</td>
+                        <td>{curChef.chefPicture}</td>
+                        <td><Link className="chefLink" to={'Chefs/edit/' + curChef._id}>Edit</Link></td>
+                        <td><button onClick={() => this.deleteChef(curChef._id)}>Delete</button></td>
+                    </tr>
+            )
         })
     }
+
+    deleteChef = (id) => {
+
+        axios.delete('http://localhost:5000/api/chef/delete/' + id)
+            .then(res => {
+                console.log(res.data);
+                this.getChefs();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+    }
+
 
     render() {
         return (
             <div className="chefsTab">
-                <h1>Testing DB Connections here.</h1>
                 <Link className="chefLink" to='Chefs/create'>Create Chefs</Link>
                 <table style={{ marginTop: 20 }}>
                     <thead>

@@ -12,6 +12,9 @@ router.route('/add')
   .post(chef.addChef);
 
 router.route('/update/:id')
-  .post(chef.updateChef)
+  .post(chef.updateChef);
+
+router.route('/delete/:id')
+  .delete(chef.deleteChef);
 
 module.exports = router;

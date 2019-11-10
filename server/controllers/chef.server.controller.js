@@ -56,3 +56,19 @@ exports.updateChef = (req, res) => {
         res.status(400).send('adding new chef failed');
       });
   }
+
+  exports.deleteChef = (req, res) => {
+    Chef.findById(req.params.id, (err, chef) => {
+      if (!chef)
+        res.status(400).send('Chef is not found');
+      else {
+        chef.remove()
+          .then(chef => {
+            res.json('Chef Deleted');
+          })
+          .catch(err => {
+            res.status(400).send(err);
+          })
+      }
+    })
+  }
