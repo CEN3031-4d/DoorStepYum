@@ -43,6 +43,19 @@ class Projects extends Component {
                         <td><button onClick={() => this.deleteChef(curChef._id)}>Delete</button></td>
                     </tr>
             )
+            /* 
+                This following two components make CRUD requests using ids, using different methods
+
+                <Link className="chefLink" to={'Chefs/edit/' + curChef._id}>Edit</Link>
+                    This link appends the _id of the target chef to the end of the URL that it redirects you to. Inside 
+                    EditChef this property is accessed using 'this.props.match.params.id'. The property (id) is named in 
+                    the pathname of the route in client/src/app.js ("/Chefs/edit/:id" in this case)
+
+                <button onClick={() => this.deleteChef(curChef._id)}>Delete</button>
+                    This button just passes the _id of the Chef entry to a function that makes the axios call directly.
+                    The deleteChef method then appends _id to the end of the delete request endpoint.
+                    
+            */
         })
     }
 
@@ -51,7 +64,7 @@ class Projects extends Component {
         axios.delete('http://localhost:5000/api/chef/delete/' + id)
             .then(res => {
                 console.log(res.data);
-                this.getChefs();
+                this.getChefs(); //This refreshed the data after a successful delete has occurred.
             })
             .catch((err) => {
                 console.log(err);

@@ -1,5 +1,5 @@
 const Chef = require('../models/chef.server.model.js')
-
+//Used to populate the table in client\src\components\Chefs\Chefs.js
 exports.allChefs = (req, res) => {
     Chef.find((err, chefs) => {
         if (err) {
@@ -10,7 +10,7 @@ exports.allChefs = (req, res) => {
         }
       });
 };
-
+//Used to initialize the forms in client\src\components\EditChef\EditChef.js
 exports.returnByID = (req, res) => {
         let id = req.params.id;
         Chef.findById(id, function (err, chef) {
@@ -22,6 +22,7 @@ exports.returnByID = (req, res) => {
         });
 }
 
+//Used to update the specified entry in client\src\components\EditChef\EditChef.js
 exports.updateChef = (req, res) => {
     Chef.findById(req.params.id, function (err, chef) {
       if (!chef)
@@ -46,6 +47,7 @@ exports.updateChef = (req, res) => {
     })
   }
   
+  //Used to create a new Chef in client\src\components\CreateChef\CreateChef.js
   exports.addChef = (req, res) => {
     let chef = new Chef(req.body);
     chef.save()
@@ -57,6 +59,7 @@ exports.updateChef = (req, res) => {
       });
   }
 
+  //Used to delete a Chef in client\src\components\Chefs\Chefs.js
   exports.deleteChef = (req, res) => {
     Chef.findById(req.params.id, (err, chef) => {
       if (!chef)
