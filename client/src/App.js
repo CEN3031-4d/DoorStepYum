@@ -4,7 +4,6 @@ import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 import Chefs from "./components/Chefs/Chefs"
-import EditChef from "./components/EditChef/EditChef"
 import CreateChef from "./components/CreateChef/CreateChef"
 
 
@@ -18,7 +17,6 @@ const App = () => {
           <Redirect to="/Home" />
         </Route>
         <Route exact path="/Chefs" component={Chefs}/>
-        <Route path="/Chefs/edit/:id" component={EditChef}/>
         <Route path="/Chefs/create" component={CreateChef}/>
         <Route component={NotFound}/>
       </Switch>
