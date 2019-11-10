@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import './CreateChef.css'
 import axios from 'axios';
-
-class CreateChef extends Component {
+import {Link} from 'react-router-dom'
+class EditChef extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chefName: 'Aaron Person',
-            chefBio: 'Example Bio',
-            chefExperience: '5',
-            chefEmail: 'TestEmail@Test.Email',
-            chefPassword: 'password123',
-            chefPrice: '40',
-            chefPicture: 'testString'
+            chefName: '',
+            chefBio: '',
+            chefExperience: '',
+            chefEmail: '',
+            chefPassword: '',
+            chefPrice: '',
+            chefPicture: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-
+    componentDidMount() {
+        axios.get('http://localhost:5000/api/chef/' + this.props.match.params.id)
+            .then(res => {
+                this.setState(res.data);
+            })
+    }
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -33,10 +37,10 @@ class CreateChef extends Component {
             chefEmail: this.state.chefEmail,
             chefPassword: this.state.chefPassword,
             chefPrice: this.state.chefPrice,
-            chefPicture:this.state.chefPicture
+            chefPicture: this.state.chefPicture
         }
 
-        axios.post('http://localhost:5000/api/chef/add', newChef)
+        axios.post('http://localhost:5000/api/chef/update/'+this.props.match.params.id, newChef)
             .then(res => console.log(res.data));
 
         this.setState({
@@ -46,14 +50,13 @@ class CreateChef extends Component {
             chefEmail: '',
             chefPassword: '',
             chefPrice: '',
-            chefPicture:''
+            chefPicture: ''
         })
     }
-
     render() {
         return (
-            <div className="createChef">
-                <h3>Create New Chef</h3>
+            <div>
+            <Link className="chefLink" to={'/Chefs'}>Return to Chefs</Link>
                 <form onSubmit={this.onSubmit}>
                     <div className="entryTable">
                         <tr>
@@ -133,12 +136,9 @@ class CreateChef extends Component {
                             </td>
                         </tr>
                     </div>
-
-
-
                 </form>
             </div>
         )
     }
 }
-export default CreateChef;
+export default EditChef;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Chefs.css'
+import EditChef from '../EditChef/EditChef'
 import axios from 'axios';
 
 const Chef = props => (
@@ -12,6 +13,7 @@ const Chef = props => (
         <td>{props.chef.chefPassword}</td>
         <td>{props.chef.chefPrice}</td>
         <td>{props.chef.chefPicture}</td>
+        <td><Link className="chefLink" to={'Chefs/edit/'+props.chef._id}>Edit</Link></td>
     </tr>
 )
 
