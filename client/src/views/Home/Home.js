@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function Home() {
     return (
@@ -23,7 +29,9 @@ function Home() {
 		  <div class="col-12 text-center">
 			<h4 class="text-uppercase section-title">what we do</h4>
 			<p class="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
-			<a href="#" class="btn btn-outline-primary">Request a Chef</a> 
+			<a class="btn btn-outline-primary">
+					<Link to="/BrowsebyChef">Our Chefs</Link>
+			</a> 
 		  </div>
 		</div>
 	  </div>
