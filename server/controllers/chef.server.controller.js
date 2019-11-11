@@ -41,7 +41,7 @@ exports.updateChef = (req, res) => {
             res.json('Chef Updated');
           })
           .catch(err => {
-            res.status(400).send('Update not possible');
+            res.status(400).send(err);
           })
       }
     })
@@ -55,7 +55,7 @@ exports.updateChef = (req, res) => {
         res.status(200).json({ 'chef': 'chef added successfully' });
       })
       .catch(err => {
-        res.status(400).send('adding new chef failed');
+        res.status(400).send(err);
       });
   }
 
