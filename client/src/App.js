@@ -3,6 +3,7 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import BrowsebyChef from "./views/BrowsebyChef/BrowsebyChef"
 import BrowsebyDish from "./views/BrowsebyDish/BrowsebyDish"
+import About from "./views/About/About"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 
@@ -25,6 +26,10 @@ const App = () => {
         <Route exact path="/BrowsebyDish" component={BrowsebyDish}/>
         <Route exact path="/">
 				<Redirect to="/BrowsebyDish"/>
+			  </Route>
+        <Route exact path="/About" component={About}/>
+        <Route exact path="/">
+				<Redirect to="/About"/>
 			  </Route>
         <Route component={NotFound}/>
       </Switch>

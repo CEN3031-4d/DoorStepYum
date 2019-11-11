@@ -14,6 +14,7 @@ const Header = () => {
 		<a class="nav-link" href="#">
 			<img class="img-fluid" src={ "/logoYum.png" }/> 
 		</a>
+		<a class="nav-link" href="/About">About</a>
 		  <ul class="navbar-nav ml-auto"> 
 			<li class="nav-item "> <a class="nav-link" href="#" >Log In</a> </li>
 			<li class="nav-item "> <a class="nav-link" href="#">Register</a> </li>
