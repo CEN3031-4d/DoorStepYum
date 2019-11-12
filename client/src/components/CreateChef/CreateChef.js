@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import './CreateChef.css'
+import './CreateChef.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import uuidv4 from 'uuid/v4';
+import Encoder from '../Encoder/Encoder';
+import FormData from 'form-data';
+
 
 class CreateChef extends Component {
     constructor(props) {
@@ -13,7 +17,9 @@ class CreateChef extends Component {
             chefEmail: 'TestEmail@Test.Email',
             chefPassword: 'password123',
             chefPrice: '40',
-            chefPicture: 'testString',
+            chefPicture: '',
+            filepath: '',
+            image: '',
             regError: ''
         }
         this.onChange = this.onChange.bind(this);
@@ -23,7 +29,27 @@ class CreateChef extends Component {
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        }, () => {
+            if (this.state.chefPicture)
+                this.setState({ filepath: uuidv4().concat('.png') });
+            else
+                this.setState({ filepath: '' })
         })
+
+        if (e.target.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = (event) => {
+                let result = event.target.result;
+
+            };
+            reader.readAsArrayBuffer(e.target.files[0]); //Calls reader.onload above when finished reading data.
+            this.setState({ image: e.target.files[0] });
+
+
+        }
+        else
+            this.setState({ image: '' });
     }
 
     onSubmit = (e) => {
@@ -36,14 +62,12 @@ class CreateChef extends Component {
                 chefEmail: this.state.chefEmail,
                 chefPassword: this.state.chefPassword,
                 chefPrice: this.state.chefPrice,
-                chefPicture: this.state.chefPicture
+                chefPicture: this.state.filepath
             }
 
             axios.post('http://localhost:5000/api/chef/add', newChef)
                 .then(res => {
                     console.log(res.data);
-                    this.props.history.push('/Chefs');
-
                 })
                 .catch(err => {
                     /*  If the axios method returns an error code, it passes error data back
@@ -66,12 +90,10 @@ class CreateChef extends Component {
                                 var errMessage = 'E11000 duplicate key error collection: class.chefs index: chefName_1 dup key: { : "Test Person" }'
                                 var response1 = errMessage.split('index: ')[1].split('_')[0];
                                 var response2 = errMessage.split('index: chef')[1].split('_')[0];
-        
-                            After the above code executed, response1 would contain "chefName". For 
-                            response2, if we add 'chef' to the seperator (since we know all of our
-                            properties are prepended with chef) we can isolate 'Name' (or 
-                            Bio/Email/Password when relevant) and use it in a message to the user
-                            to explain why the operation failed.                
+                                
+                                #expected values:
+                                #response1 == 'chefName'
+                                #response2 == 'Name'            
                         */
                         var errParse = err.response.data.errmsg.split('index: chef')[1].split('_')[0];
                         this.setState({ regError: 'Error: ' + errParse + ' is already in use' });
@@ -79,8 +101,22 @@ class CreateChef extends Component {
                     else
                         console.log(err.response);
                 });
+            console.log(this.state);
+            //research multer
+            if (this.state.filepath && this.state.image) {
+                let form = new FormData();
+                form.append('image', this.state.image);
+                console.log(this.state.image);
+                axios.post('http://localhost:5000/api/chef/image', form, { headers: { 'Content-Type': 'image/png' } })
+                    .then(res => {
+                        console.log("Success!")
+                    })
+                    .catch(err => {
+                        console.log(err.stack);
+                    })
+            }
         }
-        else{
+        else {
             this.setState({ regError: 'Error: required field is missing' })
         }
     }
@@ -101,6 +137,13 @@ class CreateChef extends Component {
                                         <input type="text"
                                             name="chefName"
                                             value={this.state.chefName}
+                                            onChange={this.onChange}
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="text"
+                                            name="chefName"
+                                            value={this.state.chefName.replace(/\s/g, "")}
                                             onChange={this.onChange}
                                         />
                                     </td>
@@ -162,10 +205,8 @@ class CreateChef extends Component {
                                 <tr>
                                     <td>Picture:</td>
                                     <td>
-                                        <input type="text"
+                                        <input type="file"
                                             name="chefPicture"
-                                            placeholder="Picture Filepath"
-                                            value={this.state.chefPicture}
                                             onChange={this.onChange}
                                         />
                                     </td>

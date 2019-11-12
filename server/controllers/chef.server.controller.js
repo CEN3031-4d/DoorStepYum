@@ -27,6 +27,19 @@ exports.returnByID = (req, res) => {
   });
 }
 
+exports.putImage = (req, res) => {
+  console.log(req);
+  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.body.image}
+  s3.putObject(params, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else {
+      console.log(data);
+    }
+  })
+}
 exports.returnImage = (req, res) => {
   s3.getObject(req.query, (err, data) => {
     if (err) {
