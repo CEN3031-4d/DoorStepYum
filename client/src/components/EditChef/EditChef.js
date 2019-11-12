@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './EditChef.css'
 import { Link } from 'react-router-dom'
+import Encoder from '../Encoder/Encoder'
+
 class EditChef extends Component {
     constructor(props) {
         super(props);
@@ -13,15 +15,33 @@ class EditChef extends Component {
             chefPassword: '',
             chefPrice: '',
             chefPicture: '',
-            regError: ''
+            regError: '',
+            image: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+    
+
+
     componentDidMount() {
+        
         axios.get('http://localhost:5000/api/chef/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
+            })
+        axios.get('http://localhost:5000/api/chef/image', {
+            params: {
+                Bucket: 'chefpictures',
+                Key: 'hat1.jpg'
+            }
+        })
+            .then(res => {                
+                let image = Encoder.imageEncode(new Buffer(res.data.Body.data));
+                this.setState({image: image });
+            })
+            .catch(err => {
+                console.log(err, err.stack);
             })
     }
     onChange = (e) => {
@@ -147,6 +167,7 @@ class EditChef extends Component {
                                 </tr>
                             </tbody>
                         </table>
+                        <img src={this.state.image}/>
 
                     </div>
                 </form>
