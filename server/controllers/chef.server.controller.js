@@ -28,8 +28,8 @@ exports.returnByID = (req, res) => {
 }
 
 exports.putImage = (req, res) => {
-  console.log(req);
-  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.body.image}
+  console.log(req.body.get('filepath'));
+  var params = { Bucket: 'chefpictures', Key: req.body.get('filepath'), Body: req.body.get('image')}
   s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
@@ -40,6 +40,7 @@ exports.putImage = (req, res) => {
     }
   })
 }
+
 exports.returnImage = (req, res) => {
   s3.getObject(req.query, (err, data) => {
     if (err) {

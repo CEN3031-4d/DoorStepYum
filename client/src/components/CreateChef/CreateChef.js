@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import uuidv4 from 'uuid/v4';
 import Encoder from '../Encoder/Encoder';
-import FormData from 'form-data';
 
 
 class CreateChef extends Component {
@@ -37,16 +36,13 @@ class CreateChef extends Component {
         })
 
         if (e.target.files[0]) {
-            var reader = new FileReader();
+/*             var reader = new FileReader();
 
             reader.onload = (event) => {
                 let result = event.target.result;
-
             };
-            reader.readAsArrayBuffer(e.target.files[0]); //Calls reader.onload above when finished reading data.
+            reader.readAsArrayBuffer(e.target.files[0]); //Calls reader.onload above when finished reading data. */
             this.setState({ image: e.target.files[0] });
-
-
         }
         else
             this.setState({ image: '' });
@@ -104,12 +100,22 @@ class CreateChef extends Component {
             console.log(this.state);
             //research multer
             if (this.state.filepath && this.state.image) {
-                let form = new FormData();
+                var form = new FormData();
+                form.append('filepath', this.state.filepath);
                 form.append('image', this.state.image);
-                console.log(this.state.image);
-                axios.post('http://localhost:5000/api/chef/image', form, { headers: { 'Content-Type': 'image/png' } })
+                form.append('key','value')
+                console.log(form.get('filepath'));
+                console.log(form.get('image'));
+                axios({
+                  method: 'post',
+                  url: "http://localhost:5000/api/chef/image",
+                  data: form, 
+                  headers: {
+                    'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
+                  }
+                })
                     .then(res => {
-                        console.log("Success!")
+                        console.log("Success!");
                     })
                     .catch(err => {
                         console.log(err.stack);
