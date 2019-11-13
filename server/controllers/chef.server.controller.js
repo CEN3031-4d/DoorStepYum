@@ -1,6 +1,7 @@
 const Chef = require('../models/chef.server.model.js')
 var AWS = require('aws-sdk');
 const config = require('../config/config');
+const FormData = require('form-data');
 AWS.config = new AWS.Config({ accessKeyId: config.aws.accessKey, secretAccessKey: config.aws.secretAccessKey, region: 'us-east-2' });
 const s3 = new AWS.S3();
 
@@ -28,8 +29,8 @@ exports.returnByID = (req, res) => {
 }
 
 exports.putImage = (req, res) => {
-  console.log(req.body.get('filepath'));
-  var params = { Bucket: 'chefpictures', Key: req.body.get('filepath'), Body: req.body.get('image')}
+  console.log(req.body);
+  //var params = { Bucket: 'chefpictures', Key: req.body.get('filepath'), Body: req.body.get('image')}
   s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
@@ -50,6 +51,13 @@ exports.returnImage = (req, res) => {
       res.json(data);
     }
   });
+}
+
+exports.test = (req, res) =>
+{
+  let findForm = req.body;
+  console.log(findForm);
+  console.log(findForm instanceof FormData);
 }
 
 

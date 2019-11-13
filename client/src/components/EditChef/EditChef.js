@@ -15,33 +15,19 @@ class EditChef extends Component {
             chefPassword: '',
             chefPrice: '',
             chefPicture: '',
-            regError: '',
-            image: ''
+            regError: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-    
+
 
 
     componentDidMount() {
-        
-        axios.get('http://localhost:5000/api/chef/' + this.props.match.params.id)
+
+        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
-            })
-        axios.get('http://localhost:5000/api/chef/image', {
-            params: {
-                Bucket: 'chefpictures',
-                Key: 'hat1.jpg'
-            }
-        })
-            .then(res => {                
-                let image = Encoder.imageEncode(new Buffer(res.data.Body.data));
-                this.setState({image: image });
-            })
-            .catch(err => {
-                console.log(err, err.stack);
             })
     }
     onChange = (e) => {
@@ -167,8 +153,6 @@ class EditChef extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <img src={this.state.image}/>
-
                     </div>
                 </form>
             </div>

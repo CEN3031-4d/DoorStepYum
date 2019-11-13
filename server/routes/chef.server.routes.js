@@ -9,6 +9,8 @@ router.route('/image')
   .get(chef.returnImage)
   .post(chef.putImage);
 
+  router.route('/test').post(chef.test)
+
 //Used to create a new Chef in client\src\components\CreateChef\CreateChef.js
 router.route('/add')
   .post(chef.addChef);
@@ -21,7 +23,7 @@ router.route('/update/:id')
 router.route('/delete/:id')
   .delete(chef.deleteChef);
 //Used to initialize the forms in client\src\components\EditChef\EditChef.js
-router.route('/:id')
+router.route('/find/:id')
   .get(chef.returnByID);
 
 module.exports = router;

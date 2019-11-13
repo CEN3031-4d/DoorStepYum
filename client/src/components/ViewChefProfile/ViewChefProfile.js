@@ -18,7 +18,7 @@ class ViewChefProfile extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/api/chef/' + this.props.match.params.id)
+        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
                 axios.get('http://localhost:5000/api/chef/image', {

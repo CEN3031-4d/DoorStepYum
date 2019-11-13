@@ -101,15 +101,12 @@ class CreateChef extends Component {
             //research multer
             if (this.state.filepath && this.state.image) {
                 var form = new FormData();
-                form.append('filepath', this.state.filepath);
-                form.append('image', this.state.image);
-                form.append('key','value')
-                console.log(form.get('filepath'));
+                form.append('image', this.state.image, this.state.filepath)
+
                 console.log(form.get('image'));
-                axios({
-                  method: 'post',
-                  url: "http://localhost:5000/api/chef/image",
-                  data: form, 
+
+                axios.post("http://localhost:5000/api/chef/test", form,
+                    {
                   headers: {
                     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
                   }
