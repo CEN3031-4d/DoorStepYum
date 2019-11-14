@@ -12,17 +12,18 @@ function Home() {
     return (
 	<div>
 	<header id="page-header">
-	  <div class="container-fluid">
-		<div class="row">
-		  <div class="col-12 text-center text-uppercase">
+	  <div className="container-fluid">
+		<div className="row">
+		  <div className="col-12 text-center text-uppercase">
 		  </div>
 		</div>
-		<div class="row">
-		  <div class="col-12"> <img class="img-fluid" src={"/uchuuSushi.jpg"}/>
+		<div className="row">
+		  <div className="col-12"> <img className="img-fluid" src={"/uchuuSushi.jpg"}/>
 		  </div>
 		</div>
 	  </div>
 		</header>
+
 	<section id="description" class="bg-light">
 	  <div class="container">
 		<div class="row">
@@ -32,46 +33,47 @@ function Home() {
 			<a class="btn btn-outline-primary">
 					<Link to="/BrowsebyChef">Our Chefs</Link>
 			</a> 
+	
 		  </div>
 		</div>
 	  </div>
 	</section>
 	
-	<section class="bg-white">
-	  <div class="container-fluid">
-	   <div class="row">
-		<div class="col-12 text-center">
-		  <h4 class="section-title text-uppercase">Our chefs</h4>
+	<section className="bg-white">
+	  <div className="container-fluid">
+	   <div className="row">
+		<div className="col-12 text-center">
+		  <h4 className="section-title text-uppercase">Our chefs</h4>
 		 </div>
 		</div>
-		<div class="row">
-		  <div class="col-12 col-sm-12 col-md-4">
-<div class="card"> <img class="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
-			  <div class="card-body text-center">
-				<h5 class="card-title">Maria Wang</h5>
+		<div className="row">
+		  <div className="col-12 col-sm-12 col-md-4">
+<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			  <div className="card-body text-center">
+				<h5 className="card-title">Maria Wang</h5>
 			  </div>
 			</div>
 		</div>
-		<div class="col-12 col-sm-12 col-md-4">
-<div class="card"> <img class="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
-			  <div class="card-body text-center">
-				<h5 class="card-title">Natalia Lisiecka</h5>
+		<div className="col-12 col-sm-12 col-md-4">
+<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			  <div className="card-body text-center">
+				<h5 className="card-title">Natalia Lisiecka</h5>
 			  </div>
 		  </div>
 		</div>
-		<div class="col-12 col-sm-12 col-md-4">
-			<div class="card"> <img class="card-img-top" src={"/placeholder.png"}alt="Card image cap"/>
-			  <div class="card-body text-center">
-				<h5 class="card-title">David Singh</h5>
+		<div className="col-12 col-sm-12 col-md-4">
+			<div className="card"> <img className="card-img-top" src={"/placeholder.png"}alt="Card image cap"/>
+			  <div className="card-body text-center">
+				<h5 className="card-title">David Singh</h5>
 			  </div>
 		  </div>
 		</div>
 	  </div>
 		</div>
 	</section>
-	<footer id="page-footer" class="bg-light">
-      <div class="container">
-        <span class="text-muted">Doorstep Yummy © 2019</span>
+	<footer id="page-footer" className="bg-light">
+      <div className="container">
+        <span className="text-muted">Doorstep Yummy © 2019</span>
   </div>
     </footer>
 	</div>
