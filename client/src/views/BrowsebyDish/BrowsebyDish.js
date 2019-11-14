@@ -12,19 +12,17 @@ import {
 function BrowsebyChef() {
 
     return (
-        <div>
-	    <header id="page-header"></header>
+    
+	    
        
     <div class="wrapper">
     <nav id="sidebar"> 
         <div class = "row">
-        <div class = "button1"><button class="btn btn-info" type="button" style={{backgroundColor: 'green'}}><Link to="/BrowsebyChef" style={{textDecoration: 'none'}}>Browse by Chef</Link></button></div>
-        <div class= "button2"><button class="btn btn-info active" type="button" style={{backgroundColor: 'darkgreen'}}>Browse by Dish</button></div>
+        <a id= "button3" href="/BrowsebyChef">Browse by Chef</a>
+        <a id="button4">Browse by Dish</a>
         </div>
         
-        <div class ="searchwrapper">
-        <input type="search" placeholder="Search..." style={{padding: '8px'}}/>
-        </div>
+        <input type="search" id="searchbar" placeholder="Search..."/>
 
         <div class = "filterheader">
         <h6>Filters</h6>
@@ -80,7 +78,6 @@ function BrowsebyChef() {
 
     
 
-    </div>
             
         </div>
 

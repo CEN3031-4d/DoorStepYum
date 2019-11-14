@@ -3,15 +3,54 @@
     align-items: stretch;
 }
 
-a:link{
-    color:white;
+#sidebar {
+    background-color: rgb(255, 255, 255) !important;
+    min-width: 270px;
+    max-width: 270px;
+    min-height: 100vh;
+    box-shadow: 0px 0 3px 0 #555;
 }
 
-.searchwrapper{
-    align-items: center;
-    margin-top: 80px;
-    margin-left: 10%;
-    
+#button1{
+background-color: darkgreen;
+margin-left: 40px;
+margin-top:30px;
+width: 100px;
+text-decoration: none;
+text-align: center;
+height: 60px;
+padding: 5px;
+border-radius: 7px;
+color: white;
+}
+
+#button1:hover{
+  cursor: pointer;
+}
+
+#button2{
+background-color: rgb(30, 150, 30);
+margin-left: 10px;
+margin-top: 30px;
+width: 100px;
+text-decoration: none !important;
+color: white;
+text-align: center;
+height: 60px;
+padding: 5px;
+border-radius: 7px;
+}
+
+#button2:hover{
+  cursor: pointer;
+  background-color: darkgreen;
+}
+
+
+#searchbar{
+  padding: 8px;
+  margin-top: 30px;
+  margin-left: 12%;
 }
 
 .filterheader{
@@ -20,24 +59,20 @@ a:link{
     margin-bottom: 25px;
 }
 
+
 .form-check-label{
-    font-size: 12px;
+    font-size: 12px !important;
 }
 
 #tablecuisine{
     margin-bottom: 30px;
+    border-collapse: collapse;
 }
 
-#sidebar {
-    background-color: rgb(218, 221, 218);
-    min-width: 270px;
-    max-width: 270px;
-    min-height: 100vh;
+td{
+    border: none !important;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-}
 
 .h1style{
     font-size: 13px;
@@ -65,7 +100,7 @@ input[type=range] {
     height: 16px;
     width: 16px;
     border-radius: 41px;
-    background: #ffffff;
+    background: #a19f9f !important;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -6px;
@@ -89,7 +124,7 @@ input[type=range] {
     height: 36px;
     width: 16px;
     border-radius: 41px;
-    background: #acaaaa;
+    background: #686767 !important;
     cursor: pointer;
   }
   input[type=range]::-ms-track {
@@ -118,7 +153,7 @@ input[type=range] {
     height: 36px;
     width: 16px;
     border-radius: 41px;
-    background: #d1cfcf;
+    background: #686666 !important;
     cursor: pointer;
     height: 8.4px;
   }
@@ -145,3 +180,19 @@ input[type=range] {
   input[type=date]::-webkit-datetime-edit-year-field { color: rgb(129, 129, 131); }
   input[type=date]::-webkit-inner-spin-button { display: none; }
   input[type=date]::-webkit-calendar-picker-indicator { background: white; height: 15px;}
+
+  .card{
+    width:100px;
+    margin-left: 100px;
+  }
+
+  tr{
+    border: none !important;
+  }
+
+  table{
+    border-collapse: collapse !important;
+    border: none !important;
+  }
+
+

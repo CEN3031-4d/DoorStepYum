@@ -2,29 +2,27 @@ import React from 'react';
 import './BrowsebyChef.css';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
+    Redirect,
     Link
   } from "react-router-dom";
-
-
-
+ 
 function BrowsebyChef() {
 
     return (
         <div>
-	    <header id="page-header"></header>
-       
-    <div class="wrapper">
-    <nav id="sidebar"> 
+
+        <table>
+        <tr>
+	    <td>
+        <div class="wrapper">
+        <nav id="sidebar"> 
         <div class = "row">
-        <div class = "button1"><button class="btn btn-info active" type="button" style={{backgroundColor: 'darkgreen'}}>Browse by Chef</button></div>
-        <div class= "button2"><a class="btn btn-info" type="button" style={{backgroundColor: 'green'}}><Link to="/BrowsebyDish" style={{textDecoration: 'none'}}>Browse by Dish</Link></a></div>
+        <a id= "button1" >Browse by Chef</a>
+        <a id="button2" href="/BrowsebyDish">Browse by Dish</a>
         </div>
-        
-        <div class ="searchwrapper">
-        <input type="search" placeholder="Search..." style={{padding: '8px'}}/>
-        </div>
+       
+        <input type="search" id="searchbar" placeholder="Search..."/>
+    
 
         <div class = "filterheader">
         <h6>Filters</h6>
@@ -78,15 +76,72 @@ function BrowsebyChef() {
                     <input id="slider" type="range" />
                     <h1 class="h1style">Rating</h1>
                     <input id="slider" type="range" />
-
-
+                   
     </nav>
-
     </div>
-            
+    </td>
+   
+    <td>   
+
+        <table id="display">
+
+        <tr>
+        <td>   
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
         </div>
+        </div>
+        </td>   
+        <td>
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
+        </div>
+        </div>
+        </td>
+        <td>
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
+        </div>
+        </div>
+        </td>
+        </tr>  
 
 
+        <tr>
+        <td>   
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
+        </div>
+        </div>
+        </td>   
+        <td>
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
+        </div>
+        </div>
+        </td>
+        <td>
+        <div class="card">
+        <div class="card-body">
+        This is some text within a card body.
+        </div>
+        </div>
+        </td>
+        </tr> 
+
+
+
+        </table>
+        </td> 
+    </tr>
+    </table>
+
+        </div>
     );
 }
 export default BrowsebyChef;
