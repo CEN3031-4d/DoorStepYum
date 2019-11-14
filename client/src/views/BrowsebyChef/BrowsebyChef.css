@@ -8,7 +8,7 @@
     min-width: 270px;
     max-width: 270px;
     min-height: 100vh;
-    box-shadow: 0px 0 3px 0 #555;
+    box-shadow: 10px 0 10px -1px #555;
 }
 
 #button1{
@@ -181,18 +181,21 @@ input[type=range] {
   input[type=date]::-webkit-inner-spin-button { display: none; }
   input[type=date]::-webkit-calendar-picker-indicator { background: white; height: 15px;}
 
-  .card{
-    width:100px;
-    margin-left: 100px;
-  }
+#tablepage{
+  border-color: white !important;
+  box-shadow: none !important;
+}
+#tablepagecol{
+  border-color: white !important;
+  box-shadow: none !important;
+}
 
-  tr{
-    border: none !important;
-  }
+#tablepagerow{
+  border-color: white !important;
+  box-shadow: none !important;
+}
 
-  table{
-    border-collapse: collapse !important;
-    border: none !important;
-  }
-
+table, th, td {
+  border: none;
+}
 

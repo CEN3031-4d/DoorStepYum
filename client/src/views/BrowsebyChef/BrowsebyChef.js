@@ -5,15 +5,16 @@ import {
     Redirect,
     Link
   } from "react-router-dom";
- 
+ import Card from './CardUI.js';
+
 function BrowsebyChef() {
 
     return (
         <div>
 
-        <table>
-        <tr>
-	    <td>
+        <table id="tablepage">
+        <tr id="tablepagecol">
+	    <td id="tablepagerow">
         <div class="wrapper">
         <nav id="sidebar"> 
         <div class = "row">
@@ -83,60 +84,39 @@ function BrowsebyChef() {
    
     <td>   
 
-        <table id="display">
-
-        <tr>
-        <td>   
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>   
-        <td>
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>
-        <td>
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>
-        </tr>  
+    <div className="DishCards">
+			<div className = "container-fluid d-flex justify-content-center" id="containerfluid">
+				<div className = "row">
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish1.png"} title="Chicken Curry" />
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish2.png"} title="Falafel"/>
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish3.png"} title="Crepes"/>
+					</div>
+				</div>
+			</div>			
+		</div>
 
 
-        <tr>
-        <td>   
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>   
-        <td>
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>
-        <td>
-        <div class="card">
-        <div class="card-body">
-        This is some text within a card body.
-        </div>
-        </div>
-        </td>
-        </tr> 
-
-
-
-        </table>
+        <div className="DishCards">
+			<div className = "container-fluid d-flex justify-content-center" id="containerfluid">
+				<div className = "row">
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish1.png"} title="Chicken Curry" />
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish2.png"} title="Falafel"/>
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish3.png"} title="Crepes"/>
+					</div>
+				</div>
+			</div>			
+		</div>
+     
         </td> 
     </tr>
     </table>

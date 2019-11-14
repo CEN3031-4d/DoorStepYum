@@ -7,22 +7,25 @@ import {
     Link
   } from "react-router-dom";
 
+  import Card from './CardUI';
 
-
-function BrowsebyChef() {
+function BrowsebyDish() {
 
     return (
-    
-	    
-       
-    <div class="wrapper">
-    <nav id="sidebar"> 
+        <div>
+
+        <table id="tablepage">
+        <tr id="tablepagecol">
+	    <td id="tablepagerow">
+        <div class="wrapper">
+        <nav id="sidebar"> 
         <div class = "row">
-        <a id= "button3" href="/BrowsebyChef">Browse by Chef</a>
-        <a id="button4">Browse by Dish</a>
+        <a id= "button3" href="/BrowsebyChef" >Browse by Chef</a>
+        <a id="button4" >Browse by Dish</a>
         </div>
-        
+       
         <input type="search" id="searchbar" placeholder="Search..."/>
+    
 
         <div class = "filterheader">
         <h6>Filters</h6>
@@ -68,20 +71,61 @@ function BrowsebyChef() {
                             </tbody>
                         </table>
 
+                    <h1 class="h1style">Availability</h1>
+                    <input type="date" style={{marginLeft: '10%', marginBottom: '30px'}} />
+                    <h1 class="h1style">Years of Experience</h1>
+                    <input id="slider" type="range" />
                     <h1 class="h1style">Price</h1>
                     <input id="slider" type="range" />
                     <h1 class="h1style">Rating</h1>
                     <input id="slider" type="range" />
-
-
+                   
     </nav>
+    </div>
+    </td>
+   
+    <td>   
 
-    
+    <div className="DishCards">
+			<div className = "container-fluid d-flex justify-content-center" id="containerfluid">
+				<div className = "row">
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish1.png"} title="Chicken Curry" />
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish2.png"} title="Falafel"/>
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish3.png"} title="Crepes"/>
+					</div>
+				</div>
+			</div>			
+		</div>
 
-            
+
+        <div className="DishCards">
+			<div className = "container-fluid d-flex justify-content-center" id="containerfluid">
+				<div className = "row">
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish1.png"} title="Chicken Curry" />
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish2.png"} title="Falafel"/>
+					</div>
+					<div className="col-md-4">
+						<Card imgsrc = {"/tempDish3.png"} title="Crepes"/>
+					</div>
+				</div>
+			</div>			
+		</div>
+     
+        </td> 
+    </tr>
+    </table>
+
         </div>
 
 
     );
 }
-export default BrowsebyChef;
+export default BrowsebyDish;
