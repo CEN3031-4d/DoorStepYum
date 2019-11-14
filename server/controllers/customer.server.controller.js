@@ -41,7 +41,7 @@ exports.updateCustomer = (req, res) => {
           res.json('Customer Updated');
         })
         .catch(err => {
-          res.status(400).send('Update not possible');
+          res.status(400).send(err);
         })
     }
   })
@@ -54,7 +54,7 @@ exports.addCustomer = (req, res) => {
       res.status(200).json({ 'customer': 'customer added successfully' });
     })
     .catch(err => {
-      res.status(400).send('adding new customer failed');
+      res.status(400).send(err);
     });
 }
 exports.deleteCustomer = (req, res) => {

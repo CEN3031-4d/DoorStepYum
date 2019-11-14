@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './EditChef.css'
 import { Link } from 'react-router-dom'
+import Encoder from '../Encoder/Encoder'
+
 class EditChef extends Component {
     constructor(props) {
         super(props);
@@ -12,13 +14,18 @@ class EditChef extends Component {
             chefEmail: '',
             chefPassword: '',
             chefPrice: '',
-            chefPicture: ''
+            chefPicture: '',
+            regError: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+
+
     componentDidMount() {
-        axios.get('http://localhost:5000/api/chef/' + this.props.match.params.id)
+
+        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
             })
@@ -45,12 +52,22 @@ class EditChef extends Component {
             .then(res => {
                 console.log(res.data);
                 this.props.history.push('/Chefs');
+            })
+            .catch(err => {
+
+                if (err.response.data.code === 11000) {
+                    var errParse = err.response.data.errmsg.split('index: chef')[1].split('_')[0];
+                    this.setState({ regError: 'Error: ' + errParse + ' is already in use' });
+                }
+                else
+                    console.log(err.response);
             });
     }
     render() {
         return (
             <div className="entryTable">
                 <Link to={'/Chefs'}>Return to Chefs</Link>
+                <p>{this.state.regError}</p>
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <table>
@@ -136,7 +153,6 @@ class EditChef extends Component {
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </form>
             </div>

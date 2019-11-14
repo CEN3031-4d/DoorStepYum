@@ -4,11 +4,11 @@
     display: flex;
     padding-left: 20px;
     flex-direction: column;
-    font-size: calc(9px + 1vmin);
+    font-size: calc(9px + 2vmin);
     color: #282c34;
 }
 
 .entryTable td{
-    text-align: right;
+    text-align: left;
     padding-right: 4px;
 }
