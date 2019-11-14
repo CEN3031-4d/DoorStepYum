@@ -22,7 +22,7 @@ function Home() {
 		<div className="row">
 		  <div className="col-12 text-center">
 			<h4 className="text-uppercase section-title">what we do</h4>
-			<p className="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-className chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
+			<p className="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
 			<a href="#" className="btn btn-outline-primary">Request a Chef</a> 
 		  </div>
 		</div>
