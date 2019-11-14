@@ -21,26 +21,30 @@ class ViewChefProfile extends Component {
         axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params:{
-                        Bucket: "chefpictures",
-                        Key: this.state.chefPicture
-                    }
-                })
-                .then(res => {
-                    this.setState({image: Encoder.imageEncode(res.data.Body.data)})
-                })
-                .catch(err =>{
-                    console.log(err, err.stack);
-                })
+                if (this.state.chefPicture) {
+                    axios.get('http://localhost:5000/api/chef/image', {
+                        params: {
+                            Bucket: "chefpictures",
+                            Key: this.state.chefPicture
+                        }
+                    })
+                        .then(res => {
+                            this.setState({ image: Encoder.imageEncode(res.data.Body.data) })
+                        })
+                        .catch(err => {
+                            console.log(err, err.stack);
+                        })
+                }
+                else
+                  this.setState({ image: "/placeholder.png"})
             })
 
-        
+
     }
     render() {
         return (
             <div className="entryTable">
-            <Link to={'/Chefs'}>Return to Chefs</Link>
+                <Link to={'/Chefs'}>Return to Chefs</Link>
                 <table>
                     <tbody>
                         <tr>

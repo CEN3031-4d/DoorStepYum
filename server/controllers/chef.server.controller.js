@@ -1,7 +1,6 @@
 const Chef = require('../models/chef.server.model.js')
 var AWS = require('aws-sdk');
 const config = require('../config/config');
-const FormData = require('form-data');
 AWS.config = new AWS.Config({ accessKeyId: config.aws.accessKey, secretAccessKey: config.aws.secretAccessKey, region: 'us-east-2' });
 const s3 = new AWS.S3();
 
@@ -27,6 +26,8 @@ exports.returnByID = (req, res) => {
     }
   });
 }
+/*
+Todo: Figure out why the backend isn't receiving FormData here.
 
 exports.putImage = (req, res) => {
   console.log(req.body);
@@ -41,7 +42,7 @@ exports.putImage = (req, res) => {
     }
   })
 }
-
+*/
 exports.returnImage = (req, res) => {
   s3.getObject(req.query, (err, data) => {
     if (err) {
@@ -52,15 +53,6 @@ exports.returnImage = (req, res) => {
     }
   });
 }
-
-exports.test = (req, res) =>
-{
-  let findForm = req.body;
-  console.log(findForm);
-  console.log(findForm instanceof FormData);
-}
-
-
 
 //Used to update the specified entry in client\src\components\EditChef\EditChef.js
 exports.updateChef = (req, res) => {

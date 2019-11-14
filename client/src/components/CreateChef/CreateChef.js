@@ -3,19 +3,18 @@ import './CreateChef.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import uuidv4 from 'uuid/v4';
-import Encoder from '../Encoder/Encoder';
 
 
 class CreateChef extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chefName: 'Test Person',
-            chefBio: 'Example Bio',
-            chefExperience: '5',
-            chefEmail: 'TestEmail@Test.Email',
-            chefPassword: 'password123',
-            chefPrice: '40',
+            chefName: '',
+            chefBio: '',
+            chefExperience: '',
+            chefEmail: '',
+            chefPassword: '',
+            chefPrice: '',
             chefPicture: '',
             filepath: '',
             image: '',
@@ -34,15 +33,8 @@ class CreateChef extends Component {
             else
                 this.setState({ filepath: '' })
         })
-
-        if (e.target.files[0]) {
-/*             var reader = new FileReader();
-
-            reader.onload = (event) => {
-                let result = event.target.result;
-            };
-            reader.readAsArrayBuffer(e.target.files[0]); //Calls reader.onload above when finished reading data. */
-            this.setState({ image: e.target.files[0] });
+        if (e.target.files) {
+            this.setState({ image: e.target.files[0]});
         }
         else
             this.setState({ image: '' });
@@ -64,6 +56,7 @@ class CreateChef extends Component {
             axios.post('http://localhost:5000/api/chef/add', newChef)
                 .then(res => {
                     console.log(res.data);
+                    this.props.history.push("/Chefs");
                 })
                 .catch(err => {
                     /*  If the axios method returns an error code, it passes error data back
@@ -98,7 +91,8 @@ class CreateChef extends Component {
                         console.log(err.response);
                 });
             console.log(this.state);
-            //research multer
+            /*
+            NOTE: This block doesn't currently function due to the backend not properly receiving FormData
             if (this.state.filepath && this.state.image) {
                 var form = new FormData();
                 form.append('image', this.state.image, this.state.filepath)
@@ -118,6 +112,7 @@ class CreateChef extends Component {
                         console.log(err.stack);
                     })
             }
+            */
         }
         else {
             this.setState({ regError: 'Error: required field is missing' })
@@ -143,17 +138,9 @@ class CreateChef extends Component {
                                             onChange={this.onChange}
                                         />
                                     </td>
-                                    <td>
-                                        <input type="text"
-                                            name="chefName"
-                                            value={this.state.chefName.replace(/\s/g, "")}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Bio: </td>
-
                                     <td>
                                         <textarea
                                             name="chefBio"
