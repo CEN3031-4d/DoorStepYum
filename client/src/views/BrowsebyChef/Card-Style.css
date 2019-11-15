@@ -1,0 +1,42 @@
+body{
+	background:radial-gradient( #e5e5e5,#ffff,#e5e5e5);
+}
+
+
+div.DishCards{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#dish{
+	width:20rem;
+}
+#dish:hover{
+	box-shadow:5px 10px 20px 1px rgba(0,0,0,0.253) !important;
+}
+
+#cardbody{
+	padding:3rem 0 !important;
+}
+
+#cardtext{
+	font-size:0.9rem;
+	padding: 0.4rem 1.9rem;
+}
+
+#containerfluid.row{
+	padding-top:6rem;
+}
+
+#dish2{
+	transform:scale(1);
+	transition: transform 0.5s ease;
+}
+
+#dish2:hover{
+	transform:scale(1.8);
+}
+
+.overflow{
+	overflow:hidden;
+}

@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function Home() {
     return (
@@ -17,13 +23,17 @@ function Home() {
 		</div>
 	  </div>
 		</header>
-	<section id="description" className="bg-light">
-	  <div className="container">
-		<div className="row">
-		  <div className="col-12 text-center">
-			<h4 className="text-uppercase section-title">what we do</h4>
-			<p className="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-className chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
-			<a href="#" className="btn btn-outline-primary">Request a Chef</a> 
+
+	<section id="description" class="bg-light">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-12 text-center">
+			<h4 class="text-uppercase section-title">what we do</h4>
+			<p class="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
+			<a class="btn btn-outline-primary">
+					<Link to="/BrowsebyChef">Our Chefs</Link>
+			</a> 
+	
 		  </div>
 		</div>
 	  </div>
