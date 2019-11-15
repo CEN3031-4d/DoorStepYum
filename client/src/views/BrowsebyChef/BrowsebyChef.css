@@ -1,0 +1,201 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    background-color: rgb(255, 255, 255) !important;
+    min-width: 270px;
+    max-width: 270px;
+    min-height: 100vh;
+    box-shadow: 10px 0 10px -1px #555;
+}
+
+#button1{
+background-color: darkgreen;
+margin-left: 40px;
+margin-top:30px;
+width: 100px;
+text-decoration: none;
+text-align: center;
+height: 60px;
+padding: 5px;
+border-radius: 7px;
+color: white;
+}
+
+#button1:hover{
+  cursor: pointer;
+}
+
+#button2{
+background-color: rgb(30, 150, 30);
+margin-left: 10px;
+margin-top: 30px;
+width: 100px;
+text-decoration: none !important;
+color: white;
+text-align: center;
+height: 60px;
+padding: 5px;
+border-radius: 7px;
+}
+
+#button2:hover{
+  cursor: pointer;
+  background-color: darkgreen;
+}
+
+
+#searchbar{
+  padding: 8px;
+  margin-top: 30px;
+  margin-left: 12%;
+}
+
+.filterheader{
+    margin-top: 70px;
+    margin-left: 10%;
+    margin-bottom: 25px;
+}
+
+
+.form-check-label{
+    font-size: 12px !important;
+}
+
+#tablecuisine{
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+td{
+    border: none !important;
+}
+
+
+.h1style{
+    font-size: 13px;
+    margin-left:10%;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 70%;
+    margin: 13.8px 0;
+    margin-left: 10%;
+    margin-bottom: 30px;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 50%;
+    height: 5px;
+    cursor: pointer;
+    background: rgb(49, 190, 49);
+    
+  }
+  input[type=range]::-webkit-slider-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 41px;
+    background: #a19f9f !important;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+    
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #088b15;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 41px;
+    background: #686767 !important;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 41px;
+    background: #686666 !important;
+    cursor: pointer;
+    height: 8.4px;
+  }
+ 
+  input[type=search]{
+      border: 1px solid green;
+      border-radius: 5px;
+      width: 196px;
+  }
+
+
+  input[type=date]{
+      border: 1px solid green;
+      border-radius: 5px;
+      width: 196px;
+  }
+
+
+  input[type=date]::-webkit-datetime-edit { padding: 8px;}
+  input[type=date]::-webkit-datetime-edit-fields-wrapper {}
+  input[type=date]::-webkit-datetime-edit-text { color: rgb(129, 129, 131); padding: 0 0.3em; }
+  input[type=date]::-webkit-datetime-edit-month-field { color: rgb(129, 129, 131); }
+  input[type=date]::-webkit-datetime-edit-day-field { color: rgb(129, 129, 131); }
+  input[type=date]::-webkit-datetime-edit-year-field { color: rgb(129, 129, 131); }
+  input[type=date]::-webkit-inner-spin-button { display: none; }
+  input[type=date]::-webkit-calendar-picker-indicator { background: white; height: 15px;}
+
+#tablepage{
+  border-color: white !important;
+  box-shadow: none !important;
+}
+#tablepagecol{
+  border-color: white !important;
+  box-shadow: none !important;
+}
+
+#tablepagerow{
+  border-color: white !important;
+  box-shadow: none !important;
+}
+
+table, th, td {
+  border: none;
+}
+
