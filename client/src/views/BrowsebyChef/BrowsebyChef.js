@@ -43,7 +43,7 @@ class BrowsebyChef extends Component {
                 this.setState({ chefs: res.data });
                 axios.get('http://localhost:5000/api/chef/image', {
                     params: {
-                        Bucket: "yummydishes",
+                        Bucket: "chefpictures",
                         Key: this.state.chefs[0].chefPicture
                     }
                 })
@@ -53,41 +53,83 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-
-                axios.get('http://localhost:5000/api/chef/getChefs')
+                axios.get('http://localhost:5000/api/chef/image', {
+                    params: {
+                        Bucket: "chefpictures",
+                        Key: this.state.chefs[1].chefPicture
+                    }
+                })
                     .then(res => {
-                        axios.get('http://localhost:5000/api/chef/image', {
-                            params: {
-                                Bucket: "yummydishes",
-                                Key: this.state.chefs[1].chefPicture
-                            }
-                        })
-                            .then(res => {
-                                this.setState({ image1: Encoder.imageEncode(res.data.Body.data) })
-                            })
-                            .catch(err => {
-                                console.log(err, err.stack);
-                            })
-
-
-
-                        
-                   
-                        this.setState({
-                            chef0: this.state.chefs[0].chefName,
-                            chef1: this.state.chefs[1].chefName,
-                            chef2: this.state.chefs[2].chefName,
-                            chef3: this.state.chefs[3].chefName,
-                            chef4: this.state.chefs[4].chefName,
-                            chef5: this.state.chefs[5].chefName
-                        })
-                
+                        this.setState({ image1: Encoder.imageEncode(res.data.Body.data) })
                     })
-                    .catch((err) => {
-                        console.log(err);
-                    });
+                    .catch(err => {
+                        console.log(err, err.stack);
+                    })
+                axios.get('http://localhost:5000/api/chef/image', {
+                    params: {
+                        Bucket: "chefpictures",
+                        Key: this.state.chefs[2].chefPicture
+                    }
+                })
+                    .then(res => {
+                        this.setState({ image2: Encoder.imageEncode(res.data.Body.data) })
+                    })
+                    .catch(err => {
+                        console.log(err, err.stack);
+                    })
+                axios.get('http://localhost:5000/api/chef/image', {
+                    params: {
+                        Bucket: "chefpictures",
+                        Key: this.state.chefs[3].chefPicture
+                    }
+                })
+                    .then(res => {
+                        this.setState({ image3: Encoder.imageEncode(res.data.Body.data) })
+                    })
+                    .catch(err => {
+                        console.log(err, err.stack);
+                    })
+                axios.get('http://localhost:5000/api/chef/image', {
+                    params: {
+                        Bucket: "chefpictures",
+                        Key: this.state.chefs[4].chefPicture
+                    }
+                })
+                    .then(res => {
+                        this.setState({ image4: Encoder.imageEncode(res.data.Body.data) })
+                    })
+                    .catch(err => {
+                        console.log(err, err.stack);
+                    })
+                axios.get('http://localhost:5000/api/chef/image', {
+                    params: {
+                        Bucket: "chefpictures",
+                        Key: this.state.chefs[5].chefPicture
+                    }
+                })
+                    .then(res => {
+                        this.setState({ image5: Encoder.imageEncode(res.data.Body.data) })
+                    })
+                    .catch(err => {
+                        console.log(err, err.stack);
+                    })
+
+
+
+
+                this.setState({
+                    chef0: this.state.chefs[0].chefName,
+                    chef1: this.state.chefs[1].chefName,
+                    chef2: this.state.chefs[2].chefName,
+                    chef3: this.state.chefs[3].chefName,
+                    chef4: this.state.chefs[4].chefName,
+                    chef5: this.state.chefs[5].chefName
+                })
             })
-     }
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
 
     render() {
@@ -177,7 +219,7 @@ class BrowsebyChef extends Component {
                                             <Card imgsrc={this.state.image1} title={this.state.chef1} />
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={"/tempDish3.png"} title={this.state.chef2} />
+                                            <Card imgsrc={this.state.image2} title={this.state.chef2} />
                                         </div>
                                     </div>
                                 </div>
@@ -188,13 +230,13 @@ class BrowsebyChef extends Component {
                                 <div className="container-fluid d-flex justify-content-center" id="containerfluid">
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <Card imgsrc={"/tempDish1.png"} title={this.state.chef3} />
+                                            <Card imgsrc={this.state.image3} title={this.state.chef3} />
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={"/tempDish2.png"} title={this.state.chef4} />
+                                            <Card imgsrc={this.state.image4} title={this.state.chef4} />
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={"/tempDish3.png"} title={this.state.chef5} />
+                                            <Card imgsrc={this.state.image5} title={this.state.chef5} />
                                         </div>
                                     </div>
                                 </div>
