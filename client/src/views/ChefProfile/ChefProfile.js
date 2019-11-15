@@ -39,7 +39,7 @@ function ChefProfile() {
           <div class="card">
             <img class="card-img-top rounded-bottom ml-0" alt="Card image cap" src="assets/images/ramsay.jpg"/>
             <div class="card-body">
-              <h4 class="card-title">Gordon Ramsay
+              <h4 class="card-title">Gordon Ramsay&nbsp; 
                 <a href="#" class="badge badge-success">Pro</a>
               </h4>
               <p class="card-text">Gordon James Ramsay OBE is a British chef, restaurateur, writer, television personality and food critic. He was born in Johnstone, Scotland, and raised in Stratford-upon-Avon, England. His restaurants have been awarded 16 Michelin stars in total and currently hold a total of seven.</p>
@@ -54,21 +54,21 @@ function ChefProfile() {
             <div class="col"><div id="specialityDishesCarousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img class="d-block w-100" src="assets/images/slideshow/cornishcod.jpg" alt="First slide"/>
+                  <img class="d-block w-100" src="assets/images/slideshow/cornishcod.jpg" alt="slide #1"/>
                   <div class="carousel-caption d-none d-md-block w-auto">
                     <h5>Cornish Cod</h5>
                     <p>Classic English cod cooked in breadcrumbs</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="assets/images/slideshow/foiegras.jpg" alt="Second slide"/>
+                  <img class="d-block w-100" src="assets/images/slideshow/foiegras.jpg" alt="slide #2"/>
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Foie Gras</h5>
                     <p>Duck liver served with peppercorn mustard sauce</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="assets/images/slideshow/wellington2.jpg" alt="Third slide"/>
+                  <img class="d-block w-100" src="assets/images/slideshow/wellington2.jpg" alt="slide #3"/>
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Beef Wellington</h5>
                     <p>Gordon Ramsay's signature Beef Wellington</p>

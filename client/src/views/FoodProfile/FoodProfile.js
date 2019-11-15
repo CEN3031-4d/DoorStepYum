@@ -28,7 +28,7 @@ function FoodProfile() {
         <div class="col-12 col-md-8 col-lg-9">
           <div class="card">
             <div class="card-header">FOIE GRAS</div>
-            <img class="card-img-top" alt="Property Image" src="assets/images/1.jpg"/>
+            <img class="card-img-top" alt="image not found" src="assets/images/1.jpg"/>
             <div class="card-body py-2 bg-dark">
               <p class="text-light">Foie gras is a specialty food product made of the liver of a duck or goose that has been especially fattened. By French law, foie gras is defined as the liver of a duck or goose fattened by force-feeding corn with a feeding tube, a process also known as gavage.</p>
               <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
@@ -81,21 +81,21 @@ function FoodProfile() {
             <div class="card-columns">
               <div class="card">
                 <div class="card-header">Beef Wellington</div>
-                <img class="card-img-top" alt="Property Image" src="assets/images/3.jpg"/>
+                <img class="card-img-top" alt="image not found" src="assets/images/3.jpg"/>
                 <div class="card-body py-2 bg-dark">
                   <button class="btn btn-block btn-lg btn-primary">Go to this Dish</button>
                 </div>
               </div>
               <div class="card">
                 <div class="card-header">Beef Welligton Again</div>
-                <img class="card-img-top" alt="Property Image" src="assets/images/3.jpg"/>
+                <img class="card-img-top" alt="image not found" src="assets/images/3.jpg"/>
                 <div class="card-body py-2 bg-dark">
                   <button class="btn btn-primary btn-block btn-lg">Go to this Dish</button>
                 </div>
               </div>
               <div class="card">
                 <div class="card-header">California Rolls</div>
-                <img class="card-img-top" alt="Property Image" src="assets/images/4.jpg"/>
+                <img class="card-img-top" alt="image not found" src="assets/images/4.jpg"/>
                 <div class="card-body py-2 bg-dark">
                   <button class="btn btn-block btn-lg btn-primary bg-primary">Go to this Dish</button>
                 </div>
