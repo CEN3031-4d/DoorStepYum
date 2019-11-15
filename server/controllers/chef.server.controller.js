@@ -1,7 +1,7 @@
 const Chef = require('../models/chef.server.model.js')
 var AWS = require('aws-sdk');
 const config = require('../config/config');
-//AWS.config = new AWS.Config({ accessKeyId: config.aws.accessKey, secretAccessKey: config.aws.secretAccessKey, region: 'us-east-2' });
+AWS.config = new AWS.Config({ accessKeyId: config.aws.accessKey, secretAccessKey: config.aws.secretAccessKey, region: 'us-east-2' });
 const s3 = new AWS.S3();
 
 //Used to populate the table in client\src\components\Chefs\Chefs.js

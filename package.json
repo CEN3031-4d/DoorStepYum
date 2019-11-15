@@ -30,6 +30,7 @@
     "jquery": "^3.4.1",
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
+    "mongoose-encryption": "^2.0.2",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
     "popper.js": "^1.16.0",
