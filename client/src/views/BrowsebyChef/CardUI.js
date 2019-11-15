@@ -11,7 +11,7 @@ return(
 				<p className ="card-text text-secondary" id="cardtext">
 				{props.description}
 				</p>
-				<a href="#" className ="btn btn-outline-success">Go anywhere</a>
+				<a href={"/" + props.id} className ="btn btn-outline-success">Go anywhere</a>
 			</div>
 			</div>
 		);
