@@ -28,6 +28,12 @@ class BrowsebyChef extends Component {
             image3: '',
             image4: '',
             image5: '',
+            id0: '',
+            id1: '',
+            id2: '',
+            id3: '',
+            id4: '',
+            id5: ''
         };
     }
 
@@ -119,11 +125,17 @@ class BrowsebyChef extends Component {
 
                 this.setState({
                     chef0: this.state.chefs[0].chefName,
+                    id0: this.state.chefs[0]._id,
                     chef1: this.state.chefs[1].chefName,
+                    id1: this.state.chefs[1]._id,
                     chef2: this.state.chefs[2].chefName,
+                    id2: this.state.chefs[2]._id,
                     chef3: this.state.chefs[3].chefName,
+                    id3: this.state.chefs[3]._id,
                     chef4: this.state.chefs[4].chefName,
-                    chef5: this.state.chefs[5].chefName
+                    id4: this.state.chefs[4]._id,
+                    chef5: this.state.chefs[5].chefName,
+                    id5: this.state.chefs[5]._id
                 })
             })
             .catch((err) => {
@@ -212,14 +224,14 @@ class BrowsebyChef extends Component {
                                 <div className="container-fluid d-flex justify-content-center" id="containerfluid">
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image0} title={this.state.chef0} />
+                                            <Card imgsrc={this.state.image0} title={this.state.chef0} id={this.state.id0}/>
 
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image1} title={this.state.chef1} />
+                                            <Card imgsrc={this.state.image1} title={this.state.chef1} id={this.state.id1}/>
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image2} title={this.state.chef2} />
+                                            <Card imgsrc={this.state.image2} title={this.state.chef2} id={this.state.id2} />
                                         </div>
                                     </div>
                                 </div>
@@ -230,13 +242,13 @@ class BrowsebyChef extends Component {
                                 <div className="container-fluid d-flex justify-content-center" id="containerfluid">
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image3} title={this.state.chef3} />
+                                            <Card imgsrc={this.state.image3} title={this.state.chef3} id={this.state.id3}/>
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image4} title={this.state.chef4} />
+                                            <Card imgsrc={this.state.image4} title={this.state.chef4} id={this.state.id4}/>
                                         </div>
                                         <div className="col-md-4">
-                                            <Card imgsrc={this.state.image5} title={this.state.chef5} />
+                                            <Card imgsrc={this.state.image5} title={this.state.chef5} id={this.state.id5} />
                                         </div>
                                     </div>
                                 </div>
