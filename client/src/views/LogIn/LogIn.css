@@ -1,0 +1,58 @@
+p.label{
+	margin: 15px;
+}
+h4{
+	margin: 0px;
+	padding:0px;
+}
+div.Welcomemsg{
+	font-size:20px;
+}
+
+input{
+	width:90%;
+}
+
+button{
+	background-color:white;
+	color: black;
+	padding: 0.6rem 1rem;
+	font-weight: bold;
+	font-size: 0.8rem;
+	border: solid 2px blue;
+	margin: 1rem 0;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 3px;
+	outline: none;
+	width: 50%;
+}
+
+button:hover {
+	font-weight: bold;
+	background-color:white;
+}
+
+/*for password hiding and showing*/
+
+button.eye {
+	width: 10%;
+	height: 20px;
+    position: absolute;
+    left: 255px;
+    top: 155px;
+	border: none;
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
+img.passwordShow{
+width:25px;
+height: 20px;
+position: absolute;
+left:5px;
+top: 0px;
+}
+
+/*background Image*/
+.LogInBackground{
+	background-image: url("/LogInBackground.png");
+	height: 480px;;
+}
