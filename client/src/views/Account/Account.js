@@ -11,7 +11,7 @@ class Account extends Component{
 		<div className = "UserAccount">
 			<div className = "ProfilePic">
 			<div className = "container-fluid d-flex justify-content-center" id="containerfluid">
-				<div className = "card text-center shadow" id="dishcard"> 
+				<div className = "card text-center shadow" id="dish"> 
 					<div className = "overflow">
 						<img src ={ "./tempChefProPic.png" } alt = "tempDish1" className="card-img-top"/>
 					</div>

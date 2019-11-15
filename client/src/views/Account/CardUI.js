@@ -2,7 +2,7 @@ import React from "react";
 import './Card-Style.css';
 const Card = props=>{
 return(
-			<div className = "card text-center shadow" id="dishcard"> 
+			<div className = "card text-center shadow" id="dish"> 
 				<div className = "overflow">
 					<img src ={ props.imgsrc } alt = "tempDish1" className="card-img-top" id="dish2"/>
 				</div>
