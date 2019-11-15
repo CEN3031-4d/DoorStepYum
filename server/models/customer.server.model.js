@@ -10,6 +10,7 @@ var customerSchema = new Schema({
     customerPassword: {type: String, required: true, unique: true},   
 });
 
+// generating keys
 var encKey = "14/Ka3iTsIwtJyuKOxS9L67Xztbd9zqOuJIbDKoV6l8=";
 var sigKey = "q2APMyrfcjBbM/jXgQi+aLSYBx9vQyS2E2VYzxgCjcoFUIP9xmTh5WBjgO/gJDDrofnsOTOpV+YDz7eRQ4besg==";
 

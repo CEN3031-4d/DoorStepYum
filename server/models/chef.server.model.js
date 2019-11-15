@@ -14,8 +14,10 @@ var chefSchema = new Schema({
     chefPicture: {type: String, required: false, unique: false }
 });
 
+// generating keys
 var encKey = "/MhOKpkDVHG8lySgvtD6RvEumFcVjcq5qrEuPWPwKzI=";
 var sigKey = "zxpQhEkGzrJ035e7anooMmFpokI4CQKNWiXI1YJSsgN/6DNw5IgJaelMNtYBepMeB6h2dbua32PXRuKT7JcYPQ==";
+
 // adding keys
 chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: encKey, signingKey: sigKey, encryptedFields: ['chefPassword']} );
 
