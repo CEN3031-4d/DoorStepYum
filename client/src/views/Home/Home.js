@@ -45,7 +45,7 @@ function Home() {
 			</div>
 		</div>
 		<div className="col-12 col-sm-12 col-md-4">
-<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+<			div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
 			  <div className="card-body text-center">
 				<h5 className="card-title">Natalia Lisiecka</h5>
 			  </div>
@@ -64,7 +64,7 @@ function Home() {
 	<footer id="page-footer" className="bg-light">
       <div className="container">
         <span className="text-muted">Doorstep Yummy © 2019</span>
-  </div>
+		</div>
     </footer>
 	</div>
     );
