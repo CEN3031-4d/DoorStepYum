@@ -48,23 +48,23 @@ function Home() {
 		</div>
 		<div className="row">
 		  <div className="col-12 col-sm-12 col-md-4">
-			<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef1.jpg"} alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">Maria Wang</h5>
+				<h5 className="card-title">Bob Smith</h5>
 			  </div>
 			</div>
 		</div>
 		<div className="col-12 col-sm-12 col-md-4">
-			<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef2.jpg"} alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">Natalia Lisiecka</h5>
+				<h5 className="card-title">Sarah Sanders</h5>
 			  </div>
 		  </div>
 		</div>
 		<div className="col-12 col-sm-12 col-md-4">
-			<div className="card"> <img className="card-img-top" src={"/placeholder.png"}alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef3.jpg"}alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">David Singh</h5>
+				<h5 className="card-title">Joe Foster</h5>
 			  </div>
 		  </div>
 		</div>
