@@ -30,6 +30,7 @@
     "jquery": "^3.4.1",
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
+    "mongoose-encrypt": "0.0.1-alpha.3",
     "mongoose-encryption": "^2.0.2",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
