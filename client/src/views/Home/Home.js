@@ -18,7 +18,7 @@ function Home() {
 		  </div>
 		</div>
 		<div className="row">
-		  <div className="col-12"> <img className="img-fluid" src={"/uchuuSushi.jpg"}/>
+		  <div className="col-12 text-center"> <img className="img-fluid" src={"/uchuuSushi.jpg"}/>
 		  </div>
 		</div>
 	  </div>
@@ -28,12 +28,12 @@ function Home() {
 	  <div class="container">
 		<div class="row">
 		  <div class="col-12 text-center">
-			<h4 class="text-uppercase section-title">what we do</h4>
-			<p class="lead">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.</p>
-			<a class="btn btn-outline-primary">
+			<div class="h1">What We Do</div>
+			<div class="section-body">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.
+			</div>
+			<a href="#" class="btn btn-outline-primary">
 					<Link to="/BrowsebyChef">Our Chefs</Link>
 			</a> 
-	
 		  </div>
 		</div>
 	  </div>
@@ -43,28 +43,28 @@ function Home() {
 	  <div className="container-fluid">
 	   <div className="row">
 		<div className="col-12 text-center">
-		  <h4 className="section-title text-uppercase">Our chefs</h4>
+		  <div class="h1">Our Chefs</div>
 		 </div>
 		</div>
 		<div className="row">
 		  <div className="col-12 col-sm-12 col-md-4">
-<div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef1.jpg"} alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">Maria Wang</h5>
+				<h5 className="card-title">Bob Smith</h5>
 			  </div>
 			</div>
 		</div>
 		<div className="col-12 col-sm-12 col-md-4">
-<			div className="card"> <img className="card-img-top" src={"/placeholder.png"} alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef2.jpg"} alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">Natalia Lisiecka</h5>
+				<h5 className="card-title">Sarah Sanders</h5>
 			  </div>
 		  </div>
 		</div>
 		<div className="col-12 col-sm-12 col-md-4">
-			<div className="card"> <img className="card-img-top" src={"/placeholder.png"}alt="Card image cap"/>
+			<div className="card"> <img className="card-img-top" src={"/chef3.jpg"}alt="Card image cap"/>
 			  <div className="card-body text-center">
-				<h5 className="card-title">David Singh</h5>
+				<h5 className="card-title">Joe Foster</h5>
 			  </div>
 		  </div>
 		</div>
