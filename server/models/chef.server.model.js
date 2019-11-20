@@ -19,7 +19,10 @@ var chefSchema = new Schema({
 
 
 // adding keys
+
 chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['chefPassword']} );
+
+
 
 var Chef = mongoose.model('Chef', chefSchema);
 
