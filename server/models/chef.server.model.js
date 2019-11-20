@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 // adding password encryption to chef model
 var encrypt = require('mongoose-encryption');
 
+// NOTE: password must not be required or unique for encryption to work
 var chefSchema = new Schema({
     chefName: {type: String, required: true, unique: true},
     chefBio: {type: String, required: true, unique: true},
