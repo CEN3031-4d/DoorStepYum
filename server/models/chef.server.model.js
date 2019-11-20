@@ -1,3 +1,5 @@
+const config = require('../config/config');
+
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema;
 
@@ -9,17 +11,14 @@ var chefSchema = new Schema({
     chefBio: {type: String, required: true, unique: true},
     chefExperience: {type: Number, required: true, unique: false},
     chefEmail: {type: String, required: true, unique: true},
-    chefPassword: {type: String, required: true, unique: true},
+    chefPassword: {type: String, required: false, unique: false},
     chefPrice: {type: Number, required: true, unique: false},
     chefPicture: {type: String, required: false, unique: false }
 });
 
-// generating keys
-var encKey = "/MhOKpkDVHG8lySgvtD6RvEumFcVjcq5qrEuPWPwKzI=";
-var sigKey = "zxpQhEkGzrJ035e7anooMmFpokI4CQKNWiXI1YJSsgN/6DNw5IgJaelMNtYBepMeB6h2dbua32PXRuKT7JcYPQ==";
 
 // adding keys
-chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: encKey, signingKey: sigKey, encryptedFields: ['chefPassword']} );
+chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['chefPassword']} );
 
 var Chef = mongoose.model('Chef', chefSchema);
 
