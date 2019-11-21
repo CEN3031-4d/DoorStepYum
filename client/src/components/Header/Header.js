@@ -16,8 +16,8 @@ const Header = () => {
 		</a>
 		<a class="nav-link" href="/About">About</a>
 		  <ul class="navbar-nav ml-auto"> 
-			<li class="nav-item "> <a class="nav-link" href="/LogIn" >Log In</a> </li>
-			<li class="nav-item "> <a class="nav-link" href="#">Register</a> </li>
+			<li class="nav-item "> <a class="nav-link" href="/LogIn" >Chef</a> </li>
+			<li class="nav-item "> <a class="nav-link" href="#">Customer</a> </li>
 
 		  </ul>
 		</div>
