@@ -96,9 +96,7 @@ class CreateChef extends Component {
             if (this.state.filepath && this.state.image) {
                 var form = new FormData();
                 form.append('image', this.state.image, this.state.filepath)
-
                 console.log(form.get('image'));
-
                 axios.post("http://localhost:5000/api/chef/test", form,
                     {
                   headers: {
