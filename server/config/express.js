@@ -6,6 +6,8 @@ const path = require('path'),
     chefRouter = require('../routes/chef.server.routes');
     custRouter = require('../routes/customer.server.routes');
     dishRouter = require('../routes/dish.server.routes');
+    multer = require('multer');
+    upload = multer()
 
 module.exports.init = () => {
     /* 
@@ -34,6 +36,8 @@ module.exports.init = () => {
 
     // body parsing middleware
     app.use(bodyParser.json());
+
+    app.use(upload.any())
 
     // add a router
     app.use('/api/chef', chefRouter);
