@@ -1,0 +1,28 @@
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.h1{
+    font-size: 50px;
+    padding: 30px;
+}
+
+.section-body {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 30px;
+}
+
+.section-body2 {
+    text-align: left;
+    font-size: 22px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+}
+
+
