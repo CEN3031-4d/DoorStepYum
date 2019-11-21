@@ -26,23 +26,21 @@ exports.returnByID = (req, res) => {
     }
   });
 }
-/*
-Todo: Figure out why the backend isn't receiving FormData here.
 
 exports.putImage = (req, res) => {
   console.log(req.body);
-  //var params = { Bucket: 'chefpictures', Key: req.body.get('filepath'), Body: req.body.get('image')}
-  s3.putObject(params, (err, data) => {
+  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer}
+    s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
       res.status(400).send(err);
     }
     else {
-      console.log(data);
+      res.status(200).send("Success! (?)");
     }
   })
 }
-*/
+
 exports.returnImage = (req, res) => {
   s3.getObject(req.query, (err, data) => {
     if (err) {
@@ -52,6 +50,12 @@ exports.returnImage = (req, res) => {
       res.json(data);
     }
   });
+}
+
+exports.test = (req, res) => {
+  console.log(req.body.filepath);
+  console.log(req.files[0].buffer)
+  res.status(200).send('Words');
 }
 
 //Used to update the specified entry in client\src\components\EditChef\EditChef.js
