@@ -36,6 +36,9 @@
     "nodemon": "^1.18.10",
     "popper.js": "^1.16.0",
     "react": "^16.11.0",
+    "react-dual-range-slider": "^1.0.4",
+    "react-dual-rangeslider": "^1.2.16",
+    "reactrangeslider": "^3.0.6",
     "should": "^13.2.3",
     "supertest": "^4.0.2",
     "uuid": "^3.3.3"

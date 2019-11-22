@@ -29,7 +29,7 @@ function Home() {
 		<div class="row">
 		  <div class="col-12 text-center">
 			<div class="h1">What We Do</div>
-			<div class="section-body">Doorstep Yummy aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.
+			<div class="section-body">Yummy! aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Scroll down to find out more about our chefs and their specialties.
 			</div>
 			<a href="#" class="btn btn-outline-primary">
 					<Link to="/BrowsebyChef">Our Chefs</Link>
@@ -73,7 +73,7 @@ function Home() {
 	</section>
 	<footer id="page-footer" className="bg-light">
       <div className="container">
-        <span className="text-muted">Doorstep Yummy © 2019</span>
+        <span className="text-muted">Yummy © 2019</span>
 		</div>
     </footer>
 	</div>
