@@ -27,14 +27,23 @@ class CreateChef extends Component {
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    onUploadChange =(e) => {
+        this.setState({
+            [e.target.name]: e.target.value
         }, () => {
-            if (this.state.chefPicture)
-                this.setState({ filepath: uuidv4().concat('.png') });
+            if (this.state.chefPicture) {
+                var fileExt = this.state.chefPicture.split('.');
+                fileExt = fileExt[fileExt.length - 1]
+                this.setState({ filepath: uuidv4().concat('.', fileExt) });
+            }
             else
                 this.setState({ filepath: '' })
         })
         if (e.target.files) {
-            this.setState({ image: e.target.files[0]});
+            this.setState({ image: e.target.files[0] });
         }
         else
             this.setState({ image: '' });
@@ -55,7 +64,26 @@ class CreateChef extends Component {
 
             axios.post('http://localhost:5000/api/chef/add', newChef)
                 .then(res => {
-                    console.log(res.data);
+                    console.log(this.state);
+                    if (this.state.filepath && this.state.image) {
+                        var form = new FormData();
+                        form.append('image', this.state.image)
+                        form.append('filepath', this.state.filepath)
+
+                        axios.post("http://localhost:5000/api/chef/image", form,
+                            {
+                                headers: {
+                                    'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
+                                }
+                            })
+                            .then(res => {
+                                console.log("Success!");
+                            })
+                            .catch(err => {
+                                console.log(err.stack);
+                            })
+                    }
+
                     this.props.history.push("/Chefs");
                 })
                 .catch(err => {
@@ -76,7 +104,7 @@ class CreateChef extends Component {
         
                             For example
         
-                                var errMessage = 'E11000 duplicate key error collection: class.chefs index: chefName_1 dup key: { : "Test Person" }'
+                                var errMessage = 'E11000 duplicate key error collection: class.chefs index: chefPassword_1 dup key: { : "Test Person" }'
                                 var response1 = errMessage.split('index: ')[1].split('_')[0];
                                 var response2 = errMessage.split('index: chef')[1].split('_')[0];
                                 
@@ -85,20 +113,21 @@ class CreateChef extends Component {
                                 #response2 == 'Name'            
                         */
                         var errParse = err.response.data.errmsg.split('index: chef')[1].split('_')[0];
-                        this.setState({ regError: 'Error: ' + errParse + ' is already in use' });
+                        this.setState({ regError: 'Error: ' + errParse + ' is already in use',
+                    chefPicture: '' });
+                    console.log(this.state);
                     }
                     else
                         console.log(err.response);
                 });
+
             console.log(this.state);
             /*
             NOTE: This block doesn't currently function due to the backend not properly receiving FormData
             if (this.state.filepath && this.state.image) {
                 var form = new FormData();
                 form.append('image', this.state.image, this.state.filepath)
-
                 console.log(form.get('image'));
-
                 axios.post("http://localhost:5000/api/chef/test", form,
                     {
                   headers: {
@@ -113,6 +142,7 @@ class CreateChef extends Component {
                     })
             }
             */
+
         }
         else {
             this.setState({ regError: 'Error: required field is missing' })
@@ -197,7 +227,7 @@ class CreateChef extends Component {
                                     <td>
                                         <input type="file"
                                             name="chefPicture"
-                                            onChange={this.onChange}
+                                            onChange={this.onUploadChange}
                                         />
                                     </td>
                                 </tr>
