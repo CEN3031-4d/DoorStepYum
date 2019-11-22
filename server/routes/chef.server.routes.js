@@ -7,8 +7,10 @@ router.route('/getChefs')
 
 router.route('/image')
   .get(chef.returnImage)
-  //.post(chef.putImage);
+  .post(chef.putImage);
 
+router.route('/test')
+  .post(chef.test);
 //Used to create a new Chef in client\src\components\CreateChef\CreateChef.js
 router.route('/add')
   .post(chef.addChef);
