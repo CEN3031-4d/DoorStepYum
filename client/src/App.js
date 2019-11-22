@@ -9,6 +9,7 @@ import FoodProfile from "./views/FoodProfile/FoodProfile"
 import BrowsebyChef from "./views/BrowsebyChef/BrowsebyChef"
 import BrowsebyDish from "./views/BrowsebyDish/BrowsebyDish"
 import About from "./views/About/About"
+import Cart from "./views/Cart/Cart"
 
 =======
 import LogIn from "./views/LogIn/LogIn"
@@ -55,6 +56,11 @@ const App = () => {
         <Route exact path="/">
 				<Redirect to="/About"/>
 			  </Route>
+
+         <Route exact path="/Cart" component={Cart}/>
+        <Route exact path="/">
+        <Redirect to="/Cart"/>
+        </Route>
 
         <Route exact path="/Chefs" component={AllChefs}/>
         <Route exact path="/Chefs/view/:id" component={ViewChefProfile}/>

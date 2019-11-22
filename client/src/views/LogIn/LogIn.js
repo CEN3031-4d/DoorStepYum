@@ -1,109 +1,44 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router, Route,Link, NavLink} from 'react-router-dom';
+import createChef from './createChef';
+import loginChef from './loginChef';
 import logo from '../../assets/logo.svg';
 import './LogIn.css';
 
 class LogIn extends Component{
-	  constructor(props) {
-    super(props);
-
-    this.state = {
-      hidden: true,
-      password: ""
-    };
-	
-	    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.toggleShow = this.toggleShow.bind(this);
-  }
-  
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  
-  
-  toggleShow() {
-    this.setState({ hidden: !this.state.hidden });
-  }
-
-  componentDidMount() {
-    if (this.props.password) {
-      this.setState({ password: this.props.password });
-    }
-  }
+	 
 	  render() {
 	return (
-	<div className = "LogInBackground">
-	<div className="container">
-	<div className="row justify-content-center">
-	<div className="col-12 col-sm-12 col-md-4" >
-
-	<div className="card-body">
-	<div className="card text-center" >
-		<h4 className="card-body text-center">Log In</h4>
-		<div className ="Welcomemsg"> Welcome Back!</div>
-		<form>
-			<table>
-				
+	<Router>
+	<div className = "App1" id="App1">
+		<div className = "App__Aside" id = "App__Aside">
+		</div>
 		
-				
-				<tr className = "credentials">
-					<p className= "label">
-						Email:
-					</p>
-					<td className= "LogIn">
-						<input type="text" placeholder = "Name" />
-					</td>
-				</tr> 
-				<tr className = "credentials">
-					<p className = "label">
-						Password: 
-					</p>
-					<td className= "LogIn">
-					
-				
-					
-						<input
-						  type={this.state.hidden ? "password" : "text"}
-						  value={this.state.password}
-						  onChange={this.handlePasswordChange}
-						  placeholder="Password"
-						 
-						/>
-							<button className="eye" onClick={this.toggleShow}>
-							<img className= "passwordShow" src={ "/passwordShow.png" }/>
-							</button>
-				
-					
-					</td>
-					
-				</tr>
-				
-				
-			</table>
-		</form>
-		<div className="container">
-		  <div className="row">
-			<div className="col text-center">
-				<div className = "nav-item">
-				  <a className = "nav-link" href="http://localhost:3000/Account#">
-				     <button className="btn btn-default" >Log In</button>
-				  </a>
-				 </div>
+		<div className = "App__Form" id="App__Form">
+			<div className = "PageSwitcher">
+				<NavLink to = "/loginChef" activeClassName= "PageSwitcher__Item--Active" className ="PageSwitcher__Item"> Sign In </NavLink>
+				<NavLink exact to = "/LogIn" activeClassName = "PageSwitcher__Item--Active" className ="PageSwitcher__Item"> Sign Up </NavLink>
 			</div>
-		  </div>
+			
+			
+			<div className="FormTitle">
+				<NavLink to="/loginChef" activeClassName="FormTitle__Link--Active" className="FormTitle__Link"> Sign In </NavLink> or <NavLink exact to = "/LogIn"
+				activeClassName = "FormTitle__Link--Active"className ="FormTitle__Link"> Sign Up</NavLink>
+			</div>
+			 
+			
+			<Route exact path="/LogIn" component={createChef}>
+			
+			</Route>
+			
+			<Route exact path="/loginChef" component = {loginChef}>
+				
+			</Route>
+			
+
 		</div>
 	</div>
-	
-
-	
-	
-	
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
+	</Router>
 	);
 	
 }
