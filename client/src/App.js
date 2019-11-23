@@ -19,7 +19,7 @@ import EditChef from "./components/EditChef/EditChef"
 import CreateChef from "./components/CreateChef/CreateChef"
 import ViewChefProfile from "./components/ViewChefProfile/ViewChefProfile"
 
-import LogIn from "./views/LogIn/LogIn"
+//import LogIn from "./views/LogIn/LogIn"
 
 const App = () => {
   return (
