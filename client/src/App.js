@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
-<<<<<<< HEAD
 
 import ChefProfile from "./views/ChefProfile/ChefProfile"
 import FoodProfile from "./views/FoodProfile/FoodProfile"
@@ -11,10 +10,8 @@ import BrowsebyDish from "./views/BrowsebyDish/BrowsebyDish"
 import About from "./views/About/About"
 import Cart from "./views/Cart/Cart"
 
-=======
 import LogIn from "./views/LogIn/LogIn"
 import Account from "./views/Account/Account"
->>>>>>> Maria
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 import AllChefs from "./components/AllChefs/AllChefs"
@@ -34,7 +31,6 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
-<<<<<<< HEAD
 
 
         <Route exact path="/LogIn" component={LogIn} />
@@ -70,14 +66,12 @@ const App = () => {
         <Route path="/ChefProfile" component={ChefProfile}/>
         <Route path="/FoodProfile" component={FoodProfile}/>
 
-=======
 		
         <Route exact path="/Chefs" component={Chefs}/>
         <Route exact path="/Chefs/edit/:id" component={EditChef}/>
         <Route path="/Chefs/create" component={CreateChef}/>
 		<Route exact path="/LogIn" component={LogIn}/>
 		<Route exact path="/Account" component = {Account}/>
->>>>>>> Maria
         <Route component={NotFound}/>
       </Switch>
     </div>
