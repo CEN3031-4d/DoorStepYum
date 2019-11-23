@@ -67,9 +67,9 @@ const App = () => {
         <Route path="/FoodProfile" component={FoodProfile}/>
 
 		
-        <Route exact path="/Chefs" component={Chefs}/>
+        {/* <Route exact path="/Chefs" component={Chefs}/>
         <Route exact path="/Chefs/edit/:id" component={EditChef}/>
-        <Route path="/Chefs/create" component={CreateChef}/>
+        <Route path="/Chefs/create" component={CreateChef}/> */}
 		<Route exact path="/LogIn" component={LogIn}/>
 		<Route exact path="/Account" component = {Account}/>
         <Route component={NotFound}/>
