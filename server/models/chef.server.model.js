@@ -1,4 +1,4 @@
-const config = require('../config/config');
+//const config = require('../config/config');
 
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema;
@@ -20,7 +20,10 @@ var chefSchema = new Schema({
 
 // adding keys
 
-chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['chefPassword']} );
+// for local use
+//chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['chefPassword']} );
+
+chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: process.env.encKey, signingKey: process.env.sigKey, encryptedFields: ['chefPassword']} );
 
 
 

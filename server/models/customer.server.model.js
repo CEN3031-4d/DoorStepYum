@@ -1,4 +1,4 @@
-const config = require('../config/config');
+//const config = require('../config/config');
 
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema;
@@ -12,8 +12,12 @@ var customerSchema = new Schema({
     customerPassword: {type: String, required: false, unique: false},   
 });
 
-// adding keys
-customerSchema.plugin(encrypt, {requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['customerPassword']});
+// for local use
+//customerSchema.plugin(encrypt, {requireAuthenticationCode: false, encryptionKey: config.passKey.encKey, signingKey: config.passKey.sigKey, encryptedFields: ['customerPassword']});
+
+customerSchema.plugin(encrypt, {requireAuthenticationCode: false, encryptionKey: process.env.encKey, signingKey: process.env.sigKey, encryptedFields: ['customerPassword']});
+
+
 var Customer = mongoose.model('Customer', customerSchema);
 
 module.exports = Customer;

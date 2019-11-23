@@ -14,7 +14,13 @@ module.exports.init = () => {
         connect to database
         - reference README for db uri
     */
+    
+    /* for local use
     mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
+        useNewUrlParser: true
+    });
+    */
+    mongoose.connect(process.env.uri, {
         useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
