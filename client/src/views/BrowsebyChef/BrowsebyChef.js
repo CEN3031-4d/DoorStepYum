@@ -8,17 +8,22 @@ import {
 import Card from './CardUI.js';
 import axios from 'axios';
 import Encoder from '../../components/Encoder/Encoder';
+import {RangeSlider} from 'reactrangeslider';
 
 
-class BrowsebyChef extends Component {
+class BrowsebyChef extends Component{
     constructor(props) {
         super(props);
         this.state = {
             chefs: [],
             chefImages: []
         };
+
     }
 
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+      }
 
     componentDidMount = () => {
         this.getChefs();
@@ -127,8 +132,13 @@ class BrowsebyChef extends Component {
                                     <input id="slider" type="range" />
                                     <h1 class="h1style">Price</h1>
                                     <input id="slider" type="range" />
-                                    <h1 class="h1style">Rating</h1>
-                                    <input id="slider" type="range" />
+                                    
+                                    <RangeSlider
+                                    step={1}
+                                    min={0}
+                                    max={100}
+                                    onChange={this.handleChange.bind(this)}
+                                    />
 
                                 </nav>
                             </div>
