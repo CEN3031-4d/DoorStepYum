@@ -71,6 +71,7 @@ exports.updateChef = (req, res) => {
       chef.chefPassword = req.body.chefPassword;
       chef.chefPrice = req.body.chefPrice;
       chef.chefPicture = req.body.chefPicture;
+      chef.chefCuisineTypes = req.body.chefCuisineTypes;
 
       chef.save()
         .then(chef => {
