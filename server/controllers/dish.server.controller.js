@@ -46,6 +46,7 @@ exports.updateDish = (req, res) => {
       dish.dishDescription = req.body.dishDescription;
       dish.dishIngredients = req.body.dishIngredients;
       dish.dishPrice = req.body.dishPrice;
+      dish.dishPicture=req.body.dishPicture
 
       dish.save()
         .then(dish => {
@@ -65,10 +66,7 @@ exports.addIngredient = (req, res) => {
     else if (err)
       res.status(400).send(err);
     else {
-      console.log("Dish Ingredients before: "+ dish.dishIngredients);
-      console.log(req.body.ingredient)
       dish.dishIngredients.push(req.body.ingredient);
-      console.log("Dish Ingredients after: "+ dish.dishIngredients);
       dish.save()
         .then(dish => {
           res.json("Ingredient added to dish")
