@@ -8,7 +8,7 @@ router.route('/getDishes')
 router.route('/getDishesFull')
   .get(dish.allDishesFull);
 
-router.route('/:id')
+router.route('/find/:id')
   .get(dish.returnByID);
 
 router.route('/add')

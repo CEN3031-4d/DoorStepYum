@@ -62,7 +62,7 @@ exports.updateDish = (req, res) => {
 exports.addIngredient = (req, res) => {
   Dish.findById(req.params.id, (err, dish) => {
     if (!dish)
-      res.status(400).send('Dish is not found');
+      res.status(404).send('Dish is not found');
     else if (err)
       res.status(400).send(err);
     else {
