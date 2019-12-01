@@ -8,22 +8,43 @@ import {
 import Card from './CardUI.js';
 import axios from 'axios';
 import Encoder from '../../components/Encoder/Encoder';
-import {RangeSlider} from 'reactrangeslider';
+import { RangeSlider } from 'reactrangeslider';
 
 
-class BrowsebyChef extends Component{
+class BrowsebyChef extends Component {
     constructor(props) {
         super(props);
         this.state = {
             chefs: [],
-            chefImages: []
+            chefImages: [],
+            nameSearch: "",
+            cuisineSearch: [],
+            American: false
         };
 
     }
 
     handleChange = (event) => {
-        this.setState({value: event.target.value});
-      }
+        if (event.target.type === 'checkbox') {
+            if(event.target.checked)
+            {
+                this.state.cuisineSearch.push(event.target.name);
+            }
+            if(!event.target.checked)
+            {
+                this.state.cuisineSearch.splice(this.state.cuisineSearch.indexOf(event.target.name), 1)
+            }
+            console.log(event.target.checked);
+            this.setState({
+                [event.target.name]: event.target.checked
+            })
+        }
+        else {
+            this.setState({
+                [event.target.name]: event.target.value
+            });
+        }
+    }
 
     componentDidMount = () => {
         this.getChefs();
@@ -34,6 +55,8 @@ class BrowsebyChef extends Component{
             .then(res => {
                 this.setState({ chefs: res.data })
                 this.state.chefs.map((curChef, i) => {
+                    if (!curChef.chefImage)
+                        this.state.chefs[i].image = "/placeholder.png"
                     axios.get('http://localhost:5000/api/chef/image', {
                         params: {
                             Bucket: "chefpictures",
@@ -41,30 +64,34 @@ class BrowsebyChef extends Component{
                         }
                     })
                         .then(res => {
-                            this.state.chefImages[i] = Encoder.imageEncode(res.data.Body.data)
+                            this.state.chefs[i].image = Encoder.imageEncode(res.data.Body.data)
                             this.forceUpdate() //find a better way to accomplish this? --Ben
                         })
                         .catch(err => {
                             console.log(err, err.stack);
                         })
                 })
-                
+
             })
             .catch((err) => {
                 console.log(err);
             });
     }
     chefs = () => {
-        return this.state.chefs.map((curChef, i) => {
-            return (
-                <div className="col-md-4">
-                    <Card imgsrc={this.state.chefImages[i]} title={curChef.chefName} id={curChef._id} />
-                </div>
-            )
-        })
-
-
+        return this.state.chefs
+            .filter(curChef => {
+                return (curChef.chefName.toLowerCase().indexOf(this.state.nameSearch.toLowerCase()) >= 0 
+                && this.state.cuisineSearch.every(val=>{return curChef.chefCuisineTypes.includes(val)}));
+            })
+            .map((curChef, i) => {
+                return (
+                    <div className="col-md-4">
+                        <Card imgsrc={curChef.image} title={curChef.chefName} id={curChef._id} />
+                    </div>
+                )
+            })
     }
+
     render() {
         return (
             <div>
@@ -79,7 +106,8 @@ class BrowsebyChef extends Component{
                                         <a id="button2" href="/BrowsebyDish">Browse by Dish</a>
                                     </div>
 
-                                    <input type="search" id="searchbar" placeholder="Search..." />
+                                    <input type="search" id="searchbar" name="nameSearch" placeholder="Search..." value={this.state.search}
+                                        onChange={this.handleChange} />
 
 
                                     <div class="filterheader">
@@ -95,32 +123,32 @@ class BrowsebyChef extends Component{
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">American</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" checked={this.state.American} onChange={this.handleChange} name="American" /><label class="form-check-label" for="formCheck-1">American</label></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" /><label class="form-check-label" for="formCheck-2">Italian</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2" checked={this.state.Italian} onChange={this.handleChange} name="Italian" /><label class="form-check-label" for="formCheck-2">Italian</label></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">Chinese</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" checked={this.state.Chinese} onChange={this.handleChange} name="Chinese" /><label class="form-check-label" for="formCheck-3">Chinese</label></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Thai</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4" checked={this.state.Thai} onChange={this.handleChange} name="Thai"/><label class="form-check-label" for="formCheck-4">Thai</label></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5" /><label class="form-check-label" for="formCheck-5">Japanese</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5" checked={this.state.Japanese} onChange={this.handleChange} name="Japanese" /><label class="form-check-label" for="formCheck-5">Japanese</label></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6" /><label class="form-check-label" for="formCheck-6">Mexican</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6" checked={this.state.Mexican} onChange={this.handleChange} name="Mexican" /><label class="form-check-label" for="formCheck-6">Mexican</label></div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -132,12 +160,12 @@ class BrowsebyChef extends Component{
                                     <input id="slider" type="range" />
                                     <h1 class="h1style">Price</h1>
                                     <input id="slider" type="range" />
-                                    
+
                                     <RangeSlider
-                                    step={1}
-                                    min={0}
-                                    max={100}
-                                    onChange={this.handleChange.bind(this)}
+                                        step={1}
+                                        min={0}
+                                        max={100}
+                                        onChange={this.handleChange.bind(this)}
                                     />
 
                                 </nav>

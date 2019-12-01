@@ -14,7 +14,8 @@ var chefSchema = new Schema({
     chefEmail: {type: String, required: true, unique: true},
     chefPassword: {type: String, required: false, unique: false},
     chefPrice: {type: Number, required: true, unique: false},
-    chefPicture: {type: String, required: false, unique: false }
+    chefPicture: {type: String, required: false, unique: false },
+    chefCuisineTypes: [String]
 });
 
 
