@@ -60,7 +60,7 @@ class createChef extends Component{
             axios.post('http://localhost:5000/api/chef/add', newChef)
                 .then(res => {
                     console.log(res.data);
-                    this.props.history.push("/Chefs");
+                   
                 })
                 .catch(err => {
                     /*  If the axios method returns an error code, it passes error data back
