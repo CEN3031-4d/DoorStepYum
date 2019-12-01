@@ -15,6 +15,20 @@ exports.allChefs = (req, res) => {
     }
   });
 };
+
+exports.allChefsFull = (req, res) => {
+  Chef.find()
+    .populate('chefRequests.customer')
+    .exec((err, chefs) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.json(chefs);
+      }
+    })
+};
+
 //Used to initialize the forms in client\src\components\EditChef\EditChef.js
 exports.returnByID = (req, res) => {
   let id = req.params.id;
@@ -29,8 +43,8 @@ exports.returnByID = (req, res) => {
 
 exports.putImage = (req, res) => {
   console.log(req.body);
-  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer}
-    s3.putObject(params, (err, data) => {
+  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer }
+  s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
       res.status(400).send(err);
@@ -98,17 +112,50 @@ exports.addChef = (req, res) => {
 
 //Used to delete a Chef in client\src\components\Chefs\Chefs.js
 exports.deleteChef = (req, res) => {
+
   Chef.findById(req.params.id, (err, chef) => {
     if (!chef)
       res.status(400).send('Chef is not found');
     else {
+      var params = {
+        Bucket: "chefpictures",
+        Key: chef.chefPicture
+      }
       chef.remove()
         .then(chef => {
           res.json('Chef Deleted');
+          s3.deleteObject(params, (err, data) => {
+            if (err)
+              console.log(err);
+            else
+              console.log("Image removed");
+          })
         })
         .catch(err => {
           res.status(400).send(err);
         })
     }
   })
+}
+
+
+exports.makeRequest = (req, res) => {
+  Chef.findById(req.params.id, (err, chef) => {
+    if (!chef)
+      res.status(404).send("Chef Not Found");
+    else if (err)
+      res.status(400).send(err);
+    else {
+      req.body.status = "pending";
+      chef.chefRequests.push(req.body)
+      chef.save()
+        .then(chef => {
+          res.json("Request sent to chef")
+        })
+        .catch(err => {
+          res.status(400).send(err)
+        })
+    }
+  })
+
 }

@@ -8,7 +8,7 @@ router.route('/getCustomers')
 router.route('/getCustomersFull')
   .get(customer.allCustomersFull);
 
-router.route('/:id')
+router.route('/find/:id')
   .get(customer.returnByID);
 
 router.route('/add')
