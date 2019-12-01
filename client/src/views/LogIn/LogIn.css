@@ -36,15 +36,15 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10%;
-}
 
+}
+/*might change to nonwhite*/
 .PageSwitcher__Item {
-  background-color: #3e9b17;
+  background-color: white;
   color: #9DA6B1;
   padding: 10px 25px;
   cursor: pointer;
   font-size: .9em;
-  border: 1px #3e9b17;
   outline: none;
   display: inline-block;
   text-decoration: none;
@@ -56,7 +56,7 @@
 	
 }
 .PageSwitcher__Item--Active {
-  background-color: #5ED0C0;
+  background-color: #3e9b17;
   color: white;
 }
 /*Hovering-Maria*/
@@ -104,7 +104,7 @@
 
 .FormTitle__Link--Active {
   color: black;
-  border-bottom: 1px solid #199087;
+  border-bottom: 1px solid #3e9b17;
 }
 /*Hovering-Maria*/
 .FormTitle__Link--Active:hover {
@@ -155,7 +155,7 @@
   color: #66707D;
   text-decoration: none;
   display: inline-block;
-  border-bottom: 1.5px solid #225E62;
+  border-bottom: 1.5px solid #3e9b17;
   padding-bottom: 5px;
 }
 /*Hovering-Maria*/
