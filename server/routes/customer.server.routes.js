@@ -2,8 +2,11 @@ const customer = require('../controllers/customer.server.controller.js'),
   express = require('express'),
   router = express.Router();
 
-router.route('/')
+router.route('/getCustomers')
   .get(customer.allCustomers);
+
+router.route('/getCustomersFull')
+  .get(customer.allCustomersFull);
 
 router.route('/:id')
   .get(customer.returnByID);
@@ -16,5 +19,8 @@ router.route('/update/:id')
 
 router.route('/delete/:id')
   .delete(customer.deleteCustomer);
+
+router.route('/cart/add/:id')
+  .post(customer.addToCart);
 
   module.exports = router;

@@ -2,8 +2,11 @@ const dish = require('../controllers/dish.server.controller.js'),
   express = require('express'),
   router = express.Router();
 
-router.route('/')
+router.route('/getDishes')
   .get(dish.allDishes);
+
+router.route('/getDishesFull')
+  .get(dish.allDishesFull);
 
 router.route('/:id')
   .get(dish.returnByID);
@@ -13,6 +16,9 @@ router.route('/add')
 
 router.route('/update/:id')
   .post(dish.updateDish);
+
+router.route('/update/addIngredient/:id')
+  .post(dish.addIngredient);
 
 router.route('/delete/:id')
   .delete(dish.deleteDish);
