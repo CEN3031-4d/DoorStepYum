@@ -65,96 +65,84 @@ class EditChef extends Component {
     }
     render() {
         return (
-            <div className="entryTable">
-                <Link to={'/Chefs'}>Return to Chefs</Link>
-                <p>{this.state.regError}</p>
-                <form onSubmit={this.onSubmit}>
-                    <div>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Name:</td>
-                                    <td>
-                                        <input type="text"
-                                            name="chefName"
-                                            value={this.state.chefName}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Bio: </td>
-                                    <td>
-                                        <input type="textarea"
-                                            name="chefBio"
-                                            value={this.state.chefBio}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Experience: </td>
-                                    <td>
-                                        <input type="number"
-                                            name="chefExperience"
-                                            min="0"
-                                            value={this.state.chefExperience}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Email: </td>
-                                    <td>
-                                        <input type="email"
-                                            name="chefEmail"
-                                            value={this.state.chefEmail}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Password: </td>
-                                    <td>
-                                        <input type="password"
-                                            name="chefPassword"
-                                            value={this.state.chefPassword}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Price: </td>
-                                    <td>
-                                        <input type="number"
-                                            name="chefPrice"
-                                            value={this.state.chefPrice}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Picture:</td>
-                                    <td>
-                                        <input type="text"
-                                            name="chefPicture"
-                                            value={this.state.chefPicture}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="submit"
-                                            name="submit"
-                                            onSubmit={this.onSubmit}
-                                        />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
+            <div className = "App1" id="App1">
+            <div className = "App__Form" id="App__Form">
+            <Link to={'/Chefs'} id="link">Return</Link>
+            <h2 id='edittitle'>Edit Info</h2>
+            <div className="FormCenter">
+		    <p>{this.state.regError}</p>
+			  <form className = "FormFields" onSubmit={this.onSubmit}>
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="name"> Full Name </label>
+					<input type="text" id="name" className ="FormField__Input" 
+					placeholder="Enter your full name" name="chefName"
+                    value={this.state.chefName} onChange={this.onChange} />
+				</div>
+				
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="password"> Password </label>
+					<input type={this.state.hidden ? "password" : "text"}
+						id="password" 
+						className ="FormField__Input" 
+						value={this.state.password, this.state.chefPassword} 
+						onChange={this.handlePasswordChange, this.onChange}
+					
+						placeholder="Enter your password" name="chefPassword" />
+						
+					<label className="FormField__CheckboxLabel">
+						<input className = "FormField__Checkbox" type ="checkbox" name="hasAgreed" onClick={this.toggleShow}/> Show Password
+					</label>
+				</div>
+				
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="email"> E-Mail Address </label>
+					<input type="email" id="email" className ="FormField__Input" 
+					placeholder="Enter your email" name="chefEmail" 
+					 value={this.state.chefEmail} onChange={this.onChange}/>
+				</div>
+				
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="email"> Biography </label>
+					<textarea type="bio" id="bio" className ="FormField__Input" 
+					placeholder="Write a short Biography" name="chefBio" 
+					 value={this.state.chefBio} onChange={this.onChange}/>
+				</div>
+				
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="experience"> Years of Experience </label>
+					<input type="number" min="0"id="experience" className ="FormField__Input" 
+					placeholder="Enter how many years of Experience" name="chefExperience" 
+					value={this.state.chefExperience} onChange={this.onChange}/>
+				</div>
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="experience"> Hourly Rate </label>
+					<input type="number" min="0"id="price" className ="FormField__Input" 
+					placeholder="Enter your hourly rate" name="chefPrice" 
+					value={this.state.chefPrice} onChange={this.onChange}/>
+				</div>
+				
+				
+				<div className="FormField">
+					<label className="FormField__Label" htmlFor="experience"> Pictures </label>
+					<input type="file" id="picture" className ="FormField__Input" 
+				     name="chefPicture" 
+				    onChange={this.onChange}/>
+				</div>
+				
+				<div className="FormField">
+					<button className="FormField__Button mr-20" onClick={this.onSubmit}>Save Changes</button>
+				</div>
+				
+				
+			  </form>
+              </div>
+			</div>
+            <div className = "App__Aside" id = "App__Aside"></div>
             </div>
         )
     }

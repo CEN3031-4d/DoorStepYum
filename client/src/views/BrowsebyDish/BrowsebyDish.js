@@ -7,10 +7,9 @@ import {
     Link
   } from "react-router-dom";
 
-  import Card from './CardUI';
+import Card from './CardUI';
 
 function BrowsebyDish() {
-
     return (
         <div>
 
@@ -77,8 +76,9 @@ function BrowsebyDish() {
                     <input id="slider" type="range" />
                     <h1 class="h1style">Price</h1>
                     <input id="slider" type="range" />
-                    <h1 class="h1style">Rating</h1>
-                    <input id="slider" type="range" />
+                    <div class="range-slider">
+                    </div>
+
                    
     </nav>
     </div>
