@@ -16,27 +16,9 @@ class BrowsebyChef extends Component{
         super(props);
         this.state = {
             chefs: [],
-            chef1: '',
-            chef2: '',
-            chef3: '',
-            chef4: '',
-            chef5: '',
-            chef0: '',
-            text: "tes",
-            image0: '',
-            image1: '',
-            image2: '',
-            image3: '',
-            image4: '',
-            image5: '',
-            id0: '',
-            id1: '',
-            id2: '',
-            id3: '',
-            id4: '',
-            id5: '',
-            value: ''
-        }
+            chefImages: []
+        };
+
     }
 
     handleChange = (event) => {
@@ -45,110 +27,44 @@ class BrowsebyChef extends Component{
 
     componentDidMount = () => {
         this.getChefs();
-
     }
 
     getChefs = () => {
         axios.get('http://localhost:5000/api/chef/getChefs')
             .then(res => {
-                this.setState({ chefs: res.data });
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[0].chefPicture
-                    }
+                this.setState({ chefs: res.data })
+                this.state.chefs.map((curChef, i) => {
+                    axios.get('http://localhost:5000/api/chef/image', {
+                        params: {
+                            Bucket: "chefpictures",
+                            Key: curChef.chefPicture
+                        }
+                    })
+                        .then(res => {
+                            this.state.chefImages[i] = Encoder.imageEncode(res.data.Body.data)
+                            this.forceUpdate() //find a better way to accomplish this? --Ben
+                        })
+                        .catch(err => {
+                            console.log(err, err.stack);
+                        })
                 })
-                    .then(res => {
-                        this.setState({ image0: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[1].chefPicture
-                    }
-                })
-                    .then(res => {
-                        this.setState({ image1: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[2].chefPicture
-                    }
-                })
-                    .then(res => {
-                        this.setState({ image2: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[3].chefPicture
-                    }
-                })
-                    .then(res => {
-                        this.setState({ image3: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[4].chefPicture
-                    }
-                })
-                    .then(res => {
-                        this.setState({ image4: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-                axios.get('http://localhost:5000/api/chef/image', {
-                    params: {
-                        Bucket: "chefpictures",
-                        Key: this.state.chefs[5].chefPicture
-                    }
-                })
-                    .then(res => {
-                        this.setState({ image5: Encoder.imageEncode(res.data.Body.data) })
-                    })
-                    .catch(err => {
-                        console.log(err, err.stack);
-                    })
-
-
-
-
-                this.setState({
-                    chef0: this.state.chefs[0].chefName,
-                    id0: this.state.chefs[0]._id,
-                    chef1: this.state.chefs[1].chefName,
-                    id1: this.state.chefs[1]._id,
-                    chef2: this.state.chefs[2].chefName,
-                    id2: this.state.chefs[2]._id,
-                    chef3: this.state.chefs[3].chefName,
-                    id3: this.state.chefs[3]._id,
-                    chef4: this.state.chefs[4].chefName,
-                    id4: this.state.chefs[4]._id,
-                    chef5: this.state.chefs[5].chefName,
-                    id5: this.state.chefs[5]._id
-                })
+                
             })
             .catch((err) => {
                 console.log(err);
             });
     }
+    chefs = () => {
+        return this.state.chefs.map((curChef, i) => {
+            return (
+                <div className="col-md-4">
+                    <Card imgsrc={this.state.chefImages[i]} title={curChef.chefName} id={curChef._id} />
+                </div>
+            )
+        })
 
 
+    }
     render() {
         return (
             <div>
@@ -233,37 +149,10 @@ class BrowsebyChef extends Component{
                             <div className="DishCards">
                                 <div className="container-fluid d-flex justify-content-center" id="containerfluid">
                                     <div className="row">
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image0} title={this.state.chef0} id={this.state.id0}/>
-
-                                        </div>
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image1} title={this.state.chef1} id={this.state.id1}/>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image2} title={this.state.chef2} id={this.state.id2} />
-                                        </div>
+                                        {this.chefs()}
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div className="DishCards">
-                                <div className="container-fluid d-flex justify-content-center" id="containerfluid">
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image3} title={this.state.chef3} id={this.state.id3}/>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image4} title={this.state.chef4} id={this.state.id4}/>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <Card imgsrc={this.state.image5} title={this.state.chef5} id={this.state.id5} />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </td>
                     </tr>
                 </table>
