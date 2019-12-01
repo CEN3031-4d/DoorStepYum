@@ -15,15 +15,27 @@ exports.allDishesFull = (req, res) => {
 
 exports.allDishes = (req, res) => {
   Dish.find()
-    .exec((err, dishs) => {
+    .exec((err, dishes) => {
       if (err) {
         console.log(err);
       }
       else {
-        res.json(dishs);
+        res.json(dishes);
       }
     })
 };
+
+exports.dishesByChef = (req, res) => {
+  Dish.find({dishChef: req.params.id})
+  .exec((err, dishes) => {
+    if (err) {
+      console.log(err)
+    }
+    else{
+      res.json(dishes)
+    }
+  })
+}
 
 
 exports.returnByID = (req, res) => {
