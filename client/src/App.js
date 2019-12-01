@@ -61,8 +61,8 @@ const App = () => {
         <Route exact path="/Chefs/edit/:id" component={EditChef}/>
         <Route path="/Chefs/create" component={CreateChef}/>
 
-        <Route path="/ChefProfile" component={ChefProfile}/>
-        <Route path="/FoodProfile" component={FoodProfile}/>
+        <Route path="/ChefProfile/:id" component={ChefProfile}/>
+        <Route path="/FoodProfile/:id" component={FoodProfile}/>
 
         <Route component={NotFound}/>
       </Switch>
