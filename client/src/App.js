@@ -18,6 +18,7 @@ import CreateChef from "./components/CreateChef/CreateChef"
 import ViewChefProfile from "./components/ViewChefProfile/ViewChefProfile"
 
 import LogIn from "./views/LogIn/LogIn"
+import LogInCustomer from "./views/LogInCustomer/LogInCustomer"
 
 const App = () => {
   return (
@@ -35,8 +36,11 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/LogIn" />
         </Route>
-
-
+		
+        <Route exact path="/LogInCustomer" component={LogInCustomer} />
+        <Route exact path="/">
+          <Redirect to="/LogInCustomer" />
+        </Route>
 
         <Route exact path="/BrowsebyChef" component={BrowsebyChef}/>
         <Route exact path="/">

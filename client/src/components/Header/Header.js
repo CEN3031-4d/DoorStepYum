@@ -17,8 +17,8 @@ const Header = () => {
 			<a id="tabs" class="nav-link" href="/BrowsebyChef">Chefs</a>
 			<a id="tabs" class="nav-link" href="/BrowsebyDish">Dishes</a>
 			<ul class="navbar-nav ml-auto"> 
-				<li class="nav-item "> <a class="nav-link" href="/LogIn" >Log In</a> </li>
-				<li class="nav-item "> <a class="nav-link" href="#">Register</a> </li>
+				<li class="nav-item "> <a class="nav-link" href="/LogIn" >Chef</a> </li>
+				<li class="nav-item "> <a class="nav-link" href="/LogInCustomer">Customer</a> </li>
 			<a class="nav-link" href="/Cart">
 				<img class="img-fluid" src={ "/cart.png" }/> 
 			</a>
