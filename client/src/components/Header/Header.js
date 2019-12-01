@@ -19,10 +19,10 @@ const Header = () => {
 			<ul class="navbar-nav ml-auto"> 
 				<li class="nav-item "> <a class="nav-link" href="/LogIn" >Log In</a> </li>
 				<li class="nav-item "> <a class="nav-link" href="#">Register</a> </li>
-			<a class="nav-link" href="/Cart">
-				<img class="img-fluid" src={ "/cart.png" }/> 
-			</a>
 		  </ul>
+		  <a class="nav-link" href="/Cart">
+				<img id="cartpic" class="img-fluid" src={ "/cart.png" }/> 
+			</a>
 		</div>
 	  </div>
 	</nav>
