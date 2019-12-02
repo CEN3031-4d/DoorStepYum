@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Popup from "reactjs-popup";
 import Encoder from '../../components/Encoder/Encoder'
 import './ChefProfile.css';
+import { Button } from 'react-bootstrap';
+import Modal from 'react-modal';
+import ModalPop from './ModalPop';
+import TimePicker from 'react-time-picker';
+import Calendar from 'react-calendar';
+import ReactDOM from 'react-dom';
+
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 
 class ChefProfile extends Component {
   constructor(props) {
@@ -14,9 +34,32 @@ class ChefProfile extends Component {
       chefPassword: '',
       chefPrice: '',
       chefPicture: '',
-      image: ''
-    }
+      image: '',
+	  time:'10:00',
+	  date:new Date(),
+	  modalIsOpen: false
+    };
+	this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
+  
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+ 
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+ 
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+ onChange = time => this.setState({ time })
+  onChange = date => this.setState({ date })
+  
   componentDidMount() {
     axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
       .then(res => {
@@ -79,6 +122,41 @@ class ChefProfile extends Component {
                     </div>
                   </div>
                   <a href="#" id="requestbutton" class="btn btn-block btn-outline-success font-weight-normal" data-toggle="modal" data-target="#bookChefModal">Submit Booking Request</a>
+
+				   
+				<button onClick={this.openModal}>Open Modal</button>
+					<Modal
+					  isOpen={this.state.modalIsOpen}
+					  onAfterOpen={this.afterOpenModal}
+					  onRequestClose={this.closeModal}
+						  ariaHideApp={false}
+					  style={customStyles}
+					  contentLabel="Example Modal"
+					>
+			 
+					  <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+					  <button onClick={this.closeModal}>close</button>
+					  <div>I am a modal</div>
+							  <form>
+								<input />
+								 <div>
+									<Calendar
+									  onChange={this.onChange}
+									  value={this.state.date}
+									/>
+								 </div>
+								  <div>
+									<TimePicker
+									  onChange={this.onChange}
+									  value={this.state.time}
+									/>
+								  </div>
+								<button>tab navigation</button>
+								<button>stays</button>
+								<button>inside</button>
+								<button>the modal</button>
+							  </form>
+					</Modal>
                 </div>
               </div>
             </div>
