@@ -18,11 +18,11 @@ class ViewChefProfile extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+        axios.get('https://yummy-doorstep.herokuapp.com/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
                 if (this.state.chefPicture) {
-                    axios.get('http://localhost:5000/api/chef/image', {
+                    axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                         params: {
                             Bucket: "chefpictures",
                             Key: this.state.chefPicture

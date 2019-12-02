@@ -25,7 +25,7 @@ class EditChef extends Component {
 
     componentDidMount() {
 
-        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+        axios.get('https://yummy-doorstep.herokuapp.com/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
             })
@@ -48,7 +48,7 @@ class EditChef extends Component {
             chefPicture: this.state.chefPicture
         }
 
-        axios.post('http://localhost:5000/api/chef/update/' + this.props.match.params.id, newChef)
+        axios.post('https://yummy-doorstep.herokuapp.com/api/chef/update/' + this.props.match.params.id, newChef)
             .then(res => {
                 console.log(res.data);
                 this.props.history.push('/Chefs');

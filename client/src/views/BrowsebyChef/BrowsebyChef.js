@@ -44,10 +44,10 @@ class BrowsebyChef extends Component {
     }
 
     getChefs = () => {
-        axios.get('http://localhost:5000/api/chef/getChefs')
+        axios.get('https://yummy-doorstep.herokuapp.com/api/chef/getChefs')
             .then(res => {
                 this.setState({ chefs: res.data });
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[0].chefPicture
@@ -59,7 +59,7 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[1].chefPicture
@@ -71,7 +71,7 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[2].chefPicture
@@ -83,7 +83,7 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[3].chefPicture
@@ -95,7 +95,7 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[4].chefPicture
@@ -107,7 +107,7 @@ class BrowsebyChef extends Component {
                     .catch(err => {
                         console.log(err, err.stack);
                     })
-                axios.get('http://localhost:5000/api/chef/image', {
+                axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                     params: {
                         Bucket: "chefpictures",
                         Key: this.state.chefs[5].chefPicture

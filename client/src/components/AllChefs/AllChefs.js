@@ -19,7 +19,7 @@ class AllChefs extends Component {
     }
 
     getChefs = () => {
-        axios.get('http://localhost:5000/api/chef/getChefs')
+        axios.get('https://yummy-doorstep.herokuapp.com/api/chef/getChefs')
             .then(res => {
                 this.setState({ chefs: res.data });
             })
@@ -55,7 +55,7 @@ class AllChefs extends Component {
 
     deleteChef = (id) => {
 
-        axios.delete('http://localhost:5000/api/chef/delete/' + id)
+        axios.delete('https://yummy-doorstep.herokuapp.com/api/chef/delete/' + id)
             .then(res => {
                 console.log(res.data);
                 this.getChefs(); //This refreshed the data after a successful delete has occurred.

@@ -57,7 +57,7 @@ class createChef extends Component{
                 chefPicture: this.state.filepath
             }
 
-            axios.post('http://localhost:5000/api/chef/add', newChef)
+            axios.post('https://yummy-doorstep.herokuapp.com/api/chef/add', newChef)
                 .then(res => {
                     console.log(res.data);
                     this.props.history.push("/Chefs");
