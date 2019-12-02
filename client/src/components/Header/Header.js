@@ -21,9 +21,6 @@ const Header = () => {
 
 				<li class="nav-item "> <a class="nav-link" href="/LogIn" >Chef</a> </li>
 				<li class="nav-item "> <a class="nav-link" href="/LogInCustomer">Customer</a> </li>
-			<a class="nav-link" href="/Cart">
-				<img class="img-fluid" src={ "/cart.png" }/> 
-			</a>
 
 		  </ul>
 		  <a class="nav-link" href="/Cart">
