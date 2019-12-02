@@ -55,7 +55,8 @@ class CreateDish extends Component {
                 dishDescription: this.state.dishDescription,
                 dishPrice: this.state.dishPrice,
                 dishPicture: this.state.filepath,
-                dishIngredients: this.state.dishIngrCSV.split(",")
+                dishIngredients: this.state.dishIngrCSV.split(","),
+                dishChef: this.state.dishChef
             }
 
             axios.post('http://localhost:5000/api/dish/add', newDish)
@@ -141,6 +142,16 @@ class CreateDish extends Component {
                                         <input type="text"
                                             name="dishName"
                                             value={this.state.dishName}
+                                            onChange={this.onChange}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Chef _id:</td>
+                                    <td>
+                                        <input type="text"
+                                            name="dishChef"
+                                            value={this.state.dishChef}
                                             onChange={this.onChange}
                                         />
                                     </td>
