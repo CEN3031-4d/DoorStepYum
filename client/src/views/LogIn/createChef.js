@@ -61,6 +61,7 @@ class createChef extends Component {
                     console.log(res.data);
                     if (this.state.filepath && this.state.image) {
                         var form = new FormData();
+                        form.append('bucket', 'chefpictures');
                         form.append('image', this.state.image)
                         form.append('filepath', this.state.filepath)
 
@@ -111,29 +112,6 @@ class createChef extends Component {
                     else
                         console.log(err.response);
                 });
-            console.log(this.state);
-            /*
-            NOTE: This block doesn't currently function due to the backend not properly receiving FormData
-            if (this.state.filepath && this.state.image) {
-                var form = new FormData();
-                form.append('image', this.state.image, this.state.filepath)
-
-                console.log(form.get('image'));
-
-                axios.post("http://localhost:5000/api/chef/test", form,
-                    {
-                  headers: {
-                    'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
-                  }
-                })
-                    .then(res => {
-                        console.log("Success!");
-                    })
-                    .catch(err => {
-                        console.log(err.stack);
-                    })
-            }
-            */
         }
         else {
             this.setState({ regError: 'Error: required field is missing' })

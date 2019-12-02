@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
-import './CreateChef.css';
+import './CreateDish.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import uuidv4 from 'uuid/v4';
 
 
-class CreateChef extends Component {
+class CreateDish extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chefName: '',
-            chefBio: '',
-            chefExperience: '',
-            chefEmail: '',
-            chefPassword: '',
-            chefPrice: '',
-            chefPicture: '',
-            filepath: '',
-            image: '',
-            regError: ''
+            dishIngrCSV: '',
+            dishIngredients: [],
+            dishName: '',
+            dishPrice: '',
+            dishDescription: '',
+            dishChef: '',
+            dishPicture: '',
+            image: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -30,12 +28,12 @@ class CreateChef extends Component {
         })
     }
 
-    onUploadChange =(e) => {
+    onUploadChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         }, () => {
-            if (this.state.chefPicture) {
-                var fileExt = this.state.chefPicture.split('.');
+            if (this.state.dishPicture) {
+                var fileExt = this.state.dishPicture.split('.');
                 fileExt = fileExt[fileExt.length - 1]
                 this.setState({ filepath: uuidv4().concat('.', fileExt) });
             }
@@ -51,23 +49,21 @@ class CreateChef extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        if (this.state.chefName && this.state.chefBio && this.state.chefEmail && this.state.chefPassword) {
-            const newChef = {
-                chefName: this.state.chefName,
-                chefBio: this.state.chefBio,
-                chefExperience: this.state.chefExperience,
-                chefEmail: this.state.chefEmail,
-                chefPassword: this.state.chefPassword,
-                chefPrice: this.state.chefPrice,
-                chefPicture: this.state.filepath
+        if (this.state.dishName && this.state.dishDescription) {
+            const newDish = {
+                dishName: this.state.dishName,
+                dishDescription: this.state.dishDescription,
+                dishPrice: this.state.dishPrice,
+                dishPicture: this.state.filepath,
+                dishIngredients: this.state.dishIngrCSV.split(",")
             }
 
-            axios.post('http://localhost:5000/api/chef/add', newChef)
+            axios.post('http://localhost:5000/api/dish/add', newDish)
                 .then(res => {
                     console.log(this.state);
                     if (this.state.filepath && this.state.image) {
                         var form = new FormData();
-                        form.append('bucket', 'chefpictures')
+                        form.append('bucket', 'yummydishes');
                         form.append('image', this.state.image)
                         form.append('filepath', this.state.filepath)
 
@@ -110,19 +106,19 @@ class CreateChef extends Component {
                                 var response2 = errMessage.split('index: chef')[1].split('_')[0];
                                 
                                 #expected values:
-                                #response1 == 'chefName'
+                                #response1 == 'dishName'
                                 #response2 == 'Name'            
                         */
-                        var errParse = err.response.data.errmsg.split('index: chef')[1].split('_')[0];
-                        this.setState({ regError: 'Error: ' + errParse + ' is already in use',
-                    chefPicture: '' });
-                    console.log(this.state);
+                        var errParse = err.response.data.errmsg.split('index: dish')[1].split('_')[0];
+                        this.setState({
+                            regError: 'Error: ' + errParse + ' is already in use',
+                            dishPicture: ''
+                        });
+                        console.log(this.state);
                     }
                     else
                         console.log(err.response);
                 });
-
-            console.log(this.state);
         }
         else {
             this.setState({ regError: 'Error: required field is missing' })
@@ -132,8 +128,8 @@ class CreateChef extends Component {
     render() {
         return (
             <div className="entryTable">
-                <Link to={'/Chefs'}>Return to Chefs</Link>
-                <h3>Create New Chef</h3>
+                <Link to={'/Chefs'}>Return to Backend</Link>
+                <h3>Create New Dish</h3>
                 <p>{this.state.regError}</p>
                 <form onSubmit={this.onSubmit}>
                     <div>
@@ -143,51 +139,32 @@ class CreateChef extends Component {
                                     <td>Name:</td>
                                     <td>
                                         <input type="text"
-                                            name="chefName"
-                                            value={this.state.chefName}
+                                            name="dishName"
+                                            value={this.state.dishName}
                                             onChange={this.onChange}
                                         />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Bio: </td>
+                                    <td>Description: </td>
                                     <td>
                                         <textarea
-                                            name="chefBio"
+                                            name="dishDescription"
                                             rows="4"
                                             cols="50"
-                                            value={this.state.chefBio}
+                                            value={this.state.dishDescription}
                                             onChange={this.onChange}
                                         />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Experience: </td>
+                                    <td>Ingredients: </td>
                                     <td>
-                                        <input type="number"
-                                            name="chefExperience"
-                                            min="0"
-                                            value={this.state.chefExperience}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Email: </td>
-                                    <td>
-                                        <input type="email"
-                                            name="chefEmail"
-                                            value={this.state.chefEmail}
-                                            onChange={this.onChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Password: </td>
-                                    <td>
-                                        <input type="password"
-                                            name="chefPassword"
-                                            value={this.state.chefPassword}
+                                        <textarea
+                                            name="dishIngrCSV"
+                                            rows="4"
+                                            cols="50"
+                                            value={this.state.dishIngrCSV}
                                             onChange={this.onChange}
                                         />
                                     </td>
@@ -196,8 +173,8 @@ class CreateChef extends Component {
                                     <td>Price: </td>
                                     <td>
                                         <input type="number"
-                                            name="chefPrice"
-                                            value={this.state.chefPrice}
+                                            name="dishPrice"
+                                            value={this.state.dishPrice}
                                             onChange={this.onChange}
                                         />
                                     </td>
@@ -206,7 +183,7 @@ class CreateChef extends Component {
                                     <td>Picture:</td>
                                     <td>
                                         <input type="file"
-                                            name="chefPicture"
+                                            name="dishPicture"
                                             onChange={this.onUploadChange}
                                         />
                                     </td>
@@ -230,4 +207,4 @@ class CreateChef extends Component {
         )
     }
 }
-export default CreateChef;
+export default CreateDish;
