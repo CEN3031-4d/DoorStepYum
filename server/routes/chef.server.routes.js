@@ -12,6 +12,9 @@ router.route('/image')
   .get(chef.returnImage)
   .post(chef.putImage);
 
+router.route('/image/update')
+  .post(chef.updateImage);
+
 router.route('/requests/add/:id')
   .post(chef.makeRequest)
 

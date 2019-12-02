@@ -42,7 +42,6 @@ exports.returnByID = (req, res) => {
 }
 
 exports.putImage = (req, res) => {
-  console.log(req.body);
   var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer }
   s3.putObject(params, (err, data) => {
     if (err) {
@@ -52,6 +51,26 @@ exports.putImage = (req, res) => {
     else {
       res.status(200).send("Success! (?)");
     }
+  })
+}
+
+exports.updateImage = (req, res) => {
+  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer }
+  s3.putObject(params, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else {
+      res.status(200).send("Success! (?)");
+    }
+  })
+  params = { Bucket: 'chefpictures', Key: req.body.oldfilepath }
+  s3.deleteObject(params, (err, data) => {
+    if (err)
+      console.log(err);
+    else
+      console.log("Image removed");
   })
 }
 
