@@ -3,6 +3,7 @@ import axios from 'axios';
 import './EditChef.css'
 import { Link } from 'react-router-dom'
 import Encoder from '../Encoder/Encoder'
+import uuidv4 from 'uuid/v4'
 
 class EditChef extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class EditChef extends Component {
             chefPassword: '',
             chefPrice: '',
             chefPicture: '',
+            newPicture: '',
             regError: ''
         }
         this.onChange = this.onChange.bind(this);
@@ -31,9 +33,29 @@ class EditChef extends Component {
             })
     }
     onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        if (e.target.type === 'file') {
+            this.setState({
+                [e.target.name]: e.target.value
+            }, () => {
+                if (this.state.newPicture) {
+                    var fileExt = this.state.newPicture.split('.');
+                    fileExt = fileExt[fileExt.length - 1]
+                    this.setState({ filepath: uuidv4().concat('.', fileExt) });
+                }
+                else
+                    this.setState({ filepath: '' })
+            })
+            if (e.target.files) {
+                this.setState({ image: e.target.files[0] });
+            }
+            else
+                this.setState({ image: '' });
+        }
+        else {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     onSubmit = (e) => {
@@ -48,9 +70,33 @@ class EditChef extends Component {
             chefPicture: this.state.chefPicture
         }
 
+        if (this.state.filepath && this.state.image) {
+            newChef.chefPicture = this.state.filepath;
+        }
+
         axios.post('http://localhost:5000/api/chef/update/' + this.props.match.params.id, newChef)
             .then(res => {
-                console.log(res.data);
+
+                if (this.state.filepath && this.state.image) {
+                    var form = new FormData();
+                    form.append('image', this.state.image)
+                    form.append('filepath', this.state.filepath)
+                    form.append('oldfilepath', this.state.chefPicture)
+
+                    axios.post("http://localhost:5000/api/chef/image/update", form,
+                        {
+                            headers: {
+                                'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
+                            }
+                        })
+                        .then(res => {
+                            console.log("Success!");
+                        })
+                        .catch(err => {
+                            console.log(err.stack);
+                        })
+                }
+
                 this.props.history.push('/Chefs');
             })
             .catch(err => {
@@ -65,84 +111,84 @@ class EditChef extends Component {
     }
     render() {
         return (
-            <div className = "App1" id="App1">
-            <div className = "App__Form" id="App__Form">
-            <Link to={'/Chefs'} id="link">Return</Link>
-            <h2 id='edittitle'>Edit Info</h2>
-            <div className="FormCenter">
-		    <p>{this.state.regError}</p>
-			  <form className = "FormFields" onSubmit={this.onSubmit}>
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="name"> Full Name </label>
-					<input type="text" id="name" className ="FormField__Input" 
-					placeholder="Enter your full name" name="chefName"
-                    value={this.state.chefName} onChange={this.onChange} />
-				</div>
-				
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="password"> Password </label>
-					<input type={this.state.hidden ? "password" : "text"}
-						id="password" 
-						className ="FormField__Input" 
-						value={this.state.password, this.state.chefPassword} 
-						onChange={this.handlePasswordChange, this.onChange}
-					
-						placeholder="Enter your password" name="chefPassword" />
-						
-					<label className="FormField__CheckboxLabel">
-						<input className = "FormField__Checkbox" type ="checkbox" name="hasAgreed" onClick={this.toggleShow}/> Show Password
+            <div className="App1" id="App1">
+                <div className="App__Form" id="App__Form">
+                    <Link to={'/Chefs'} id="link">Return</Link>
+                    <h2 id='edittitle'>Edit Info</h2>
+                    <div className="FormCenter">
+                        <p>{this.state.regError}</p>
+                        <form className="FormFields" onSubmit={this.onSubmit}>
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="name"> Full Name </label>
+                                <input type="text" id="name" className="FormField__Input"
+                                    placeholder="Enter your full name" name="chefName"
+                                    value={this.state.chefName} onChange={this.onChange} />
+                            </div>
+
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="password"> Password </label>
+                                <input type={this.state.hidden ? "password" : "text"}
+                                    id="password"
+                                    className="FormField__Input"
+                                    value={this.state.password, this.state.chefPassword}
+                                    onChange={this.handlePasswordChange, this.onChange}
+
+                                    placeholder="Enter your password" name="chefPassword" />
+
+                                <label className="FormField__CheckboxLabel">
+                                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" onClick={this.toggleShow} /> Show Password
 					</label>
-				</div>
-				
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="email"> E-Mail Address </label>
-					<input type="email" id="email" className ="FormField__Input" 
-					placeholder="Enter your email" name="chefEmail" 
-					 value={this.state.chefEmail} onChange={this.onChange}/>
-				</div>
-				
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="email"> Biography </label>
-					<textarea type="bio" id="bio" className ="FormField__Input" 
-					placeholder="Write a short Biography" name="chefBio" 
-					 value={this.state.chefBio} onChange={this.onChange}/>
-				</div>
-				
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="experience"> Years of Experience </label>
-					<input type="number" min="0"id="experience" className ="FormField__Input" 
-					placeholder="Enter how many years of Experience" name="chefExperience" 
-					value={this.state.chefExperience} onChange={this.onChange}/>
-				</div>
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="experience"> Hourly Rate </label>
-					<input type="number" min="0"id="price" className ="FormField__Input" 
-					placeholder="Enter your hourly rate" name="chefPrice" 
-					value={this.state.chefPrice} onChange={this.onChange}/>
-				</div>
-				
-				
-				<div className="FormField">
-					<label className="FormField__Label" htmlFor="experience"> Pictures </label>
-					<input type="file" id="picture" className ="FormField__Input" 
-				     name="chefPicture" 
-				    onChange={this.onChange}/>
-				</div>
-				
-				<div className="FormField">
-					<button className="FormField__Button mr-20" onClick={this.onSubmit}>Save Changes</button>
-				</div>
-				
-				
-			  </form>
-              </div>
-			</div>
-            <div className = "App__Aside" id = "App__Aside"></div>
+                            </div>
+
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="email"> E-Mail Address </label>
+                                <input type="email" id="email" className="FormField__Input"
+                                    placeholder="Enter your email" name="chefEmail"
+                                    value={this.state.chefEmail} onChange={this.onChange} />
+                            </div>
+
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="email"> Biography </label>
+                                <textarea type="bio" id="bio" className="FormField__Input"
+                                    placeholder="Write a short Biography" name="chefBio"
+                                    value={this.state.chefBio} onChange={this.onChange} />
+                            </div>
+
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="experience"> Years of Experience </label>
+                                <input type="number" min="0" id="experience" className="FormField__Input"
+                                    placeholder="Enter how many years of Experience" name="chefExperience"
+                                    value={this.state.chefExperience} onChange={this.onChange} />
+                            </div>
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="experience"> Hourly Rate </label>
+                                <input type="number" min="0" id="price" className="FormField__Input"
+                                    placeholder="Enter your hourly rate" name="chefPrice"
+                                    value={this.state.chefPrice} onChange={this.onChange} />
+                            </div>
+
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="experience"> Pictures </label>
+                                <input type="file" id="picture" className="FormField__Input"
+                                    name="newPicture"
+                                    onChange={this.onChange} />
+                            </div>
+
+                            <div className="FormField">
+                                <button className="FormField__Button mr-20" onClick={this.onSubmit}>Save Changes</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+                <div className="App__Aside" id="App__Aside"></div>
             </div>
         )
     }
