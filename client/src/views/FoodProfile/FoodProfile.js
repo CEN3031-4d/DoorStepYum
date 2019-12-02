@@ -16,6 +16,8 @@ class FoodProfile extends Component {
       image: ''
     }
   }
+  
+
   componentDidMount() {
     axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
       .then(res => {
@@ -64,7 +66,7 @@ class FoodProfile extends Component {
           </div>
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
-              <div class="card">
+              <div class="card" id="FoodCard">
                 <div class="card-header">{this.state.dishName}</div>
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
                 <div class="card-body py-2 bg-dark">
@@ -72,31 +74,10 @@ class FoodProfile extends Component {
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
               </div>
               <br></br>
-              <h4>REVIEWS</h4>
-              <p>SAMPLE REVIEWS HERE
-          <form id="form1">
-                  <input id="text1" name="text1" type="text" class="form-control form-control-lg" placeholder="Write a review..." />
-                </form></p>
+              
             </div>
             <div class="col-12 mb-3 col-md-4 col-lg-3">
-              <div class="card">
-                <div class="card-header" id="card1_heading">
-                  <h5 class="mb-0 text-center">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card1_collapse" aria-expanded="true" aria-controls="collapse">
-                      Ingredients</button>
-                  </h5>
-                </div>
-                <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
-                  <div class="card-body">
-                    INGREDIENTS
-                    INGREDIENTS
-                    INGREDIENTS
-                    INGREDIENTS
-                    INGREDIENTS
-                    INGREDIENTS
-            </div>
-                </div>
-              </div>
+              
               <div class="row">
                 <div class="col">
                   <div class="card">
@@ -110,35 +91,34 @@ class FoodProfile extends Component {
                   </div>
                 </div>
               </div>
+			  <div class="card">
+                <div class="card-header" id="card1_heading">
+                  <h5 class="mb-0 text-center">
+                   <div class="card-header text-center">Ingredients</div>
+					  <div class="card-body">
+					  <div>
+					  {this.state.dishIngredients}
+					  </div>
+			       </div>
+                  </h5>
+                </div>
+                <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
+                  <div class="card-body">
+                    INGREDIENTS
+                    INGREDIENTS
+                    INGREDIENTS
+                    INGREDIENTS
+                    INGREDIENTS
+                    INGREDIENTS
+					</div>
+                </div>
+              </div>
               <div class="card-deck"></div>
             </div>
             <div class="col">
               <div class="row">
                 <div class="col">
-                  <h1 class="text-center font-weight-light">Other Dishes like This</h1>
-                  <div class="card-columns">
-                    <div class="card">
-                      <div class="card-header">Beef Wellington</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/3.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-block btn-lg btn-primary">Go to this Dish</button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-header">Beef Welligton Again</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/3.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-primary btn-block btn-lg">Go to this Dish</button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-header">California Rolls</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/4.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-block btn-lg btn-primary bg-primary">Go to this Dish</button>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

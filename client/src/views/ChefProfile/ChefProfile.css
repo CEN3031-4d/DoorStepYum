@@ -29,6 +29,77 @@
   transform:scale(1);
 
 }
+
+#App__Form3.App__Form {
+  width: 100%;
+  background-color: #f1f3f4;
+  padding: 25px 40px;
+  height: 500px;
+  overflow: auto;
+}
+
+h2.headerRequest{
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	font-weight:100;
+	 border-bottom: 1px solid #3e9b17;
+	
+}
+.TimePicker{
+	text-align: left;
+	padding-top:15px;
+}
+
+
+/*Used a negative- not sure if cause problems or not*/
+#Msg.FormField__Label {
+  padding-top: 0px;
+  margin-top: -25px;
+  padding-bottom:0px;
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: black;
+}
+#hoursRequested.FormField__Label{
+  padding-top: 30px;
+  padding-bottom:0px;
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: black;
+}
+#hoursRequested.FormField__Input{
+	width:100%;
+	background-color: transparent;
+	border: none;
+	color: black;
+	outline: none;
+	border-bottom: 1px solid #445366;
+	font-size: 1em;
+	font-weight: 300;
+	padding-bottom: 10px;
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom:0px;
+}
+#Msg.FormField__Input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: black;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.selectRequest{
+	text-align: center;
+	color: #707C8B;
+}
   .carousel-item {
     width: 100%;
     height: 500px;

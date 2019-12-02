@@ -15,6 +15,9 @@ p.lead {
   font-weight: normal;
   margin-bottom: 0;
 }
+#FoodCard{
+	overflow:hidden;
+}
 .card {
   -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;

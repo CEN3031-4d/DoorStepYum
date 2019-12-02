@@ -11,6 +11,21 @@
 	margin-right : 20px !important;
 }
 
+#edittitle{
+    text-align: center;
+    margin-top: 15px;
+    color: darkgreen;
+}
+
+
+#link{
+    text-decoration: none;
+    color: gray;
+}
+
+#link.hover{
+    color: rgb(22, 22, 22) !important;
+}
 
 #App1.App1 {
   height: 100vh;
@@ -18,9 +33,9 @@
   color: white;
 }
 /*Left side of thingy, picture of veggies*/
-#App__Aside2.App__Aside {
+#App__Aside.App__Aside {
   width: 50%;
-  background-image: url("/CustLoginImage.png");
+  background-image: url("/veggie.png");
   background-repeat: no-repeat;
 }
 /*Right side of thingy, sign in and sign up*/
@@ -36,15 +51,15 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10%;
-
 }
-/*might change to nonwhite*/
+
 .PageSwitcher__Item {
-  background-color: white;
+  background-color: #3e9b17;
   color: #9DA6B1;
   padding: 10px 25px;
   cursor: pointer;
   font-size: .9em;
+  border: 1px #3e9b17;
   outline: none;
   display: inline-block;
   text-decoration: none;
@@ -56,7 +71,7 @@
 	
 }
 .PageSwitcher__Item--Active {
-  background-color: #3e9b17;
+  background-color: #5ED0C0;
   color: white;
 }
 /*Hovering-Maria*/
@@ -104,7 +119,7 @@
 
 .FormTitle__Link--Active {
   color: black;
-  border-bottom: 1px solid #3e9b17;
+  border-bottom: 1px solid #199087;
 }
 /*Hovering-Maria*/
 .FormTitle__Link--Active:hover {
@@ -155,12 +170,12 @@
   color: #66707D;
   text-decoration: none;
   display: inline-block;
-  border-bottom: 1.5px solid #3e9b17;
+  border-bottom: 1.5px solid #225E62;
   padding-bottom: 5px;
 }
 /*Hovering-Maria*/
 .FormField__Link:hover {
-	color: black;
+	color: white;
 	text-decoration: none;
 }
 

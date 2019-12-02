@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './EditChef.css'
+import './EditDish.css'
 import { Link } from 'react-router-dom'
 import Encoder from '../Encoder/Encoder'
 import uuidv4 from 'uuid/v4'
@@ -9,15 +9,14 @@ class EditChef extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chefName: '',
-            chefBio: '',
-            chefExperience: '',
-            chefEmail: '',
-            chefPassword: '',
-            chefPrice: '',
-            chefPicture: '',
-            newPicture: '',
-            regError: ''
+            dishIngrCSV: '',
+            dishIngredients: [],
+            dishName: '',
+            dishPrice: '',
+            dishDescription: '',
+            dishChef: '',
+            dishPicture: '',
+            image: ''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -27,9 +26,17 @@ class EditChef extends Component {
 
     componentDidMount() {
 
-        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+        axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
+                let ingredientList = '';
+
+                this.state.dishIngredients.forEach((e) => {
+                    ingredientList += e += ','
+                })
+                ingredientList = ingredientList.substring(0, ingredientList.length - 1);
+                this.setState({ dishIngrCSV: ingredientList })
+
             })
     }
     onChange = (e) => {
@@ -60,29 +67,27 @@ class EditChef extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const newChef = {
-            chefName: this.state.chefName,
-            chefBio: this.state.chefBio,
-            chefExperience: this.state.chefExperience,
-            chefEmail: this.state.chefEmail,
-            chefPassword: this.state.chefPassword,
-            chefPrice: this.state.chefPrice,
-            chefPicture: this.state.chefPicture
+        const newDish = {
+            dishName: this.state.dishName,
+            dishDescription: this.state.dishDescription,
+            dishPrice: this.state.dishPrice,
+            dishPicture: this.state.dishPicture,
+            dishIngredients: this.state.dishIngrCSV.split(",")
         }
 
         if (this.state.filepath && this.state.image) {
-            newChef.chefPicture = this.state.filepath;
+            newDish.dishPicture = this.state.filepath;
         }
 
-        axios.post('http://localhost:5000/api/chef/update/' + this.props.match.params.id, newChef)
+        axios.post('http://localhost:5000/api/dish/update/' + this.props.match.params.id, newDish)
             .then(res => {
 
                 if (this.state.filepath && this.state.image) {
                     var form = new FormData();
-                    form.append('bucket', 'chefpictures')
+                    form.append('bucket', 'yummydishes')
                     form.append('image', this.state.image)
                     form.append('filepath', this.state.filepath)
-                    form.append('oldfilepath', this.state.chefPicture)
+                    form.append('oldfilepath', this.state.dishPicture)
 
                     axios.post("http://localhost:5000/api/chef/image/update", form,
                         {
@@ -103,7 +108,7 @@ class EditChef extends Component {
             .catch(err => {
 
                 if (err.response.data.code === 11000) {
-                    var errParse = err.response.data.errmsg.split('index: chef')[1].split('_')[0];
+                    var errParse = err.response.data.errmsg.split('index: dish')[1].split('_')[0];
                     this.setState({ regError: 'Error: ' + errParse + ' is already in use' });
                 }
                 else
@@ -120,57 +125,32 @@ class EditChef extends Component {
                         <p>{this.state.regError}</p>
                         <form className="FormFields" onSubmit={this.onSubmit}>
                             <div className="FormField">
-                                <label className="FormField__Label" htmlFor="name"> Full Name </label>
+                                <label className="FormField__Label" htmlFor="name"> Dish Name </label>
                                 <input type="text" id="name" className="FormField__Input"
-                                    placeholder="Enter your full name" name="chefName"
-                                    value={this.state.chefName} onChange={this.onChange} />
+                                    placeholder="Enter your full name" name="dishName"
+                                    value={this.state.dishName} onChange={this.onChange} />
                             </div>
 
 
                             <div className="FormField">
-                                <label className="FormField__Label" htmlFor="password"> Password </label>
-                                <input type={this.state.hidden ? "password" : "text"}
-                                    id="password"
-                                    className="FormField__Input"
-                                    value={this.state.password, this.state.chefPassword}
-                                    onChange={this.handlePasswordChange, this.onChange}
-
-                                    placeholder="Enter your password" name="chefPassword" />
-
-                                <label className="FormField__CheckboxLabel">
-                                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" onClick={this.toggleShow} /> Show Password
-					</label>
-                            </div>
-
-
-                            <div className="FormField">
-                                <label className="FormField__Label" htmlFor="email"> E-Mail Address </label>
-                                <input type="email" id="email" className="FormField__Input"
-                                    placeholder="Enter your email" name="chefEmail"
-                                    value={this.state.chefEmail} onChange={this.onChange} />
-                            </div>
-
-
-                            <div className="FormField">
-                                <label className="FormField__Label" htmlFor="email"> Biography </label>
+                                <label className="FormField__Label" htmlFor="email"> Dish Description </label>
                                 <textarea type="bio" id="bio" className="FormField__Input"
-                                    placeholder="Write a short Biography" name="chefBio"
-                                    value={this.state.chefBio} onChange={this.onChange} />
-                            </div>
-
-
-                            <div className="FormField">
-                                <label className="FormField__Label" htmlFor="experience"> Years of Experience </label>
-                                <input type="number" min="0" id="experience" className="FormField__Input"
-                                    placeholder="Enter how many years of Experience" name="chefExperience"
-                                    value={this.state.chefExperience} onChange={this.onChange} />
+                                    placeholder="Write a short Biography" name="dishDescription"
+                                    value={this.state.dishDescription} onChange={this.onChange} />
                             </div>
 
                             <div className="FormField">
-                                <label className="FormField__Label" htmlFor="experience"> Hourly Rate </label>
+                                <label className="FormField__Label" htmlFor="email"> Dish Ingredients </label>
+                                <textarea type="bio" id="bio" className="FormField__Input"
+                                    placeholder="Write a short Biography" name="dishIngrCSV"
+                                    value={this.state.dishIngrCSV} onChange={this.onChange} />
+                            </div>
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="experience"> Dish Price</label>
                                 <input type="number" min="0" id="price" className="FormField__Input"
-                                    placeholder="Enter your hourly rate" name="chefPrice"
-                                    value={this.state.chefPrice} onChange={this.onChange} />
+                                    placeholder="Enter your hourly rate" name="dishPrice"
+                                    value={this.state.dishPrice} onChange={this.onChange} />
                             </div>
 
 
