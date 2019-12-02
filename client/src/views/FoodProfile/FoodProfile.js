@@ -16,6 +16,8 @@ class FoodProfile extends Component {
       image: ''
     }
   }
+  
+
   componentDidMount() {
     axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
       .then(res => {
@@ -64,7 +66,7 @@ class FoodProfile extends Component {
           </div>
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
-              <div class="card">
+              <div class="card" id="FoodCard">
                 <div class="card-header">{this.state.dishName}</div>
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
                 <div class="card-body py-2 bg-dark">
@@ -92,8 +94,12 @@ class FoodProfile extends Component {
 			  <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card1_collapse" aria-expanded="true" aria-controls="collapse">
-                      Ingredients</button>
+                   <div class="card-header text-center">Ingredients</div>
+					  <div class="card-body">
+					  <div>
+					  {this.state.dishIngredients}
+					  </div>
+			       </div>
                   </h5>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
