@@ -154,15 +154,21 @@ class ChefProfile extends Component {
 											/>
 										  </div>
 										  <div className="FormField">
+												<label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
+												<input type="number" min="1" id="hoursRequested" className="FormField__Input"
+													placeholder="Hours requested" name="hoursRequested"
+											    />
+											</div>
+										  <div className="FormField">
 											<label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
 											<textarea type="Msg" id="Msg" className ="FormField__Input" 
 											placeholder="What would you like the chef to know?" name="customerMessage" 
 											/>
-										</div>			
+										  </div>			
 									  </form>
 									  
-										<button class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
-										<button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">close</button>
+										<button id= "SubmitRequestButton" class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
+										<button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
 					
 					</div>
 			</div>

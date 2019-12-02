@@ -72,14 +72,24 @@ class FoodProfile extends Component {
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
               </div>
               <br></br>
-              <h4>REVIEWS</h4>
-              <p>SAMPLE REVIEWS HERE
-          <form id="form1">
-                  <input id="text1" name="text1" type="text" class="form-control form-control-lg" placeholder="Write a review..." />
-                </form></p>
+              
             </div>
             <div class="col-12 mb-3 col-md-4 col-lg-3">
-              <div class="card">
+              
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-header text-center">Featured Chef</div>
+                    <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
+                    <div class="card-body">
+                      <h5 class="card-title">Gordon Ramsay</h5>
+                      <p class="card-text">Gordon Ramsay's Foie Gras has won 3 Michelin Star Awards and has been feautred in several of his top-rated restaraunts.</p>
+                      <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card1_collapse" aria-expanded="true" aria-controls="collapse">
@@ -94,20 +104,7 @@ class FoodProfile extends Component {
                     INGREDIENTS
                     INGREDIENTS
                     INGREDIENTS
-            </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="card">
-                    <div class="card-header text-center">Featured Chef</div>
-                    <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
-                    <div class="card-body">
-                      <h5 class="card-title">Gordon Ramsay</h5>
-                      <p class="card-text">Gordon Ramsay's Foie Gras has won 3 Michelin Star Awards and has been feautred in several of his top-rated restaraunts.</p>
-                      <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
-                    </div>
-                  </div>
+					</div>
                 </div>
               </div>
               <div class="card-deck"></div>
@@ -115,30 +112,7 @@ class FoodProfile extends Component {
             <div class="col">
               <div class="row">
                 <div class="col">
-                  <h1 class="text-center font-weight-light">Other Dishes like This</h1>
-                  <div class="card-columns">
-                    <div class="card">
-                      <div class="card-header">Beef Wellington</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/3.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-block btn-lg btn-primary">Go to this Dish</button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-header">Beef Welligton Again</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/3.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-primary btn-block btn-lg">Go to this Dish</button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-header">California Rolls</div>
-                      <img class="card-img-top" alt="image not found" src="assets/images/4.jpg" />
-                      <div class="card-body py-2 bg-dark">
-                        <button class="btn btn-block btn-lg btn-primary bg-primary">Go to this Dish</button>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
