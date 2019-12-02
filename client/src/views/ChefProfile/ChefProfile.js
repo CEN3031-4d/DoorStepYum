@@ -10,6 +10,7 @@ import TimePicker from 'react-time-picker';
 import Calendar from 'react-calendar';
 import ReactDOM from 'react-dom';
 
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -20,7 +21,6 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
-
 
 
 class ChefProfile extends Component {
@@ -43,7 +43,7 @@ class ChefProfile extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-	
+  
   openModal() {
     this.setState({modalIsOpen: true});
   }
@@ -84,45 +84,45 @@ class ChefProfile extends Component {
   }
   render() {
     return (
-	
       <body is="dmx-app" id="index">
-        <div class="container wappler-block">
-          <div class="modal fade" id="bookChefModal" is="dmx-bs4-modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title">Book this Chef</h3>
-                </div>
-                <div class="modal-body"></div>
-                <h3 class="font-weight-light">Question 1</h3>
-                <select id="select1" class="custom-select">
-                  <option value="1">Option One</option>
-                  <option value="2">Option Two</option>
-                  <option value="3">Option Three</option>
-                </select>
-                <h3 class="font-weight-lighter text-left">Question 2</h3>
-                <select id="select2" class="custom-select">
-                  <option value="1">Option One</option>
-                  <option value="2">Option Two</option>
-                  <option value="3">Option Three</option>
-                </select>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button class="btn btn-outline-success font-weight-normal" data-toggle="modal" data-target="#bookChefModal">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
+       
           <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="card">
-                <img class="card-img-top rounded-bottom ml-0" alt="Card image cap" src="assets/images/ramsay.jpg" />
+            <div class="col-12 col-md-4">
+              <div class="card" id="chefprofilecard">
+                <img id="chefprofilepic" class="card-img-top rounded-bottom ml-0" alt="Card image cap" src={this.state.image} />
                 <div class="card-body">
-                  <h4 class="card-title">{this.state.chefName}&nbsp;
-                <a href="#" class="badge badge-success">Pro</a>
+                  <h4 id="chefName" class="card-title">{this.state.chefName}&nbsp;
                   </h4>
-                  <p class="card-text">{this.state.chefBio}</p>
-                 
+                  <p id="bio" class="card-text">{this.state.chefBio}</p>
+                  <div class="card">
+                    <div class="card-header" id="accordion1_headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion1_collapseOne" aria-expanded="true" aria-controls="collapseOne">Cusine Type</button>
+                      </h5>
+                    </div>
+                    <div id="accordion1_collapseOne" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="accordion1_headingOne" data-parent="#accordion1">
+                      <div class="card-body">
+                        Specialization text
+                  </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card">
+                    <div class="card-header" id="accordion1_headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion1_collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Past Experience</button>
+                      </h5>
+                    </div>
+                    <div id="accordion1_collapseTwo" class="collapse" is="dmx-bs4-collapse" aria-labelledby="accordion1_headingTwo" data-parent="#accordion1">
+                      <div class="card-body">
+                        Past experience text
+                  </div>
+                    </div>
+                  </div>
+                  <a href="#" id="requestbutton" class="btn btn-block btn-outline-success font-weight-normal" data-toggle="modal" data-target="#bookChefModal">Submit Booking Request</a>
+				   
 				<button onClick={this.openModal}>Open Modal</button>
 					<Modal
 					  isOpen={this.state.modalIsOpen}
@@ -159,49 +159,18 @@ class ChefProfile extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-6 align-self-start">
-          </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <h1 class="text-center">Similar Chefs</h1>
-              <div class="card-columns">
-                <div class="card">
-                  <img class="card-img-top" alt="Card image cap" src="assets/images/stockchef.jpg" />
-                  <div class="card-body">
-                    <h4 class="card-title">Chef #1&nbsp;
-                  <a href="#" class="badge badge-success">Pro</a>
-                    </h4>
-                    <p class="card-text">Flavor text</p>
-                    <a href="#" class="btn btn-primary">Go to this Chef</a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img class="card-img-top" alt="Card image cap" src="assets/images/stockchef.jpg" />
-                  <div class="card-body">
-                    <h4 class="card-title">Chef #2&nbsp;
-                  <a href="#" class="badge badge-info">Amatuer</a>
-                    </h4>
-                    <p class="card-text">Flavor text</p>
-                    <a href="#" class="btn btn-primary">Go to this Chef</a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img class="card-img-top" alt="Card image cap" src="assets/images/stockchef.jpg" />
-                  <div class="card-body">
-                    <h4 class="card-title">Chef #3&nbsp;
-                  <a href="#" class="badge badge-danger">Restaraunt Chef</a>
-                    </h4>
-                    <p class="card-text">Flavor text</p>
-                    <a href="#" class="btn btn-primary">Go to this Chef</a>
-                  </div>
+            <div class="col-12 col-md-8 align-self-start">
+             
+            
+                  
+                 
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+              
+       
       </body>
     );
   }
 }
+
 export default ChefProfile;
