@@ -122,6 +122,7 @@ class ChefProfile extends Component {
                     </div>
                   </div>
                   <a href="#" id="requestbutton" class="btn btn-block btn-outline-success font-weight-normal" data-toggle="modal" data-target="#bookChefModal">Submit Booking Request</a>
+
 				   
 				<button onClick={this.openModal}>Open Modal</button>
 					<Modal

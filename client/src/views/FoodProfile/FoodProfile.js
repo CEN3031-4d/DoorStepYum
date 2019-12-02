@@ -19,8 +19,9 @@ class FoodProfile extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
       .then(res => {
+        console.log(res.data);
         this.setState(res.data);
-        if (this.state.chefPicture) {
+        if (this.state.dishPicture) {
           axios.get('http://localhost:5000/api/chef/image', {
             params: {
               Bucket: "yummydishes",
@@ -64,10 +65,10 @@ class FoodProfile extends Component {
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
               <div class="card">
-                <div class="card-header">FOIE GRAS</div>
-                <img class="card-img-top" alt="image not found" src="assets/images/1.jpg" />
+                <div class="card-header">{this.state.dishName}</div>
+                <img class="card-img-top" alt="image not found" src={this.state.image} />
                 <div class="card-body py-2 bg-dark">
-                  <p class="text-light">Foie gras is a specialty food product made of the liver of a duck or goose that has been especially fattened. By French law, foie gras is defined as the liver of a duck or goose fattened by force-feeding corn with a feeding tube, a process also known as gavage.</p>
+                  <p class="text-light">{this.state.dishDescription}</p>
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
               </div>
               <br></br>
