@@ -42,7 +42,7 @@ exports.returnByID = (req, res) => {
 }
 
 exports.putImage = (req, res) => {
-  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer }
+  var params = { Bucket: req.body.bucket, Key: req.body.filepath, Body: req.files[0].buffer }
   s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
@@ -55,7 +55,7 @@ exports.putImage = (req, res) => {
 }
 
 exports.updateImage = (req, res) => {
-  var params = { Bucket: 'chefpictures', Key: req.body.filepath, Body: req.files[0].buffer }
+  var params = { Bucket: req.body.bucket, Key: req.body.filepath, Body: req.files[0].buffer }
   s3.putObject(params, (err, data) => {
     if (err) {
       console.log(err);
@@ -65,7 +65,7 @@ exports.updateImage = (req, res) => {
       res.status(200).send("Success! (?)");
     }
   })
-  params = { Bucket: 'chefpictures', Key: req.body.oldfilepath }
+  params = { Bucket: req.body.bucket, Key: req.body.oldfilepath }
   s3.deleteObject(params, (err, data) => {
     if (err)
       console.log(err);
