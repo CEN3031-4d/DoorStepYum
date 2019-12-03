@@ -17,6 +17,8 @@ class EditChef extends Component {
             chefPrice: '',
             chefPicture: '',
             newPicture: '',
+            chefCuisineTypes: [],
+            chefCuisineCSV: '',
             regError: ''
         }
         this.onChange = this.onChange.bind(this);
@@ -30,6 +32,14 @@ class EditChef extends Component {
         axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
+
+                let cuisineList = '';
+
+                this.state.chefCuisineTypes.forEach((e) => {
+                    cuisineList += e += ','
+                })
+                cuisineList = cuisineList.substring(0, cuisineList.length - 1);
+                this.setState({ chefCuisineCSV: cuisineList })
             })
     }
     onChange = (e) => {
@@ -67,7 +77,8 @@ class EditChef extends Component {
             chefEmail: this.state.chefEmail,
             chefPassword: this.state.chefPassword,
             chefPrice: this.state.chefPrice,
-            chefPicture: this.state.chefPicture
+            chefPicture: this.state.chefPicture,
+            chefCuisineTypes: this.state.chefCuisineCSV.split(",")
         }
 
         if (this.state.filepath && this.state.image) {
@@ -156,6 +167,13 @@ class EditChef extends Component {
                                 <textarea type="bio" id="bio" className="FormField__Input"
                                     placeholder="Write a short Biography" name="chefBio"
                                     value={this.state.chefBio} onChange={this.onChange} />
+                            </div>
+
+                            <div className="FormField">
+                                <label className="FormField__Label" htmlFor="email"> Cuisine Types </label>
+                                <textarea type="bio" id="bio" className="FormField__Input"
+                                    placeholder="What cuisine types do you specialize in?" name="chefCuisineCSV"
+                                    value={this.state.chefCuisineCSV} onChange={this.onChange} />
                             </div>
 
 
