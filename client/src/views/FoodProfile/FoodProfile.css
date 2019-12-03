@@ -18,6 +18,16 @@ p.lead {
 #FoodCard{
 	overflow:hidden;
 }
+#dishlabel2{
+	font-size: 40px;
+}
+#FeatureChef{
+	font-weight:bold;
+	font-size: 20px;
+}
+#dishdesc{
+	font-size:25px;
+}
 .card {
   -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;

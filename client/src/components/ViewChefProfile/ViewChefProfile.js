@@ -15,6 +15,8 @@ class ViewChefProfile extends Component {
             chefPrice: '',
             chefPicture: '',
             chefRequests: [],
+            chefCuisineTypes: [],
+            chefCuisineCSV: '',
             image: ''
         }
     }
@@ -22,6 +24,15 @@ class ViewChefProfile extends Component {
         axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
+
+                let cuisineList = '';
+
+                this.state.chefCuisineTypes.forEach((e) => {
+                    cuisineList += e += ', '
+                })
+                cuisineList = cuisineList.substring(0, cuisineList.length - 2);
+                this.setState({ chefCuisineCSV: cuisineList })
+
                 if (this.state.chefPicture) {
                     axios.get('http://localhost:5000/api/chef/image', {
                         params: {
@@ -78,6 +89,12 @@ class ViewChefProfile extends Component {
                         </tr>
                         <tr>
                             <td>Picture Filepath: </td> <td>{this.state.chefPicture}</td>
+                        </tr>
+                        <tr>
+                            <td>Cuisine Types</td>
+                            <td>
+                                {this.state.chefCuisineCSV}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
