@@ -12,6 +12,7 @@ const Card = props => {
 					{props.description}
 				</p>
 				<a href={"/FoodProfile/" + props.id} className="btn btn-outline-success">Find out more</a>
+			</div>
 		</div>
 	);
 };
