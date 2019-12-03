@@ -20,10 +20,10 @@ function About() {
 		  				<div class="col-12 col-sm-6">
 							<div class="h1">About Us</div>
 							<div class="section-body2">
-								Yummy! aims to bring the pleasures of a Michelin starred restaraunt straight to your door. Our diverse team of world-class chefs are trained in preparing the finest, most authentic global cuisine. Explore our chefs and their specialties.
+								Tired of ordering fast food? Yummy! aims to bring the pleasures of a home cooked meal straight to your door. Our diverse team of home chefs are trained in preparing the finest, most authentic global cuisine. Take a look at our chefs to find out more about their diverse cuisine.
 							</div>
 							<div class="text-center">
-								<a href="/BrowsebyChef" class="btn btn-outline-primary">Request a Chef</a>
+								<a href="/BrowsebyChef" class="btn btn-default btn-outline-success font-weight-normal" id="requestChefButt">Request a Chef</a>
 		  					</div>
 		  				</div>
 					</div>

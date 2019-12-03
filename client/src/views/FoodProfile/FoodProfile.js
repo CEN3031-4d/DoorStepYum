@@ -13,13 +13,14 @@ class FoodProfile extends Component {
       dishDescription: '',
       dishChef: '',
       dishPicture: '',
-      image: ''
+      image: '',
+      imageChef: ''
     }
   }
   
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
+    axios.get('http://localhost:5000/api/dish/findFull/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState(res.data);
@@ -39,8 +40,26 @@ class FoodProfile extends Component {
         }
         else
           this.setState({ image: "/placeholder.png" })
+        if(this.state.dishChef.chefPicture){
+        axios.get('http://localhost:5000/api/chef/image', {
+            params: {
+              Bucket: "chefpictures",
+              Key: this.state.dishChef.chefPicture
+            }
+          })
+            .then(res => {
+              this.setState({ imageChef: Encoder.imageEncode(res.data.Body.data) })
+            })
+            .catch(err => {
+              console.log(err, err.stack);
+            })
+        }
+        else{
+          this.setState({ image: "/placeholder.png" })
+        }
       })
   }
+
   render() {
     return (
       <body is="dmx-app">
@@ -67,40 +86,51 @@ class FoodProfile extends Component {
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
               <div class="card" id="FoodCard">
+			  <h5 class="mb-0 text-center" id="dishlabel2">
                 <div class="card-header">{this.state.dishName}</div>
+				</h5>
+				<div className = "overflow">
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
-                <div class="card-body py-2 bg-dark">
+			    </div>
+			   <div class="card-body py-2 bg-dark">
                   <p class="text-light">{this.state.dishDescription}</p>
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
-              </div>
+             
+			  </div>
               <br></br>
               
             </div>
-            <div class="col-12 mb-3 col-md-4 col-lg-3">
-              
+            <div class="col-12 mb-3 col-md-4 col-lg-3"> 
               <div class="row">
                 <div class="col">
                   <div class="card">
-                    <div class="card-header text-center">Featured Chef</div>
-                    <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
+                    <div class="card-header text-center" id="FeatureChef">Featured Chef</div>
+					<div className= "overflow">
+			
+                    <img class="card-img-top" alt="Card image cap" src={this.state.imageChef} />
+					</div>
                     <div class="card-body">
-                      <h5 class="card-title">Gordon Ramsay</h5>
-                      <p class="card-text">Gordon Ramsay's Foie Gras has won 3 Michelin Star Awards and has been feautred in several of his top-rated restaraunts.</p>
-                      <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
+					<h5 class="mb-0 text-center">
+					<div class="card-body text-center">{this.state.dishChef.chefName}</div>
+					</h5> 
+                      
+                      <p class="card-text">{this.state.dishDescription}</p>
+					     <div class="col text-center">
+                      <a href={'/ChefProfile/'+ this.state.dishChef._id} class="btn btn-default btn-outline-success font-weight-normal">Book this Chef</a>
+					  </div>
                     </div>
                   </div>
                 </div>
               </div>
-			  <div class="card">
+              <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
-                   <div class="card-header text-center">Ingredients</div>
-					  <div class="card-body">
-					  <div>
-					  {this.state.dishIngredients}
-					  </div>
-			       </div>
+                   <div class="card-body text-center">Ingredients</div>
+
                   </h5>
+				  <p class="card-text">
+				  {this.state.dishIngredients.join(", ")}
+				  </p>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
                   <div class="card-body">

@@ -34,7 +34,6 @@ class BrowsebyChef extends Component {
             {
                 this.state.cuisineSearch.splice(this.state.cuisineSearch.indexOf(event.target.name), 1)
             }
-            console.log(event.target.checked);
             this.setState({
                 [event.target.name]: event.target.checked
             })
@@ -99,14 +98,14 @@ class BrowsebyChef extends Component {
                 <table id="tablepage">
                     <tr id="tablepagecol">
                         <td id="tablepagerow">
-                            <div class="wrapper">
+                            <div class="wrapper" id="wrapper2">
                                 <nav id="sidebar">
                                     <div class="row">
                                         <a id="button1" >Browse by Chef</a>
                                         <a id="button2" href="/BrowsebyDish">Browse by Dish</a>
                                     </div>
 
-                                    <input type="search" id="searchbar" name="nameSearch" placeholder="Search..." value={this.state.search}
+                                    <input type="search" id="searchbar" name="nameSearch" placeholder="Search..." value={this.state.nameSearch}
                                         onChange={this.handleChange} />
 
 
@@ -154,19 +153,9 @@ class BrowsebyChef extends Component {
                                         </tbody>
                                     </table>
 
-                                    <h1 class="h1style">Availability</h1>
-                                    <input type="date" style={{ marginLeft: '10%', marginBottom: '30px' }} />
-                                    <h1 class="h1style">Years of Experience</h1>
-                                    <input id="slider" type="range" />
-                                    <h1 class="h1style">Price</h1>
-                                    <input id="slider" type="range" />
+                                    
 
-                                    <RangeSlider
-                                        step={1}
-                                        min={0}
-                                        max={100}
-                                        onChange={this.handleChange.bind(this)}
-                                    />
+                                   
 
                                 </nav>
                             </div>

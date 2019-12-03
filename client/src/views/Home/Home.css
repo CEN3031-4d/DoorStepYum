@@ -1,5 +1,13 @@
+#requestChefButt2{
+	color:#3e9b17;
+	
+}
 
-
+#requestChefButt2:hover{
+	color:white;
+	text-decoration: none;
+	
+}
 .App-logo {
     height: 100vmin;
 }
@@ -33,4 +41,8 @@
 #ourChefs{
     width:20%;
     text-align: center;
+}
+
+#cardbody2{
+	padding:1rem 0 !important;
 }

@@ -24,13 +24,13 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 
 
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
   }
 };
 
@@ -47,32 +47,61 @@ class ChefProfile extends Component {
       chefPrice: '',
       chefPicture: '',
       image: '',
-	  time:'10:00',
-	  date:new Date(),
-	  modalIsOpen: false
+      time: '10:00',
+      date: new Date(),
+      modalIsOpen: false
     };
-	this.openModal = this.openModal.bind(this);
+    this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-  
+
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
- 
+
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = 'gray';
 
   }
- 
+
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
- onChange = time => this.setState({ time })
- onChange = date => this.setState({ date })
-  
+  onChangeTime = time => {
+    this.setState({ time })
+  }
+  onChangeDate = date => {
+    this.setState({ date })    
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  submitRequest = () => {
+    var parsedBegin = this.state.date;
+    parsedBegin.setHours(this.state.time.split(":")[0],this.state.time.split(":")[1]);
+    var parsedEnd = new Date(parsedBegin.getTime() + this.state.hoursRequested*60*60*1000);
+    let request = {
+      customer: '5de36361b3778746e4c1e255',
+      message: this.state.customerMessage,
+      beginTime: parsedBegin,
+      endTime: parsedEnd
+    }
+
+    axios.post('http://localhost:5000/api/chef/requests/add/' + this.state._id, request)
+      .then(res => {
+        console.log('Successful Request made')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
   componentDidMount() {
     axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
       .then(res => {
@@ -99,13 +128,13 @@ class ChefProfile extends Component {
   render() {
     return (
       <body is="dmx-app" id="index">
-       
-          <div class="row">
-            <div class="col-12 col-md-4">
-              <div class="card" id="chefprofilecard">
-                <img id="chefprofilepic" class="card-img-top rounded-bottom ml-0" alt="Card image cap" src={this.state.image} />
-                <div class="card-body">
-                  <h4 id="chefName" class="card-title">{this.state.chefName}&nbsp;
+
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="card" id="chefprofilecard">
+              <img id="chefprofilepic" class="card-img-top rounded-bottom ml-0" alt="Card image cap" src={this.state.image} />
+              <div class="card-body">
+                <h4 id="chefName" class="card-title">{this.state.chefName}&nbsp;
                   </h4>
                   <p id="bio" class="card-text">{this.state.chefBio}</p>
                   <Accordion allowZeroExpanded="true" allowMultipleExpanded="true">
