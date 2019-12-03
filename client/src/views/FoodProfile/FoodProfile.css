@@ -28,6 +28,10 @@ p.lead {
 #dishdesc{
 	font-size:25px;
 }
+
+#bookie{
+	text-align: center;
+}
 .card {
   -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
