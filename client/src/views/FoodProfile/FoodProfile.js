@@ -16,6 +16,8 @@ class FoodProfile extends Component {
       image: ''
     }
   }
+  
+
   componentDidMount() {
     axios.get('http://localhost:5000/api/dish/findFull/' + this.props.match.params.id)
       .then(res => {
@@ -64,7 +66,7 @@ class FoodProfile extends Component {
           </div>
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
-              <div class="card">
+              <div class="card" id="FoodCard">
                 <div class="card-header">{this.state.dishName}</div>
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
                 <div class="card-body py-2 bg-dark">
@@ -82,8 +84,8 @@ class FoodProfile extends Component {
                     <div class="card-header text-center">Featured Chef</div>
                     <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
                     <div class="card-body">
-                      <h5 class="card-title">Gordon Ramsay</h5>
-                      <p class="card-text">Gordon Ramsay's Foie Gras has won 3 Michelin Star Awards and has been feautred in several of his top-rated restaraunts.</p>
+                      <h5 class="card-title">{this.state.dishChef}</h5>
+                      <p class="card-text">{this.state.dishDescription}</p>
                       <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
                     </div>
                   </div>
@@ -92,8 +94,12 @@ class FoodProfile extends Component {
 			  <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card1_collapse" aria-expanded="true" aria-controls="collapse">
-                      Ingredients</button>
+                   <div class="card-body text-center">Ingredients</div>
+					  <div class="card-body">
+					  <div>
+					  {this.state.dishIngredients.join(", ")}
+					  </div>
+			       </div>
                   </h5>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
