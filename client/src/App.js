@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 
@@ -20,10 +20,15 @@ import ViewChefProfile from "./components/ViewChefProfile/ViewChefProfile"
 import LogIn from "./views/LogIn/LogIn"
 import LogInCustomer from "./views/LogInCustomer/LogInCustomer"
 
-const App = () => {
+
+class App extends Component {
+  
+render(){
   return (
     
     <div>
+      
+
       <Header />
       <Switch>
         <Route exact path="/Home" component={Home} />
@@ -72,5 +77,6 @@ const App = () => {
       </Switch>
     </div>
   );
+}
 }
 export default App;
