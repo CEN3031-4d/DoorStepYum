@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom';
+import Header from '../../components/Header/Header';
 
+const PasswordExist = {
+	exists: false
+}
 class loginChef extends Component{
 	  constructor(props) {
     super(props);
 
     this.state = {
       hidden: true,
-      password: ""
+      password: "",
+      email: "",
+      exist:false
     };
 	
-	    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+	this.handleEmailChange = this.handleEmailChange.bind(this);
+	this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.toggleShow = this.toggleShow.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  onSubmit = (e) => {
+  	if(this.state.email && this.state.password){
+  		this.setState({exist:true})
+  	}else{
+  		this.setState({exists:false})
+  	}
+  }
+  
   
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
   }
 
+  handleEmailChange(e){
+  	this.setState({ email: e.target.value});
+  }
   
   
   toggleShow() {
@@ -33,11 +53,11 @@ class loginChef extends Component{
 		return (
 		<div className="FormCenter">
 			  <form className = "FormFields" onSubmit={this.handleSubmit}>
-			
+				
 				<div className="FormField">
 					<label className="FormField__Label" htmlFor="email"> E-Mail Address </label>
 					<input type="email" id="email" className ="FormField__Input" 
-					placeholder="Enter your email" name="email" />
+					placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange}/>
 				</div>
 				
 				<div className="FormField">
@@ -55,12 +75,14 @@ class loginChef extends Component{
 				</div>
 				
 				<div className="FormField">
-					<button className="FormField__Button mr-20">Sign In</button>
+					<button className="FormField__Button mr-20" onClick={this.onSubmit}>Sign In</button>
 					<Link exact to = "/LogIn" className = "FormField__Link"> Create a chef account </Link>
 				</div>
-				
-				
+				<div className="HideMe">
+				<Header exists={this.state.exist}/>
+				</div>
 			  </form>
+
 			</div>
 		
 		);
