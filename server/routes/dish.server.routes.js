@@ -13,6 +13,8 @@ router.route('/getDishesByChef/:id')
 
 router.route('/find/:id')
   .get(dish.returnByID);
+router.route('/findFull/:id')
+  .get(dish.returnFullByID)
 
 router.route('/add')
   .post(dish.addDish);
@@ -26,4 +28,4 @@ router.route('/update/addIngredient/:id')
 router.route('/delete/:id')
   .delete(dish.deleteDish);
 
-  module.exports = router;
+module.exports = router;

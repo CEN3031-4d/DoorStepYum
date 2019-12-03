@@ -14,6 +14,7 @@ class ViewChefProfile extends Component {
             chefPassword: '',
             chefPrice: '',
             chefPicture: '',
+            chefRequests: [],
             image: ''
         }
     }
@@ -36,10 +37,20 @@ class ViewChefProfile extends Component {
                         })
                 }
                 else
-                  this.setState({ image: "/placeholder.png"})
+                    this.setState({ image: "/placeholder.png" })
             })
-
-
+    }
+    reservations = () => {
+        return this.state.chefRequests.map((curReq, i) => {
+            return (
+                <tr className="chefRow" key={i}>
+                    <td>{curReq.customer}</td>
+                    <td>{curReq.message}</td>
+                    <td>{curReq.beginTime}</td>
+                    <td>{curReq.endTime}</td>
+                </tr>
+            )
+        })
     }
     render() {
         return (
@@ -68,9 +79,16 @@ class ViewChefProfile extends Component {
                         <tr>
                             <td>Picture Filepath: </td> <td>{this.state.chefPicture}</td>
                         </tr>
-                        <tr>
-                            <td>Picture: </td> <td><img src={this.state.image}/></td>
-                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody><tr>
+                        <td>Requester ID</td>
+                        <td>Message</td>
+                        <td>Begin Time</td>
+                        <td>End Time</td>
+                    </tr>
+                        {this.reservations()}
                     </tbody>
                 </table>
             </div>
