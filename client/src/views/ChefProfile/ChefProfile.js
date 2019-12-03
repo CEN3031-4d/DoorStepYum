@@ -35,8 +35,8 @@ class ChefProfile extends Component {
       chefPrice: '',
       chefPicture: '',
       image: '',
-      time: '',
-      date: '',
+      time: '10:00',
+      date: new Date(),
       modalIsOpen: false
     };
     this.openModal = this.openModal.bind(this);
@@ -51,15 +51,47 @@ class ChefProfile extends Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = 'gray';
+
   }
 
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
 
-  onChange = ctime => this.setState({ time: ctime })
-  onChange = date => this.setState({ date })
+  onChangeTime = time => {
+    this.setState({ time })
+  }
+  onChangeDate = date => {
+    this.setState({ date })    
+  }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  submitRequest = () => {
+    var parsedBegin = this.state.date;
+    parsedBegin.setHours(this.state.time.split(":")[0],this.state.time.split(":")[1]);
+    var parsedEnd = new Date(parsedBegin.getTime() + this.state.hoursRequested*60*60*1000);
+    console.log(parsedBegin)
+    console.log(parsedEnd)
+    let request = {
+      customer: '5de36361b3778746e4c1e255',
+      message: this.state.customerMessage,
+      beginTime: parsedBegin,
+      endTime: parsedEnd
+    }
+
+    axios.post('http://localhost:5000/api/chef/requests/add/' + this.state._id, request)
+      .then(res => {
+        console.log('Successful Request made')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
   componentDidMount() {
     axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
       .then(res => {
@@ -121,113 +153,65 @@ class ChefProfile extends Component {
                   </div>
                   </div>
                 </div>
-              </div>
-              <button onClick={this.openModal} class="btn btn-block btn-outline-success font-weight-normal">Request this Chef</button>
+                <button onClick={this.openModal} class="btn btn-block btn-outline-success font-weight-normal">Request this Chef</button>
 
-              <Modal
-                isOpen={this.state.modalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
-                ariaHideApp={false}
-                style={customStyles}
-                contentLabel="Example Modal"
-              >
+                <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  ariaHideApp={false}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+                >
 
-                <div className="App__Form" id="App__Form3">
-                  <div className="FormCenter">
+                  <div className="App__Form" id="App__Form3">
+                    <div className="FormCenter">
 
-                    <h2 className="headerRequest" ref={subtitle => this.subtitle = subtitle}>Request {this.state.chefName} </h2>
+                      <h2 className="headerRequest" ref={subtitle => this.subtitle = subtitle}>Request {this.state.chefName} </h2>
 
-                    <div className="selectRequest">Pick a time to reserve {this.state.chefName}</div>
+                      <div className="selectRequest">Pick a time to reserve {this.state.chefName}</div>
 
-                    <form className="FormFields">
-                      <div>
-                        <Calendar
-                          onChange={this.onChange}
-                          value={this.state.date}
-                        />
-                      </div>
-                      <div className="TimePicker">
-                        <TimePicker
-                          onChange={this.onChange}
-                          value={this.state.time}
-                        />
-                      </div>
-                      <div className="FormField">
-                        <label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
-                        <input type="number" min="1" id="hoursRequested" className="FormField__Input"
-                          placeholder="Hours requested" name="hoursRequested"
-                        />
-                      </div>
-                      <div className="FormField">
-                        <label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
-                        <textarea type="Msg" id="Msg" className="FormField__Input"
-                          placeholder="What would you like the chef to know?" name="customerMessage"
-                        />
-                      </div>
-                    </form>
+                      <form className="FormFields">
+                        <div>
+                          <Calendar
+                            onChange={this.onChangeDate}
+                            value={this.state.date}
+                          />
+                        </div>
+                        <div className="TimePicker">
+                          <TimePicker
+                            onChange={this.onChangeTime}
+                            value={this.state.time}
+                          />
+                        </div>
+                        <div className="FormField">
+                          <label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
+                          <input type="number" min="1" id="hoursRequested" className="FormField__Input"
+                            placeholder="Hours requested" name="hoursRequested" value={this.state.hoursRequested} onChange={this.handleChange}
+                          />
+                        </div>
+                        <div className="FormField">
+                          <label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
+                          <textarea type="Msg" id="Msg" className="FormField__Input"
+                            placeholder="What would you like the chef to know?" name="customerMessage" value={this.state.customerMessage} onChange={this.handleChange}
+                          />
+                        </div>
+                      </form>
 
-                    <button id="SubmitRequestButton" class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
-                    <button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
+                      <button id="SubmitRequestButton" onClick={this.submitRequest} class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
+                      <button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
 
+                    </div>
                   </div>
-                </div>
-              </Modal>
+                </Modal>
 
-            </div>
-            <button onClick={this.openModal} class="btn btn-block btn-outline-success font-weight-normal">Request this Chef</button>
-
-            <Modal
-              isOpen={this.state.modalIsOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              ariaHideApp={false}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
-
-              <div className="App__Form" id="App__Form3">
-                <div className="FormCenter">
-
-                  <h2 className="headerRequest" ref={subtitle => this.subtitle = subtitle}>Request {this.state.chefName} </h2>
-
-                  <div className="selectRequest">Pick a time to reserve {this.state.chefName}</div>
-
-                  <form className="FormFields">
-                    <div>
-                      <Calendar
-                        onChange={this.onChange}
-                        value={this.state.date}
-                      />
-                    </div>
-                    <div className="TimePicker">
-                      <TimePicker
-                        onChange={this.onChange}
-                        value={this.state.time}
-                      />
-                    </div>
-                    <div className="FormField">
-                      <label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
-                      <textarea type="Msg" id="Msg" className="FormField__Input"
-                        placeholder="What would you like the chef to know?" name="customerMessage"
-                      />
-                    </div>
-                  </form>
-
-                  <button class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
-                  <button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">close</button>
-
-                </div>
               </div>
-            </Modal>
-
+            </div>
+          </div>
+          <div class="col-12 col-md-8 align-self-start">
           </div>
         </div>
-          </div>
-      <div class="col-12 col-md-8 align-self-start">
-      </div>
-        </div >
-      </body >
+      </body>
     );
   }
 }
