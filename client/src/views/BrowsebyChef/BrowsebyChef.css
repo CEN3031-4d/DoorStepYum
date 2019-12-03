@@ -1,13 +1,13 @@
 .wrapper {
-    display: flex;
-    align-items: stretch;
+  display: flex !important;
+  align-items: stretch !important;
 }
 
 #sidebar {
     background-color: rgb(255, 255, 255) !important;
     min-width: 270px;
     max-width: 270px;
-    min-height: 100vh;
+    min-height: 100vh !important;
     box-shadow: 10px 0 10px -1px #555;
 }
 
@@ -79,84 +79,8 @@ td{
     margin-left:10%;
 }
 
-input[type=range] {
-    -webkit-appearance: none;
-    width: 70%;
-    margin: 13.8px 0;
-    margin-left: 10%;
-    margin-bottom: 30px;
-  }
-  input[type=range]:focus {
-    outline: none;
-  }
-  input[type=range]::-webkit-slider-runnable-track {
-    width: 50%;
-    height: 5px;
-    cursor: pointer;
-    background: rgb(49, 190, 49);
-    
-  }
-  input[type=range]::-webkit-slider-thumb {
-    height: 16px;
-    width: 16px;
-    border-radius: 41px;
-    background: #a19f9f !important;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -6px;
-    
-  }
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #088b15;
-  }
-  input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
-  }
-  input[type=range]::-moz-range-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 41px;
-    background: #686767 !important;
-    cursor: pointer;
-  }
-  input[type=range]::-ms-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-  }
-  input[type=range]::-ms-fill-lower {
-    background: #2a6495;
-    border: 0.2px solid #010101;
-    border-radius: 2.6px;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  }
-  input[type=range]::-ms-fill-upper {
-    background: #3071a9;
-    border: 0.2px solid #010101;
-    border-radius: 2.6px;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  }
-  input[type=range]::-ms-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 41px;
-    background: #686666 !important;
-    cursor: pointer;
-    height: 8.4px;
-  }
+
+
  
   input[type=search]{
       border: 1px solid green;
@@ -184,10 +108,14 @@ input[type=range] {
 #tablepage{
   border-color: white !important;
   box-shadow: none !important;
+  margin: 0px;
+  
 }
 #tablepagecol{
   border-color: white !important;
   box-shadow: none !important;
+  display: flex !important;
+  align-items: stretch !important;
 }
 
 #tablepagerow{

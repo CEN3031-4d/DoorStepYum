@@ -4,13 +4,20 @@ const chef = require('../controllers/chef.server.controller.js'),
 //Used to populate the table in client\src\components\Chefs\Chefs.js
 router.route('/getChefs')
   .get(chef.allChefs);
+  
+router.route('/getChefsFull')
+  .get(chef.allChefsFull)
 
 router.route('/image')
   .get(chef.returnImage)
   .post(chef.putImage);
 
-router.route('/test')
-  .post(chef.test);
+router.route('/image/update')
+  .post(chef.updateImage);
+
+router.route('/requests/add/:id')
+  .post(chef.makeRequest)
+
 //Used to create a new Chef in client\src\components\CreateChef\CreateChef.js
 router.route('/add')
   .post(chef.addChef);

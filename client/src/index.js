@@ -4,6 +4,7 @@ import Popper from 'popper.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import Popup from "reactjs-popup";
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 

@@ -1,15 +1,24 @@
 //const config = require('../config/config');
 
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
- // adding password encryption to customer model
+// adding password encryption to customer model
 var encrypt = require('mongoose-encryption');
 
 var customerSchema = new Schema({
-    customerName: {type: String, required: true, unique: true},
-    customerEmail: {type: String, required: true, unique: true},
-    customerPassword: {type: String, required: false, unique: false},   
+    customerName: { type: String, required: true, unique: true },
+    customerEmail: { type: String, required: true, unique: true },
+    customerPassword: { type: String, required: false, unique: false },
+    customerCart: [
+        {
+            dish: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Dish'
+            },
+            qty: Number
+        }
+    ]
 });
 
 // for local use

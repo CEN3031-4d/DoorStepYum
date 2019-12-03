@@ -4,9 +4,6 @@
 	color: rgba(255,255,255,.5);
 	font-size: 12px;
 }
-.navbar {
-	border-top: 1px solid #444a54;
-}
 p.lead {
 	font-size: 1.15em;
 }
@@ -17,6 +14,23 @@ p.lead {
   font-size: 16px;
   font-weight: normal;
   margin-bottom: 0;
+}
+#FoodCard{
+	overflow:hidden;
+}
+#dishlabel2{
+	font-size: 40px;
+}
+#FeatureChef{
+	font-weight:bold;
+	font-size: 20px;
+}
+#dishdesc{
+	font-size:25px;
+}
+
+#bookie{
+	text-align: center;
 }
 .card {
   -webkit-transition: all 0.3s ease;

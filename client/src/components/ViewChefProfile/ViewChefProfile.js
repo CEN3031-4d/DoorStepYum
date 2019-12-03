@@ -14,6 +14,9 @@ class ViewChefProfile extends Component {
             chefPassword: '',
             chefPrice: '',
             chefPicture: '',
+            chefRequests: [],
+            chefCuisineTypes: [],
+            chefCuisineCSV: '',
             image: ''
         }
     }
@@ -21,6 +24,15 @@ class ViewChefProfile extends Component {
         axios.get('https://yummy-doorstep.herokuapp.com/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
+
+                let cuisineList = '';
+
+                this.state.chefCuisineTypes.forEach((e) => {
+                    cuisineList += e += ', '
+                })
+                cuisineList = cuisineList.substring(0, cuisineList.length - 2);
+                this.setState({ chefCuisineCSV: cuisineList })
+
                 if (this.state.chefPicture) {
                     axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
                         params: {
@@ -36,10 +48,20 @@ class ViewChefProfile extends Component {
                         })
                 }
                 else
-                  this.setState({ image: "/placeholder.png"})
+                    this.setState({ image: "/placeholder.png" })
             })
-
-
+    }
+    reservations = () => {
+        return this.state.chefRequests.map((curReq, i) => {
+            return (
+                <tr className="chefRow" key={i}>
+                    <td>{curReq.customer}</td>
+                    <td>{curReq.message}</td>
+                    <td>{curReq.beginTime}</td>
+                    <td>{curReq.endTime}</td>
+                </tr>
+            )
+        })
     }
     render() {
         return (
@@ -69,8 +91,21 @@ class ViewChefProfile extends Component {
                             <td>Picture Filepath: </td> <td>{this.state.chefPicture}</td>
                         </tr>
                         <tr>
-                            <td>Picture: </td> <td><img src={this.state.image}/></td>
+                            <td>Cuisine Types</td>
+                            <td>
+                                {this.state.chefCuisineCSV}
+                            </td>
                         </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody><tr>
+                        <td>Requester ID</td>
+                        <td>Message</td>
+                        <td>Begin Time</td>
+                        <td>End Time</td>
+                    </tr>
+                        {this.reservations()}
                     </tbody>
                 </table>
             </div>

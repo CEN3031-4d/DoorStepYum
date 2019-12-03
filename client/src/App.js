@@ -12,12 +12,15 @@ import Cart from "./views/Cart/Cart"
 
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
-import AllChefs from "./components/AllChefs/AllChefs"
+import Backend from "./components/Backend/Backend"
 import EditChef from "./components/EditChef/EditChef"
 import CreateChef from "./components/CreateChef/CreateChef"
 import ViewChefProfile from "./components/ViewChefProfile/ViewChefProfile"
+import EditDish from "./components/EditDish/EditDish"
+import CreateDish from "./components/CreateDish/CreateDish"
 
 import LogIn from "./views/LogIn/LogIn"
+import LogInCustomer from "./views/LogInCustomer/LogInCustomer"
 
 const App = () => {
   return (
@@ -35,8 +38,11 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/LogIn" />
         </Route>
-
-
+		
+        <Route exact path="/LogInCustomer" component={LogInCustomer} />
+        <Route exact path="/">
+          <Redirect to="/LogInCustomer" />
+        </Route>
 
         <Route exact path="/BrowsebyChef" component={BrowsebyChef}/>
         <Route exact path="/">
@@ -56,13 +62,15 @@ const App = () => {
         <Redirect to="/Cart"/>
         </Route>
 
-        <Route exact path="/Chefs" component={AllChefs}/>
+        <Route exact path="/Chefs" component={Backend}/>
         <Route exact path="/Chefs/view/:id" component={ViewChefProfile}/>
         <Route exact path="/Chefs/edit/:id" component={EditChef}/>
         <Route path="/Chefs/create" component={CreateChef}/>
+        <Route path="/Dishes/edit/:id" component={EditDish}/>
+        <Route path="/Dishes/create" component={CreateDish}/>
 
-        <Route path="/ChefProfile" component={ChefProfile}/>
-        <Route path="/FoodProfile" component={FoodProfile}/>
+        <Route path="/ChefProfile/:id" component={ChefProfile}/>
+        <Route path="/FoodProfile/:id" component={FoodProfile}/>
 
         <Route component={NotFound}/>
       </Switch>
