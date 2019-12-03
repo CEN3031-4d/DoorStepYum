@@ -84,7 +84,7 @@ class FoodProfile extends Component {
                     <div class="card-header text-center">Featured Chef</div>
                     <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
                     <div class="card-body">
-                      <h5 class="card-title">{this.state.dishChef}</h5>
+                      <h5 class="card-title">{this.state.dishChef.chefName}</h5>
                       <p class="card-text">{this.state.dishDescription}</p>
                       <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
                     </div>
