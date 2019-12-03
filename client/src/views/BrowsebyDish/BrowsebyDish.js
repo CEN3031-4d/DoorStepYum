@@ -26,13 +26,13 @@ class BrowsebyDish extends Component {
     }
 
     getDishes = () => {
-        axios.get('http://localhost:5000/api/dish/getDishes')
+        axios.get('/api/dish/getDishes')
             .then(res => {
                 this.setState({ dishes: res.data })
                 this.state.dishes.map((curDish, i) => {
                     if (!curDish.dishImage)
                         this.state.dishImages[i] = "/placeholder.png"
-                    axios.get('http://localhost:5000/api/chef/image', {
+                    axios.get('/api/chef/image', {
                         params: {
                             Bucket: "yummydishes",
                             Key: curDish.dishPicture
@@ -80,7 +80,7 @@ class BrowsebyDish extends Component {
                 <table id="tablepage">
                     <tr id="tablepagecol">
                         <td id="tablepagerow">
-                            <div class="wrapper">
+                            <div class="wrapper" id="wrapper2">
                                 <nav id="sidebar">
                                     <div class="row">
                                         <a id="button3" href="/BrowsebyChef" >Browse by Chef</a>

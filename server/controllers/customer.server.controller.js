@@ -111,3 +111,16 @@ exports.addToCart = (req, res) => {
     }
   })
 }
+
+exports.logIn = (req, res) => {
+  Customer.find({customerEmail:req.body.customerEmail}, (err, cust) => {
+    if (cust.length === 0)
+      res.status(404).send(false);
+    else if (err)
+      res.status(400).send(err);
+    else if (req.body.customerPassword === cust[0].customerPassword)
+      res.status(200).send(true);
+    else
+    res.status(404).send(false);
+  })
+}

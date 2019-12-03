@@ -25,5 +25,7 @@ router.route('/delete/:id')
 
 router.route('/cart/add/:id')
   .post(customer.addToCart);
+router.route('/logIn')
+  .get(customer.logIn);
 
-  module.exports = router;
+module.exports = router;
