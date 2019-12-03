@@ -84,8 +84,8 @@ class FoodProfile extends Component {
                     <div class="card-header text-center">Featured Chef</div>
                     <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
                     <div class="card-body">
-                      <h5 class="card-title">Gordon Ramsay</h5>
-                      <p class="card-text">Gordon Ramsay's Foie Gras has won 3 Michelin Star Awards and has been feautred in several of his top-rated restaraunts.</p>
+                      <h5 class="card-title">{this.state.dishChef}</h5>
+                      <p class="card-text">{this.state.dishDescription}</p>
                       <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
                     </div>
                   </div>
@@ -94,10 +94,10 @@ class FoodProfile extends Component {
 			  <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
-                   <div class="card-header text-center">Ingredients</div>
+                   <div class="card-body text-center">Ingredients</div>
 					  <div class="card-body">
 					  <div>
-					  {this.state.dishIngredients}
+					  {this.state.dishIngredients.join(", ")}
 					  </div>
 			       </div>
                   </h5>

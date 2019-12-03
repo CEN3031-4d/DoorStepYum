@@ -11,9 +11,7 @@ const Card = props => {
 				<p className="card-text text-secondary" id="cardtext">
 					{props.description}
 				</p>
-
 				<a href={"/FoodProfile/" + props.id} className="btn btn-outline-success">Find out more</a>
-
 			</div>
 		</div>
 	);

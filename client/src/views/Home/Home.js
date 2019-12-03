@@ -48,9 +48,9 @@ function Home() {
 		</div>
 		<div className="row">
 		  <div className="col-12 col-sm-12 col-md-4">
-			<div className="card"> <img className="card-img-top" src={"/chef1.jpg"} alt="Card image cap"/>
-			  <div className="card-body text-center">
-				<h5 className="card-title">Bob Smith</h5>
+			<div class="card"> <img className="card-img-top" src={"/chef1.jpg"} alt="Card image cap"/>
+			  <div class="card-body text-center">
+				<h5 class="card-title">Bob Smith</h5>
 			  </div>
 			</div>
 		</div>
