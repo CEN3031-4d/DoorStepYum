@@ -26,13 +26,13 @@ class BrowsebyDish extends Component {
     }
 
     getDishes = () => {
-        axios.get('http://localhost:5000/api/dish/getDishes')
+        axios.get('/api/dish/getDishes')
             .then(res => {
                 this.setState({ dishes: res.data })
                 this.state.dishes.map((curDish, i) => {
                     if (!curDish.dishImage)
                         this.state.dishImages[i] = "/placeholder.png"
-                    axios.get('http://localhost:5000/api/chef/image', {
+                    axios.get('/api/chef/image', {
                         params: {
                             Bucket: "yummydishes",
                             Key: curDish.dishPicture
