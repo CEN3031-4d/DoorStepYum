@@ -7,7 +7,8 @@ const path = require('path'),
     custRouter = require('../routes/customer.server.routes');
     dishRouter = require('../routes/dish.server.routes');
     multer = require('multer');
-    upload = multer()
+    upload = multer(),
+    port = process.env.PORT || 5000;
 
 var cors = require('cors')
 module.exports.init = () => {
