@@ -80,7 +80,7 @@ class BrowsebyDish extends Component {
                 <table id="tablepage">
                     <tr id="tablepagecol">
                         <td id="tablepagerow">
-                            <div class="wrapper">
+                            <div class="wrapper" id="wrapper2">
                                 <nav id="sidebar">
                                     <div class="row">
                                         <a id="button3" href="/BrowsebyChef" >Browse by Chef</a>
