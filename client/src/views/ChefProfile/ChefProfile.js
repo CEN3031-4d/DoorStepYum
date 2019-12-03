@@ -74,8 +74,6 @@ class ChefProfile extends Component {
     var parsedBegin = this.state.date;
     parsedBegin.setHours(this.state.time.split(":")[0],this.state.time.split(":")[1]);
     var parsedEnd = new Date(parsedBegin.getTime() + this.state.hoursRequested*60*60*1000);
-    console.log(parsedBegin)
-    console.log(parsedEnd)
     let request = {
       customer: '5de36361b3778746e4c1e255',
       message: this.state.customerMessage,
