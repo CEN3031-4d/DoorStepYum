@@ -41,7 +41,7 @@ exports.dishesByChef = (req, res) => {
 exports.returnFullByID = (req, res) => {
   let id = req.params.id;
   Dish.findById(id)
-  .populate('dishChef','chefName chefPicture')
+  .populate('dishChef','chefName chefPicture chefBio')
   .exec((err, dish) => {
     if (err) {
       console.log(err);
