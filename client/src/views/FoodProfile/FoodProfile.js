@@ -104,17 +104,20 @@ class FoodProfile extends Component {
               <div class="row">
                 <div class="col">
                   <div class="card">
-                    <div class="card-header text-center">Featured Chef</div>
+                    <div class="card-header text-center" id="FeatureChef">Featured Chef</div>
+					<div className= "overflow">
+			
                     <img class="card-img-top" alt="Card image cap" src={this.state.imageChef} />
-
+					</div>
                     <div class="card-body">
           <h5 class="mb-0 text-center">
           <div class="card-body text-center">{this.state.dishChef.chefName}</div>
           </h5> 
                       
                       <p class="card-text">{this.state.dishDescription}</p>
-            
-                      <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
+					     <div class="col text-center">
+                      <a href={'/ChefProfile/'+ this.state.dishChef._id} class="btn btn-default btn-outline-success font-weight-normal">Book this Chef</a>
+					  </div>
                     </div>
                   </div>
                 </div>
