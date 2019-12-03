@@ -16,7 +16,7 @@ class Backend extends Component {
 
 
     //This function is called when the component is mounted
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.getChefs();
         this.getCustomers();
         this.getDishes();
