@@ -19,7 +19,7 @@ class FoodProfile extends Component {
   
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/dish/find/' + this.props.match.params.id)
+    axios.get('http://localhost:5000/api/dish/findFull/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState(res.data);

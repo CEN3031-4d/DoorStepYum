@@ -38,6 +38,19 @@ exports.dishesByChef = (req, res) => {
 }
 
 
+exports.returnFullByID = (req, res) => {
+  let id = req.params.id;
+  Dish.findById(id)
+  .populate('dishChef','chefName')
+  .exec((err, dish) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(dish);
+    }
+  });
+}
+
 exports.returnByID = (req, res) => {
   let id = req.params.id;
   Dish.findById(id, function (err, dish) {
