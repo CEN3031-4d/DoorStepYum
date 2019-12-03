@@ -5,6 +5,7 @@ AWS.config = new AWS.Config({ accessKeyId: process.env.S3_KEY, secretAccessKey: 
 // for local use
 //AWS.config = new AWS.Config({ accessKeyId: config.aws.accessKey, secretAccessKey: config.aws.secretAccessKey, region: 'us-east-2' });
 const s3 = new AWS.S3();
+var encrypt = require('mongoose-encryption');
 
 //Used to populate the table in client\src\components\Chefs\Chefs.js
 exports.allChefs = (req, res) => {
@@ -178,5 +179,16 @@ exports.makeRequest = (req, res) => {
         })
     }
   })
-
+}
+exports.logIn = (req, res) => {
+  Chef.find({chefEmail:req.body.chefEmail}, (err, chef) => {
+    if (chef.length === 0)
+      res.status(404).send(false);
+    else if (err)
+      res.status(400).send(err);
+    else if (req.body.chefPassword === chef[0].chefPassword)
+      res.status(200).send(true);
+    else
+    res.status(404).send(false);
+  })
 }

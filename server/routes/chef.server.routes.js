@@ -8,6 +8,9 @@ router.route('/getChefs')
 router.route('/getChefsFull')
   .get(chef.allChefsFull)
 
+router.route('/logIn')
+  .get(chef.logIn);
+
 router.route('/image')
   .get(chef.returnImage)
   .post(chef.putImage);

@@ -63,7 +63,11 @@ class CreateChef extends Component {
                 chefPicture: this.state.filepath
             }
 
+<<<<<<< HEAD
             axios.post('https://yummy-doorstep.herokuapp.com/api/chef/add', newChef)
+=======
+            axios.post('/api/chef/add', newChef)
+>>>>>>> a1792b43a652d3a1894bb035677186340b28f4b9
                 .then(res => {
                     console.log(this.state);
                     if (this.state.filepath && this.state.image) {
@@ -72,7 +76,11 @@ class CreateChef extends Component {
                         form.append('image', this.state.image)
                         form.append('filepath', this.state.filepath)
 
+<<<<<<< HEAD
                         axios.post("https://yummy-doorstep.herokuapp.com/pi/chef/image", form,
+=======
+                        axios.post("/api/chef/image", form,
+>>>>>>> a1792b43a652d3a1894bb035677186340b28f4b9
                             {
                                 headers: {
                                     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,

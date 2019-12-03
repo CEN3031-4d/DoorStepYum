@@ -87,7 +87,7 @@ class Backend extends Component {
     }
 
     deleteChef = (id) => {
-                    
+
         axios.delete('/api/chef/delete/' + id)
             .then(res => {
                 console.log(res.data);
