@@ -34,7 +34,6 @@ class BrowsebyChef extends Component {
             {
                 this.state.cuisineSearch.splice(this.state.cuisineSearch.indexOf(event.target.name), 1)
             }
-            console.log(event.target.checked);
             this.setState({
                 [event.target.name]: event.target.checked
             })
@@ -106,7 +105,7 @@ class BrowsebyChef extends Component {
                                         <a id="button2" href="/BrowsebyDish">Browse by Dish</a>
                                     </div>
 
-                                    <input type="search" id="searchbar" name="nameSearch" placeholder="Search..." value={this.state.search}
+                                    <input type="search" id="searchbar" name="nameSearch" placeholder="Search..." value={this.state.nameSearch}
                                         onChange={this.handleChange} />
 
 
