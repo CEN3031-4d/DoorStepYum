@@ -67,7 +67,7 @@ class Backend extends Component {
             return (
                 <tr className="chefRow" key={i}>
                     <td><Link className="chefLink" to={'Customers/view/' + curCust._id}>{curCust.customerName}</Link></td>
-                    <td><Link className="chefLink" to={'Customers/edit/' + curCust._id}>Edit</Link></td>
+                    <td><Link className="chefLink" to={'cart/' + curCust._id}>View Cart</Link></td>
                     <td><button onClick={() => this.deleteCust(curCust._id)}>Delete</button></td>
                 </tr>
             )
