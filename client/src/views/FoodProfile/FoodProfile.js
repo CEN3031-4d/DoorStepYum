@@ -86,7 +86,9 @@ class FoodProfile extends Component {
           <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
               <div class="card" id="FoodCard">
+			  <h5 class="mb-0 text-center" id="dishlabel2">
                 <div class="card-header">{this.state.dishName}</div>
+				</h5>
 				<div className = "overflow">
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
 			    </div>
@@ -104,9 +106,14 @@ class FoodProfile extends Component {
                   <div class="card">
                     <div class="card-header text-center">Featured Chef</div>
                     <img class="card-img-top" alt="Card image cap" src={this.state.imageChef} />
+
                     <div class="card-body">
-                      <h5 class="card-title">{this.state.dishChef.chefName}</h5>
+					<h5 class="mb-0 text-center">
+					<div class="card-body text-center">{this.state.dishChef.chefName}</div>
+					</h5> 
+                      
                       <p class="card-text">{this.state.dishDescription}</p>
+					  
                       <a href="#" class="btn btn-primary btn-block">Book this Chef</a>
                     </div>
                   </div>
@@ -116,10 +123,11 @@ class FoodProfile extends Component {
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
                    <div class="card-body text-center">Ingredients</div>
-					         <div class="card-body">
-					           <div> {this.state.dishIngredients.join(", ")} </div>
-			             </div>
+
                   </h5>
+				  <p class="card-text">
+				  {this.state.dishIngredients.join(", ")}
+				  </p>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
                   <div class="card-body">
