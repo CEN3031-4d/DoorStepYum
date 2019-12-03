@@ -87,14 +87,11 @@ class FoodProfile extends Component {
             <div class="col-12 col-md-8 col-lg-9">
               <div class="card" id="FoodCard">
                 <div class="card-header">{this.state.dishName}</div>
-				<div className = "overflow">
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
-			    </div>
-			   <div class="card-body py-2 bg-dark">
+                <div class="card-body py-2 bg-dark">
                   <p class="text-light">{this.state.dishDescription}</p>
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
-             
-			  </div>
+              </div>
               <br></br>
               
             </div>
@@ -118,7 +115,7 @@ class FoodProfile extends Component {
                    <div class="card-body text-center">Ingredients</div>
 					         <div class="card-body">
 					           <div> {this.state.dishIngredients.join(", ")} </div>
-			             </div>
+                   </div>
                   </h5>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
