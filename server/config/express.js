@@ -22,7 +22,7 @@ module.exports.init = () => {
     */
 
     // HEROKU NOT CONNECTING
-    mongoose.connect(process.env.URI, {
+    mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
         useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
