@@ -57,7 +57,8 @@ const App = () => {
 				<Redirect to="/About"/>
 			  </Route>
 
-         <Route exact path="/Cart" component={Cart}/>
+        <Route exact path="/Cart" component={Cart}/>
+        <Route exact path="/Cart/:id" component={Cart}/>
         <Route exact path="/">
         <Redirect to="/Cart"/>
         </Route>
