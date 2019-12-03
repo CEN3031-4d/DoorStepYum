@@ -114,7 +114,7 @@ class FoodProfile extends Component {
 					<div class="card-body text-center">{this.state.dishChef.chefName}</div>
 					</h5> 
                       
-                      <p class="card-text">{this.state.dishDescription}</p>
+                      <p class="card-text">{this.state.dishChef.chefBio}</p>
 					     <div class="col text-center">
                       <a href={'/ChefProfile/'+ this.state.dishChef._id} class="btn btn-default btn-outline-success font-weight-normal">Book this Chef</a>
 					  </div>
