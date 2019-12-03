@@ -22,7 +22,7 @@ module.exports.init = () => {
     */
 
     // HEROKU NOT CONNECTING
-    mongoose.connect(process.env.uri, {
+    mongoose.connect(process.env.URI, {
         useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
@@ -34,7 +34,7 @@ module.exports.init = () => {
     // ERROR POTENTIALLY HERE (was "http://localhost:3000") 
     //Byspass the cors policy. Only works locally right now.
     app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", '*');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
         next();
