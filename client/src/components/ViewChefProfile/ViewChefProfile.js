@@ -21,11 +21,7 @@ class ViewChefProfile extends Component {
         }
     }
     componentDidMount() {
-<<<<<<< HEAD
-        axios.get('https://yummy-doorstep.herokuapp.com/api/chef/find/' + this.props.match.params.id)
-=======
         axios.get('/api/chef/find/' + this.props.match.params.id)
->>>>>>> a1792b43a652d3a1894bb035677186340b28f4b9
             .then(res => {
                 this.setState(res.data);
 
@@ -38,11 +34,7 @@ class ViewChefProfile extends Component {
                 this.setState({ chefCuisineCSV: cuisineList })
 
                 if (this.state.chefPicture) {
-<<<<<<< HEAD
-                    axios.get('https://yummy-doorstep.herokuapp.com/api/chef/image', {
-=======
                     axios.get('/api/chef/image', {
->>>>>>> a1792b43a652d3a1894bb035677186340b28f4b9
                         params: {
                             Bucket: "chefpictures",
                             Key: this.state.chefPicture
