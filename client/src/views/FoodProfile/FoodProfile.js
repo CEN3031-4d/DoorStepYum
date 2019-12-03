@@ -13,7 +13,8 @@ class FoodProfile extends Component {
       dishDescription: '',
       dishChef: '',
       dishPicture: '',
-      image: ''
+      image: '',
+      imageChef: ''
     }
   }
   
@@ -39,8 +40,26 @@ class FoodProfile extends Component {
         }
         else
           this.setState({ image: "/placeholder.png" })
+        if(this.state.dishChef.chefPicture){
+        axios.get('http://localhost:5000/api/chef/image', {
+            params: {
+              Bucket: "chefpictures",
+              Key: this.state.dishChef.chefPicture
+            }
+          })
+            .then(res => {
+              this.setState({ imageChef: Encoder.imageEncode(res.data.Body.data) })
+            })
+            .catch(err => {
+              console.log(err, err.stack);
+            })
+        }
+        else{
+          this.setState({ image: "/placeholder.png" })
+        }
       })
   }
+
   render() {
     return (
       <body is="dmx-app">
@@ -76,13 +95,12 @@ class FoodProfile extends Component {
               <br></br>
               
             </div>
-            <div class="col-12 mb-3 col-md-4 col-lg-3">
-              
+            <div class="col-12 mb-3 col-md-4 col-lg-3"> 
               <div class="row">
                 <div class="col">
                   <div class="card">
                     <div class="card-header text-center">Featured Chef</div>
-                    <img class="card-img-top" alt="Card image cap" src="assets/images/ramsay.jpg" />
+                    <img class="card-img-top" alt="Card image cap" src={this.state.imageChef} />
                     <div class="card-body">
                       <h5 class="card-title">{this.state.dishChef.chefName}</h5>
                       <p class="card-text">{this.state.dishDescription}</p>
@@ -91,15 +109,13 @@ class FoodProfile extends Component {
                   </div>
                 </div>
               </div>
-			  <div class="card">
+              <div class="card">
                 <div class="card-header" id="card1_heading">
                   <h5 class="mb-0 text-center">
                    <div class="card-body text-center">Ingredients</div>
-					  <div class="card-body">
-					  <div>
-					  {this.state.dishIngredients.join(", ")}
-					  </div>
-			       </div>
+					         <div class="card-body">
+					           <div> {this.state.dishIngredients.join(", ")} </div>
+			             </div>
                   </h5>
                 </div>
                 <div id="card1_collapse" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="card1_heading" data-parent="">
