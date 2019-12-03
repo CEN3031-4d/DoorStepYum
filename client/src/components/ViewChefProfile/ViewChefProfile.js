@@ -21,7 +21,7 @@ class ViewChefProfile extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+        axios.get('/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
 
@@ -34,7 +34,7 @@ class ViewChefProfile extends Component {
                 this.setState({ chefCuisineCSV: cuisineList })
 
                 if (this.state.chefPicture) {
-                    axios.get('http://localhost:5000/api/chef/image', {
+                    axios.get('/api/chef/image', {
                         params: {
                             Bucket: "chefpictures",
                             Key: this.state.chefPicture

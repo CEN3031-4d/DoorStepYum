@@ -37,7 +37,7 @@ class createCust extends Component{
                 customerPassword: this.state.customerPassword
             }
 
-            axios.post('http://localhost:5000/api/customer/add', newCustomer)
+            axios.post('/api/customer/add', newCustomer)
                 .then(res => {
                     console.log(res.data);
                    
