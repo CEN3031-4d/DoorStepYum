@@ -70,3 +70,4 @@ module.exports.init = () => {
     return app
 }
 
+app.listen(port, () => console.log(`Server now running on port ${port}!`));
