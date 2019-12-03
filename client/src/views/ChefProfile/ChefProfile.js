@@ -8,7 +8,19 @@ import Modal from 'react-modal';
 import ModalPop from './ModalPop';
 import TimePicker from 'react-time-picker';
 import Calendar from 'react-calendar';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import ReactDOM from 'react-dom';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
+ 
+// Demo styles, see 'Styles' section below for some notes on use.
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 
 const customStyles = {
@@ -112,6 +124,7 @@ class ChefProfile extends Component {
           this.setState({ image: "/placeholder.png" })
       })
   }
+
   render() {
     return (
       <body is="dmx-app" id="index">
@@ -123,93 +136,114 @@ class ChefProfile extends Component {
               <div class="card-body">
                 <h4 id="chefName" class="card-title">{this.state.chefName}&nbsp;
                   </h4>
-                <p id="bio" class="card-text">{this.state.chefBio}</p>
-                <div class="card">
-                  <div class="card-header" id="accordion1_headingOne">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion1_collapseOne" aria-expanded="true" aria-controls="collapseOne">Cusine Type</button>
-                    </h5>
-                  </div>
-                  <div id="accordion1_collapseOne" class="collapse" is="dmx-bs4-collapse" show="true" aria-labelledby="accordion1_headingOne" data-parent="#accordion1">
-                    <div class="card-body">
-                      Specialization text
-                  </div>
-                  </div>
-                </div>
+                  <p id="bio" class="card-text">{this.state.chefBio}</p>
+                  <Accordion allowZeroExpanded="true" allowMultipleExpanded="true">
 
+                    <AccordionItem>
+                      <AccordionItemHeading>
+                        <AccordionItemButton>
+                          Experience
+                        </AccordionItemButton>
+                      </AccordionItemHeading>
+                    <AccordionItemPanel>
+                      <p>
+                        Experience text here
+                      </p>
+                    </AccordionItemPanel>
+                  </AccordionItem>
 
-                <div class="card">
-                  <div class="card-header" id="accordion1_headingTwo">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion1_collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Past Experience</button>
-                    </h5>
-                  </div>
-                  <div id="accordion1_collapseTwo" class="collapse" is="dmx-bs4-collapse" aria-labelledby="accordion1_headingTwo" data-parent="#accordion1">
-                    <div class="card-body">
-                      Past experience text
-                  </div>
-                  </div>
-                </div>
-                <button onClick={this.openModal} class="btn btn-block btn-outline-success font-weight-normal">Request this Chef</button>
+                  <AccordionItem>
+                    <AccordionItemHeading>
+                      <AccordionItemButton>
+                        Cuisine Style
+                      </AccordionItemButton>
+                    </AccordionItemHeading>
+                    <AccordionItemPanel>
+                      <p>
+                        Cuisine style text here
+                      </p>
+                    </AccordionItemPanel>
+                  </AccordionItem>
 
-                <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  ariaHideApp={false}
-                  style={customStyles}
-                  contentLabel="Example Modal"
-                >
-
-                  <div className="App__Form" id="App__Form3">
-                    <div className="FormCenter">
-
-                      <h2 className="headerRequest" ref={subtitle => this.subtitle = subtitle}>Request {this.state.chefName} </h2>
-
-                      <div className="selectRequest">Pick a time to reserve {this.state.chefName}</div>
-
-                      <form className="FormFields">
-                        <div>
-                          <Calendar
-                            onChange={this.onChangeDate}
-                            value={this.state.date}
-                          />
-                        </div>
-                        <div className="TimePicker">
-                          <TimePicker
-                            onChange={this.onChangeTime}
-                            value={this.state.time}
-                          />
-                        </div>
-                        <div className="FormField">
-                          <label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
-                          <input type="number" min="1" id="hoursRequested" className="FormField__Input"
-                            placeholder="Hours requested" name="hoursRequested" value={this.state.hoursRequested} onChange={this.handleChange}
-                          />
-                        </div>
-                        <div className="FormField">
-                          <label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
-                          <textarea type="Msg" id="Msg" className="FormField__Input"
-                            placeholder="What would you like the chef to know?" name="customerMessage" value={this.state.customerMessage} onChange={this.handleChange}
-                          />
-                        </div>
-                      </form>
-
-                      <button id="SubmitRequestButton" onClick={this.submitRequest} class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
-                      <button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
-
-                    </div>
-                  </div>
-                </Modal>
-
+                </Accordion>
+				<button onClick={this.openModal} class="btn btn-block btn-outline-success font-weight-normal">Request this Chef</button>
+					
+					<Modal
+					  isOpen={this.state.modalIsOpen}
+					  onAfterOpen={this.afterOpenModal}
+					  onRequestClose={this.closeModal}
+						  ariaHideApp={false}
+					  style={customStyles}
+					  contentLabel="Example Modal"
+					>
+				
+					<div className = "App__Form" id="App__Form3">
+						<div className = "FormCenter">
+					
+							  <h2 className="headerRequest" ref={subtitle => this.subtitle = subtitle}>Request {this.state.chefName} </h2>
+						
+							 <div className= "selectRequest">Pick a time to reserve {this.state.chefName}</div>
+							  
+									  <form className = "FormFields">
+										 <div>
+											<Calendar
+											  onChange={this.onChange}
+											  value={this.state.date}
+											/>
+										 </div>
+										  <div className="TimePicker">
+											<TimePicker
+											  onChange={this.onChange}
+											  value={this.state.time}
+											/>
+										  </div>
+										  <div className="FormField">
+												<label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
+												<input type="number" min="1" id="hoursRequested" className="FormField__Input"
+													placeholder="Hours requested" name="hoursRequested"
+											    />
+											</div>
+										  <div className="FormField">
+											<label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
+											<textarea type="Msg" id="Msg" className ="FormField__Input" 
+											placeholder="What would you like the chef to know?" name="customerMessage" 
+											/>
+										  </div>			
+									  </form>
+									  
+										<button id= "SubmitRequestButton" class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
+										<button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
+                    
               </div>
-            </div>
+		        </div>
+					</Modal>
           </div>
-          <div class="col-12 col-md-8 align-self-start">
           </div>
-        </div>
-      </body>
+          </div>
+          <div class="col">
+          <div class="card" id="carouselCard">
+            <h2 align="center">Notable Dishes</h2>
+              <Carousel width="500px" useKeyboardArrows={true} showIndicators={false} interval={3000} autoPlay={true} infiniteLoop={true} showStatus={false} showArrows={false} showThumbs={false}>
+                <div class="card" id="carouselItemCard">
+                  <img src="https://i.imgur.com/VZ7qH8g.png" />
+                  <h5 align="center">FOOD NAME</h5>
+                  <button class="btn btn-outline-success">More about this food</button>
+                </div>
+                <div class="card" id="carouselItemCard">
+                  <img src="https://i.imgur.com/VZ7qH8g.png" />
+                  <h5>FOOD NAME</h5>
+                  <button class="btn btn-outline-success">More about this food</button>
+                </div>
+                <div class="card" id="carouselItemCard">
+                  <img src="https://i.imgur.com/VZ7qH8g.png" />
+                  <h5>FOOD NAME</h5>
+                  <button class="btn btn-outline-success">More about this food</button>
+                </div>
+              </Carousel>
+          </div>
+          </div>
+          </div>
+          </body>
     );
   }
 }
