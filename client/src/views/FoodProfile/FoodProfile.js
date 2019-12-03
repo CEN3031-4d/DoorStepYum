@@ -87,11 +87,14 @@ class FoodProfile extends Component {
             <div class="col-12 col-md-8 col-lg-9">
               <div class="card" id="FoodCard">
                 <div class="card-header">{this.state.dishName}</div>
+				<div className = "overflow">
                 <img class="card-img-top" alt="image not found" src={this.state.image} />
-                <div class="card-body py-2 bg-dark">
+			    </div>
+			   <div class="card-body py-2 bg-dark">
                   <p class="text-light">{this.state.dishDescription}</p>
                   <button class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#purchaseDishModal">Order this Dish</button></div>
-              </div>
+             
+			  </div>
               <br></br>
               
             </div>
