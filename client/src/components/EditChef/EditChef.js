@@ -95,7 +95,7 @@ class EditChef extends Component {
                     form.append('filepath', this.state.filepath)
                     form.append('oldfilepath', this.state.chefPicture)
 
-                    axios.post("http://localhost:5000/api/chef/image/update", form,
+                    axios.post("/api/chef/image/update", form,
                         {
                             headers: {
                                 'Content-Type': `multipart/form-data; boundary=${form._boundary}`,

@@ -9,6 +9,7 @@ const path = require('path'),
     multer = require('multer');
     upload = multer()
 
+var cors = require('cors')
 module.exports.init = () => {
     /* 
         connect to database
@@ -33,6 +34,7 @@ module.exports.init = () => {
 
     // ERROR POTENTIALLY HERE (was "http://localhost:3000") 
     //Byspass the cors policy. Only works locally right now.
+    app.use(cors());
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", '*');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -43,6 +45,7 @@ module.exports.init = () => {
     // enable request logging for development debugging
     app.use(morgan('dev'));
 
+    
     // body parsing middleware
     app.use(bodyParser.json());
 

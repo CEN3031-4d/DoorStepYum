@@ -56,7 +56,7 @@ class BrowsebyChef extends Component {
                 this.state.chefs.map((curChef, i) => {
                     if (!curChef.chefImage)
                         this.state.chefs[i].image = "/placeholder.png"
-                    axios.get('http://localhost:5000/api/chef/image', {
+                    axios.get('/api/chef/image', {
                         params: {
                             Bucket: "chefpictures",
                             Key: curChef.chefPicture

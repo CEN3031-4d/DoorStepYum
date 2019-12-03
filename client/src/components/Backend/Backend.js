@@ -23,7 +23,7 @@ class Backend extends Component {
     }
 
     getChefs = () => {
-        axios.get('http://localhost:5000/api/chef/getChefs')
+        axios.get('/api/chef/getChefs')
             .then(res => {
                 this.setState({ chefs: res.data });
             })
@@ -32,7 +32,7 @@ class Backend extends Component {
             });
     }
     getCustomers = () => {
-        axios.get('http://localhost:5000/api/customer/getCustomers')
+        axios.get('/api/customer/getCustomers')
             .then(res => {
                 this.setState({ customers: res.data })
             })
@@ -41,7 +41,7 @@ class Backend extends Component {
             })
     }
     getDishes = () => {
-        axios.get('http://localhost:5000/api/dish/getDishes')
+        axios.get('/api/dish/getDishes')
             .then(res => {
                 this.setState({ dishes: res.data })
             })
@@ -87,8 +87,8 @@ class Backend extends Component {
     }
 
     deleteChef = (id) => {
-
-        axios.delete('http://localhost:5000/api/chef/delete/' + id)
+                    
+        axios.delete('/api/chef/delete/' + id)
             .then(res => {
                 console.log(res.data);
                 this.getChefs(); //This refreshed the data after a successful delete has occurred.
@@ -101,7 +101,7 @@ class Backend extends Component {
 
     deleteCust = (id) => {
 
-        axios.delete('http://localhost:5000/api/customer/delete/' + id)
+        axios.delete('/api/customer/delete/' + id)
             .then(res => {
                 console.log(res.data);
                 this.getCustomers();
@@ -113,7 +113,7 @@ class Backend extends Component {
 
     deleteDish = (id) => {
 
-        axios.delete('http://localhost:5000/api/dish/delete/' + id)
+        axios.delete('/api/dish/delete/' + id)
             .then(res => {
                 console.log(res.data);
                 this.getDishes();

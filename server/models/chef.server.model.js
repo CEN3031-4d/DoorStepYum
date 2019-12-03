@@ -37,7 +37,6 @@ var chefSchema = new Schema({
 chefSchema.plugin(encrypt, { requireAuthenticationCode: false, encryptionKey: process.env.encKey, signingKey: process.env.sigKey, encryptedFields: ['chefPassword']} );
 
 
-
 var Chef = mongoose.model('Chef', chefSchema);
 
 module.exports = Chef;

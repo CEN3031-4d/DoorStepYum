@@ -56,7 +56,7 @@ class createChef extends Component {
                 chefPicture: this.state.filepath
             }
 
-            axios.post('https://yummy-doorstep.herokuapp.com/api/chef/add', newChef)
+            axios.post('/api/chef/add', newChef)
                 .then(res => {
                     console.log(res.data);
                     if (this.state.filepath && this.state.image) {
@@ -65,7 +65,7 @@ class createChef extends Component {
                         form.append('image', this.state.image)
                         form.append('filepath', this.state.filepath)
 
-                        axios.post("http://localhost:5000/api/chef/image", form,
+                        axios.post("/api/chef/image", form,
                             {
                                 headers: {
                                     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
