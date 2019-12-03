@@ -93,7 +93,7 @@ class ChefProfile extends Component {
       endTime: parsedEnd
     }
 
-    axios.post('http://localhost:5000/api/chef/requests/add/' + this.state._id, request)
+    axios.post('/api/chef/requests/add/' + this.state._id, request)
       .then(res => {
         console.log('Successful Request made')
       })
@@ -103,11 +103,11 @@ class ChefProfile extends Component {
 
   }
   componentDidMount() {
-    axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+    axios.get('/api/chef/find/' + this.props.match.params.id)
       .then(res => {
         this.setState(res.data);
         if (this.state.chefPicture) {
-          axios.get('http://localhost:5000/api/chef/image', {
+          axios.get('/api/chef/image', {
             params: {
               Bucket: "chefpictures",
               Key: this.state.chefPicture

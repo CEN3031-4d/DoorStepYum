@@ -20,12 +20,12 @@ class FoodProfile extends Component {
   
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/dish/findFull/' + this.props.match.params.id)
+    axios.get('/api/dish/findFull/' + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
         this.setState(res.data);
         if (this.state.dishPicture) {
-          axios.get('http://localhost:5000/api/chef/image', {
+          axios.get('/api/chef/image', {
             params: {
               Bucket: "yummydishes",
               Key: this.state.dishPicture
@@ -41,7 +41,7 @@ class FoodProfile extends Component {
         else
           this.setState({ image: "/placeholder.png" })
         if(this.state.dishChef.chefPicture){
-        axios.get('http://localhost:5000/api/chef/image', {
+        axios.get('/api/chef/image', {
             params: {
               Bucket: "chefpictures",
               Key: this.state.dishChef.chefPicture

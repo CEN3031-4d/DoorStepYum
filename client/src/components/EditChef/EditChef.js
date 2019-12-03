@@ -29,7 +29,7 @@ class EditChef extends Component {
 
     componentDidMount() {
 
-        axios.get('http://localhost:5000/api/chef/find/' + this.props.match.params.id)
+        axios.get('/api/chef/find/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data);
 
@@ -85,7 +85,7 @@ class EditChef extends Component {
             newChef.chefPicture = this.state.filepath;
         }
 
-        axios.post('http://localhost:5000/api/chef/update/' + this.props.match.params.id, newChef)
+        axios.post('/api/chef/update/' + this.props.match.params.id, newChef)
             .then(res => {
 
                 if (this.state.filepath && this.state.image) {
@@ -95,7 +95,7 @@ class EditChef extends Component {
                     form.append('filepath', this.state.filepath)
                     form.append('oldfilepath', this.state.chefPicture)
 
-                    axios.post("http://localhost:5000/api/chef/image/update", form,
+                    axios.post("/api/chef/image/update", form,
                         {
                             headers: {
                                 'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
