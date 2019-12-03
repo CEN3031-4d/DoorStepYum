@@ -11,6 +11,9 @@ router.route('/getCustomersFull')
 router.route('/find/:id')
   .get(customer.returnByID);
 
+  router.route('/findFull/:id')
+  .get(customer.findFull)
+
 router.route('/add')
   .post(customer.addCustomer);
 

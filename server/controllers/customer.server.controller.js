@@ -25,6 +25,19 @@ exports.allCustomersFull = (req, res) => {
     })
 };
 
+exports.findFull = (req, res) => {
+  Customer.findById(req.params.id)
+    .populate('customerCart.dish')
+    .exec((err, dish) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.json(dish);
+      }
+    })
+};
+
 exports.returnByID = (req, res) => {
   let id = req.params.id;
   Customer.findById(id, function (err, customer) {

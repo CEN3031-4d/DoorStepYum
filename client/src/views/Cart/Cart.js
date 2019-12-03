@@ -9,18 +9,24 @@ class Cart extends Component {
     super(props);
     this.state = {
       customer: '',
+      cart: []
     };
   }
 
   componentWillMount = () => {
-    this.getCart();
+    this.getCart(() => {
+      console.log(this.state.cart);
+    });
   }
 
   getCart = () => {
     if (this.props.match.params.id) {
-      Axios.get("http://localhost:5000/api/customer/find/" + this.props.match.params.id)
+      Axios.get("http://localhost:5000/api/customer/findFull/" + this.props.match.params.id)
         .then(res => {
-          this.setState({ customer: res.data })
+          this.setState({ customer: res.data }, () => {
+            this.setState({ cart: this.state.customer.customerCart }, () => {
+            });
+          })
         })
     }
   }
@@ -33,27 +39,31 @@ class Cart extends Component {
     }
   }
 
-  cart = () => { 
-    console.log()
-    /*
-    return this.state.customer.customerCart.map((curDish,i) => {
+  subTotal = () => {
+    var number = 0;
+    this.state.cart.forEach((curItem, i) => {
+      number = number + curItem.dish.dishPrice;
+    })
+    return number;
+  }
+
+  cart = () => {
+    return this.state.cart.map((curItem, i) => {
       return (
         <tr>
-        <th scope="row" class="border-0">
-          <div class="p-2">
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm" />
-            <div class="ml-3 d-inline-block align-middle">
-              <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5>
+          <th scope="row" class="border-0">
+            <div class="p-2">
+              <div class="ml-3 d-inline-block align-middle">
+                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{curItem.dish.dishName}</a></h5>
+              </div>
             </div>
-          </div>
-        </th>
-        <td class="border-0 align-middle"><strong>$79.00</strong></td>
-        <td class="border-0 align-middle"><strong>3</strong></td>
-        <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-      </tr>
+          </th>
+          <td class="border-0 align-middle"><strong>${curItem.dish.dishPrice}</strong></td>
+          <td class="border-0 align-middle"><strong>{curItem.qty}</strong></td>
+          <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+        </tr>
       )
-    }) 
-    */
+    })
   }
 
   render() {
@@ -88,7 +98,7 @@ class Cart extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                    {this.cart()}
+                      {this.cart()}
                     </tbody>
                   </table>
                 </div>
@@ -108,11 +118,11 @@ class Cart extends Component {
                 <div class="p-4">
                   <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                   <ul class="list-unstyled mb-4">
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>{this.subTotal()}</strong></li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$0.00</strong></li>
+    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>{this.subTotal()*.07}</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                      <h5 class="font-weight-bold">$400.00</h5>
+                      <h5 class="font-weight-bold">{this.subTotal()*1.07}</h5>
                     </li>
                   </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
                 </div>
