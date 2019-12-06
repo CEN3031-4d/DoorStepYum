@@ -31,9 +31,17 @@ class createChef extends Component {
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        }) 
+    }
+     onUploadChange =(e) => {
+        this.setState({
+            [e.target.name]: e.target.value
         }, () => {
-            if (this.state.chefPicture)
-                this.setState({ filepath: uuidv4().concat('.png') });
+            if (this.state.chefPicture) {
+                var fileExt = this.state.chefPicture.split('.');
+                fileExt = fileExt[fileExt.length - 1]
+                this.setState({ filepath: uuidv4().concat('.', fileExt) });
+            }
             else
                 this.setState({ filepath: '' })
         })
@@ -43,7 +51,6 @@ class createChef extends Component {
         else
             this.setState({ image: '' });
     }
-
     onSubmit = (e) => {
         if (this.state.chefName && this.state.chefBio && this.state.chefEmail && this.state.chefPassword) {
             const newChef = {
@@ -138,7 +145,7 @@ class createChef extends Component {
         return (
             <div className="FormCenter">
                 <p>{this.state.regError}</p>
-                <form className="FormFields" onSubmit={this.handleSubmit}>
+                <form className="FormFields" onSubmit={this.onSubmit}>
                     <div className="FormField">
                         <label className="FormField__Label" htmlFor="name"> Full Name </label>
                         <input type="text" id="name" className="FormField__Input"
@@ -198,7 +205,7 @@ class createChef extends Component {
                         <label className="FormField__Label" htmlFor="experience"> Pictures </label>
                         <input type="file" id="picture" className="FormField__Input"
                             name="chefPicture"
-                            onChange={this.onChange} />
+                            onChange={this.onUploadChange} />
                     </div>
 
                     <div className="FormField">

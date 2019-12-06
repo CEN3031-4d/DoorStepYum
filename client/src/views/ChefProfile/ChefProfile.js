@@ -46,7 +46,10 @@ class ChefProfile extends Component {
       chefPassword: '',
       chefPrice: '',
       chefPicture: '',
+      chefCuisineTypes: [],
+      chefCuisineCSV: '',
       image: '',
+      dishes: [],
       time: '10:00',
       date: new Date(),
       modalIsOpen: false
@@ -63,7 +66,6 @@ class ChefProfile extends Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = 'gray';
-
   }
 
   closeModal() {
@@ -106,6 +108,14 @@ class ChefProfile extends Component {
     axios.get('/api/chef/find/' + this.props.match.params.id)
       .then(res => {
         this.setState(res.data);
+        let cuisineList = '';
+
+        this.state.chefCuisineTypes.forEach((e) => {
+          cuisineList += e += ', '
+        })
+        cuisineList = cuisineList.substring(0, cuisineList.length - 2);
+        this.setState({ chefCuisineCSV: cuisineList })
+
         if (this.state.chefPicture) {
           axios.get('/api/chef/image', {
             params: {
@@ -122,6 +132,10 @@ class ChefProfile extends Component {
         }
         else
           this.setState({ image: "/placeholder.png" })
+        axios.get('http://localhost:5000/api/dish/getDishesbyChef/' + this.props.match.params.id)
+          .then(res => {
+            this.setState({dishes: res.body})
+        })
       })
   }
 
@@ -147,7 +161,7 @@ class ChefProfile extends Component {
                       </AccordionItemHeading>
                     <AccordionItemPanel>
                       <p>
-                        Experience text here
+                        {this.state.chefExperience}
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -160,7 +174,7 @@ class ChefProfile extends Component {
                     </AccordionItemHeading>
                     <AccordionItemPanel>
                       <p>
-                        Cuisine style text here
+                        {this.state.chefCuisineCSV}
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -187,31 +201,31 @@ class ChefProfile extends Component {
 									  <form className = "FormFields">
 										 <div>
 											<Calendar
-											  onChange={this.onChange}
+											  onChange={this.onChangeDate}
 											  value={this.state.date}
 											/>
 										 </div>
 										  <div className="TimePicker">
 											<TimePicker
-											  onChange={this.onChange}
+											  onChange={this.onChangeTime}
 											  value={this.state.time}
 											/>
 										  </div>
 										  <div className="FormField">
 												<label id="hoursRequested" className="FormField__Label" htmlFor="experience"> Hours Requested </label>
-												<input type="number" min="1" id="hoursRequested" className="FormField__Input"
+												<input type="number" min="1" id="hoursRequested" className="FormField__Input" value = {this.state.hoursRequested} onChange={this.handleChange}
 													placeholder="Hours requested" name="hoursRequested"
 											    />
 											</div>
 										  <div className="FormField">
 											<label id="Msg" className="FormField__Label" htmlFor="email"> Write a Message </label>
-											<textarea type="Msg" id="Msg" className ="FormField__Input" 
+											<textarea type="Msg" id="Msg" className ="FormField__Input" value = {this.state.customerMessage} onChange={this.handleChange}
 											placeholder="What would you like the chef to know?" name="customerMessage" 
 											/>
 										  </div>			
 									  </form>
 									  
-										<button id= "SubmitRequestButton" class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
+										<button id= "SubmitRequestButton" onClick={this.submitRequest} class="btn btn-block btn-outline-success font-weight-normal">Submit Request</button>
 										<button onClick={this.closeModal} class="btn btn-block btn-outline-success font-weight-normal">Close</button>
                     
               </div>
@@ -225,18 +239,18 @@ class ChefProfile extends Component {
             <h2 align="center">Notable Dishes</h2>
               <Carousel width="500px" useKeyboardArrows={true} showIndicators={false} interval={3000} autoPlay={true} infiniteLoop={true} showStatus={false} showArrows={false} showThumbs={false}>
                 <div class="card" id="carouselItemCard">
-                  <img src="https://i.imgur.com/VZ7qH8g.png" />
-                  <h5 align="center">FOOD NAME</h5>
+                  <img src="/chef3pancakes.jpg" />
+                  <h5 align="center"> Heart Pancakes </h5>
                   <button class="btn btn-outline-success">More about this food</button>
                 </div>
                 <div class="card" id="carouselItemCard">
-                  <img src="https://i.imgur.com/VZ7qH8g.png" />
-                  <h5>FOOD NAME</h5>
+                  <img src="/chef3sand.jpg" />
+                  <h5>Bagel Breakfast</h5>
                   <button class="btn btn-outline-success">More about this food</button>
                 </div>
                 <div class="card" id="carouselItemCard">
-                  <img src="https://i.imgur.com/VZ7qH8g.png" />
-                  <h5>FOOD NAME</h5>
+                  <img src="/chef3toast.jpg" />
+                  <h5>Avocado and Poached Egg Toast</h5>
                   <button class="btn btn-outline-success">More about this food</button>
                 </div>
               </Carousel>
