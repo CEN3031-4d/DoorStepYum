@@ -10,6 +10,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Features Implemented
  - Home page
+ 
+ 
+![Image description](https://lh6.googleusercontent.com/WGNlXUhve0UNNYMEeuZ3V-B5wv7keZ2EqNN2VARvbR3O1nhilVHDgqPCu288KQeQZPdSvSO_NJFokPBsLuTaQmDcASPKEP5aIURXG1Sl)
  - About page
  - Chef profile
  - Dish profile
