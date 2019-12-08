@@ -50,8 +50,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
  ## How to run the app?
-To run the client and server application locally use the below script in the project directory:
+To run the client and server application locally, in development mode, use the below script in the project directory:
 ##### `npm run-script dev`
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
+To run the client application (server pending) on Heroku, open [https://yummy-doorstep.herokuapp.com](https://yummy-doorstep.herokuapp.com).
 
 ## How to update database and server connections?
+The database URI, along with the AWS S3 access key and secret key, as well as the encryption key and signing key, are stored in the ##### `config.js` file for local use, or the Heroku config vars for production use. These can be modified in these locations if future changes necessitate such action.
