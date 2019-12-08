@@ -26,4 +26,4 @@ To run the client and server application locally use the below script in the pro
 ##### `npm run-script dev`
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
 
-# How to update database and server connections?
+## How to update database and server connections?
