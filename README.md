@@ -19,6 +19,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  - Chef profile:
 
 ![Image description](https://lh6.googleusercontent.com/rVGHzLmNS-dr0fpNIThDjG_UE7X3SR4wTO1_kPYtKQ_87fRRPrvqr06BJ1VjpBNnpKaHKUV_eKDULdEuUeVGe21XhWBYNZvzrIsz5JiY)
+ - Request Chef:
+
+![Image description](https://lh3.googleusercontent.com/yjdUcJX6vUXAGFhG4WpmBn9TJ4mL5HbyFWKWGKJNMoyOEYy8umeoQSpg-Mt-UYAfTxmwpOMMYLW5dXmCXMVoRk_7qMI8wjoATVq29GCz)
+
  - Dish profile:
  
 ![Image description](https://lh4.googleusercontent.com/7GaHR8aNWsuRUfIFDN5tJochxAwaux-bwt1gvRCviPwB6SZxA7LO6qDPhZBKcJoqoK34cZPTjHEwQL7ixBLFJcahb_R91OzOrwHKFTad)
@@ -26,21 +30,23 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  
 ![Image description](https://lh6.googleusercontent.com/DZ8wXkvNLdfjK1q0eb6_VZtg-ujUf9QkW1V4j16C2p-bdND5c-7cg9VOuq6N41fYnJI30PyLbgnRjxidq4FwJ9k7Ui0Bv-JqdX9St0qK)
 
- - Browses Dishes:
+ - Browse Dishes:
 
 ![Image description](https://lh3.googleusercontent.com/23wDhSmYdFdka3YPAFospFD6MtvTmjeRbk0lLYgYLGR6BPCBNGz1Roc4im18YxTUZXna7BkW7MsqF6Vk3Ofdx16tYDLpk2lKt0kEpwCA)
- - Search bar, filtering for dishes and chefs:
 
-![Image description](
- - Different types of users - Customer and Chef:
+ - Sign-up for Chefs:
 
-![Image description](
- - File storage for images:
+![Image description](https://lh6.googleusercontent.com/9XekNW-JLaHJ3kWg-QpQZn6zTQJ4az4aLASjAHV0QKSZHEKY6B64xc2s5XJ7_tXkwP5R2BB3Ty_PKcoQuj9L1m66d6Sqa0OG_3AHPvOG)
+ - Sign-up for Customers:
 
-![Image description](
+![Image description](https://lh3.googleusercontent.com/FQqcV_gAndyB9xDsk291Vx6LsCl1EvydLLSYlEZ9SIAvWTSsZFfASjVhZtmIz8eGnJ9F9SjWWIyWoHX9xsU5dmwpGbHpVr7H7GUYZB2t)
+
+- Edit Chef profile:
+
+![Image description](https://lh6.googleusercontent.com/lzZFzmk-qJ6akbeqnv7KJkyAKmEHwBLmmRqFKNuCZAwFTUXGZCJHBo9q9I8I5cM5qncf8u0h3yMHd5CpIWkbR5XWOLviKosQ3dY9MXhL)
  - Admin console to manage different types of users:
 
-![Image description](
+![Image description](https://lh5.googleusercontent.com/ma7T6A80YDTCyRSGIUQd7NVVtXc5dLsy3gcgkwV2aoS92cYhW5jnP3ZjdwrPJevrAFDBBxWCTNx7UZJ89eo_tiK3vj7ljPLILZeDiklN)
 
 
  ## How to run the app?
