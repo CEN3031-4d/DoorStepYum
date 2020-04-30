@@ -28,7 +28,7 @@
     "concurrently": "^4.1.0",
     "deploy": "^1.0.3",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mocha": "^6.2.1",
     "modal": "^1.2.0",
     "mongoose": "^5.7.1",
