@@ -27,7 +27,7 @@
     "bootstrap": "^4.4.1",
     "concurrently": "^4.1.0",
     "deploy": "^1.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.4.1",
     "mocha": "^6.2.1",
     "modal": "^1.2.0",
