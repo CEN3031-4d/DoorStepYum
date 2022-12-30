@@ -29,7 +29,7 @@
     "deploy": "^1.0.3",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "mocha": "^6.2.1",
+    "mocha": "^10.2.0",
     "modal": "^1.2.0",
     "mongoose": "^5.7.1",
     "mongoose-encrypt": "0.0.1-alpha.3",
